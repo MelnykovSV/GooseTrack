@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.6adbcbbc.css",
-    "main.js": "/GooseTrack/static/js/main.d94f61db.js",
+    "main.js": "/GooseTrack/static/js/main.47043c8c.js",
     "static/media/Inter Bold.svg": "/GooseTrack/static/media/Inter Bold.7e20ae7b8e8bed9ae039.svg",
     "static/media/Inter Medium.svg": "/GooseTrack/static/media/Inter Medium.74250158bbb894782090.svg",
     "static/media/Inter Bold Italic.svg": "/GooseTrack/static/media/Inter Bold Italic.d151b32f7e2724b01d7f.svg",
@@ -54,10 +54,10 @@
     "static/media/Coolvetica W01 Regular Italic.woff2": "/GooseTrack/static/media/Coolvetica W01 Regular Italic.5fa41c3154b1a9b93651.woff2",
     "index.html": "/GooseTrack/index.html",
     "main.6adbcbbc.css.map": "/GooseTrack/static/css/main.6adbcbbc.css.map",
-    "main.d94f61db.js.map": "/GooseTrack/static/js/main.d94f61db.js.map"
+    "main.47043c8c.js.map": "/GooseTrack/static/js/main.47043c8c.js.map"
   },
   "entrypoints": [
     "static/css/main.6adbcbbc.css",
-    "static/js/main.d94f61db.js"
+    "static/js/main.47043c8c.js"
   ]
 }
