@@ -15,6 +15,7 @@ export const App = () => {
   return (
     <Container>
       <ModernNormalize />
+      <h1>GooseTrack</h1>
 
       <Suspense>
         <Routes>
