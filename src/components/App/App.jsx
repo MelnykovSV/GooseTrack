@@ -1,15 +1,15 @@
-import { SharedLayout } from 'components/SharedLayout';
+import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import Container from './App.styled';
 import { ModernNormalize } from 'emotion-modern-normalize';
 import { Suspense } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { RegistrationPage } from 'pages/RegistrationPage';
-import { LoginPage } from 'pages/LoginPage';
+import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
+import { LoginPage } from 'pages/LoginPage/LoginPage';
 import { PublicRoute } from 'PublicRoutes/PublicRoute';
 import { PrivateRoute } from 'PrivateRoutes/PrivateRoute';
-import { AccountPage } from 'pages/AccountPage';
-import { Calendar } from 'pages/Calendar';
-import { Statistics } from 'pages/Statistics';
+import { AccountPage } from 'pages/AccountPage/AccountPage';
+import { Calendar } from 'pages/Calendar/Calendar';
+import { Statistics } from 'pages/Statistics/Statistics';
 
 export const App = () => {
   return (
