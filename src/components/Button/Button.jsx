@@ -1,13 +1,13 @@
 import React from 'react';
 import { MainButton, SecondaryButton } from './Button.styled';
 
-function Button({ type, children, secondary }) {
+function Button({ children, secondary, ...props }) {
   return (
     <>
       {secondary ? (
-        <SecondaryButton type={type}>{children}</SecondaryButton>
+        <SecondaryButton {...props}>{children}</SecondaryButton>
       ) : (
-        <MainButton type={type}>{children}</MainButton>
+        <MainButton {...props}>{children}</MainButton>
       )}
     </>
   );
