@@ -1,4 +1,4 @@
-@import-normalize; /* bring in normalize.css styles */
+@import './fonts/fonts.css';
 
 body {
   margin: 0;
@@ -12,4 +12,33 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+
+.container {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+  max-width: 375px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 1440px;
+  }
+}
+
+.visually-hidden {
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
