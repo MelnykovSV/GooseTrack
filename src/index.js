@@ -5,7 +5,7 @@ import { App } from 'components/App/App';
 import './index.css';
 
 import { ThemeProvider } from '@mui/material/styles';
-import { lightTheme, darkTheme } from './theme';
+import { lightTheme } from './theme';
 
 import { Provider } from 'react-redux';
 import { store } from './redux/store';

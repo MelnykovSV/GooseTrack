@@ -1,5 +1,12 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { isError, isPending } from '../statusCheckers';
+
+// interface IReview {
+//     userName: string | null;
+//     rating: number; // 1-5
+//     review: string | null;
+//     avatarUrl: string | null;
+//   }
 
 const initialState = {
   reviews: [],

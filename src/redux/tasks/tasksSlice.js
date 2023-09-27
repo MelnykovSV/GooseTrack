@@ -1,7 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { isError, isPending } from '../statusCheckers';
-
-
 
 // interface ITask {
 //     title: string;
@@ -10,7 +8,6 @@ import { isError, isPending } from '../statusCheckers';
 //     start: string; // hh:mm
 //     end: string; // hh:mm
 //   }
-
 
 const initialState = {
   tasks: [],
