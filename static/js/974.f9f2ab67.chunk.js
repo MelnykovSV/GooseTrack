@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkGooseTrack=self.webpackChunkGooseTrack||[]).push([[974],{4974:function(e,n,r){r.r(n);var s=r(1087),i=r(184);n.default=function(){return(0,i.jsxs)(i.Fragment,{children:[(0,i.jsx)("div",{children:"registration page"}),(0,i.jsx)(s.rU,{to:"/login",children:"Log in"})]})}}}]);
+//# sourceMappingURL=974.f9f2ab67.chunk.js.map
