@@ -3,9 +3,10 @@ import Container from './App.styled';
 import { ModernNormalize } from 'emotion-modern-normalize';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { getUserData } from 'redux/auth/operations';
 import { useEffect } from 'react';
+import { getRefreshToken, getAccessToken } from 'redux/auth/authSlice';
 
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
@@ -20,9 +21,15 @@ const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
   const dispatch = useDispatch();
+  const accessToken = useSelector(getAccessToken);
+  const refreshToken = useSelector(getRefreshToken);
 
   useEffect(() => {
+    if (!accessToken && !refreshToken) {
+      return;
+    }
     dispatch(getUserData());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
