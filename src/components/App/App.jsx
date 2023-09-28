@@ -27,8 +27,8 @@ export const App = () => {
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegistrationPage />} />
           </Route>
-          <Route path="/" element={<PrivateRoute />}>
-            <Route path="/" element={<SharedLayout />}>
+          <Route element={<PrivateRoute />}>
+            <Route element={<SharedLayout />}>
               <Route path="account" element={<AccountPage />} />
               <Route path="calendar" element={<Calendar />}>
                 <Route
