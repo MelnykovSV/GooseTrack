@@ -10,6 +10,7 @@ import { PrivateRoute } from 'PrivateRoutes/PrivateRoute';
 import { AccountPage } from 'pages/AccountPage/AccountPage';
 import { Calendar } from 'pages/Calendar/Calendar';
 import { Statistics } from 'pages/Statistics/Statistics';
+import { MainPage } from 'pages/MainPage/MainPage';
 
 export const App = () => {
   return (
@@ -19,48 +20,29 @@ export const App = () => {
 
       <Suspense>
         <Routes>
-          <Route
-            path="/register"
-            element={
-              <PublicRoute>
-                <RegistrationPage />
-              </PublicRoute>
-            }
-          />
-          <Route
-            path="/login"
-            element={
-              <PublicRoute>
-                <LoginPage />
-              </PublicRoute>
-            }
-          />
-          <Route path="/" element={<SharedLayout />}>
-            <Route
-              path="account"
-              element={
-                <PrivateRoute>
-                  <AccountPage />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="calendar"
-              element={
-                <PrivateRoute>
-                  <Calendar />
-                </PrivateRoute>
-              }
-            />
-            <Route
-              path="statistics"
-              element={
-                <PrivateRoute>
-                  <Statistics />
-                </PrivateRoute>
-              }
-            />
+          <Route element={<PublicRoute />}>
+            <Route path="/" element={<MainPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegistrationPage />} />
           </Route>
+          <Route path="/" element={<PrivateRoute />}>
+            <Route path="/" element={<SharedLayout />}>
+              <Route path="account" element={<AccountPage />} />
+              <Route path="calendar" element={<Calendar />}>
+                <Route
+                  path="month/:currentMonth"
+                  element={<div>current month</div>}
+                />
+                <Route
+                  path="day/:currentDay"
+                  element={<div>current day</div>}
+                />
+              </Route>
+              <Route path="statistics" element={<Statistics />} />
+            </Route>
+          </Route>
+
+          <Route path="*" element={<div>not found</div>} />
         </Routes>
       </Suspense>
     </Container>
