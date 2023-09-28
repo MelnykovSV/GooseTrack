@@ -3,6 +3,10 @@ import Container from './App.styled';
 import { ModernNormalize } from 'emotion-modern-normalize';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getUserData } from 'redux/auth/operations';
+import { useEffect } from 'react';
+
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
 );
@@ -15,6 +19,12 @@ const Statistics = lazy(() => import('../../pages/Statistics/Statistics'));
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getUserData());
+  }, []);
+
   return (
     <Container>
       <ModernNormalize />

@@ -5,7 +5,6 @@ import { selectToken } from 'redux/selectors';
 const PublicRoute = () => {
   const token = useSelector(selectToken);
   const location = useLocation();
-  console.log(token);
   return !token ? (
     <Outlet />
   ) : (
