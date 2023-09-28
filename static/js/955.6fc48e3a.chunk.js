@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkGooseTrack=self.webpackChunkGooseTrack||[]).push([[955],{9955:function(n,t,r){r.r(t);var e=r(9434),u=r(7689),c=r(6351),o=r(184);t.default=function(){var n=(0,e.v9)(c.r),t=(0,u.TH)();return n?(0,o.jsx)(u.j3,{}):(0,o.jsx)(u.Fg,{to:"/login",state:t})}},6351:function(n,t,r){r.d(t,{r:function(){return e}});var e=function(n){return n.auth.access_token}}}]);
+//# sourceMappingURL=955.6fc48e3a.chunk.js.map
