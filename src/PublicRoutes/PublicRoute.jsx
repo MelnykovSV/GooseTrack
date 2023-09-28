@@ -1,6 +1,6 @@
-const { useSelector } = require('react-redux');
-const { Navigate, useLocation, Outlet } = require('react-router-dom');
-const { selectToken } = require('redux/selectors');
+import { useSelector } from 'react-redux';
+import { Navigate, Outlet, useLocation } from 'react-router-dom';
+import { selectToken } from 'redux/selectors';
 
 export const PublicRoute = () => {
   const token = useSelector(selectToken);
