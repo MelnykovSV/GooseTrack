@@ -1,5 +1,5 @@
-import { LogoutBtn } from './LogoutBtn';
-import { UserNav } from './UserNav';
+import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
+import { UserNav } from '../UserNav/UserNav';
 
 export const SideBar = () => {
   return (
