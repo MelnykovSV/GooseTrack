@@ -1,11 +1,11 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.37877676.css",
-    "main.js": "/GooseTrack/static/js/main.1b30cda9.js",
+    "main.js": "/GooseTrack/static/js/main.a83f85aa.js",
     "static/js/974.a87b175a.chunk.js": "/GooseTrack/static/js/974.a87b175a.chunk.js",
     "static/js/664.95752115.chunk.js": "/GooseTrack/static/js/664.95752115.chunk.js",
-    "static/js/516.8f12769e.chunk.js": "/GooseTrack/static/js/516.8f12769e.chunk.js",
-    "static/js/955.6fc48e3a.chunk.js": "/GooseTrack/static/js/955.6fc48e3a.chunk.js",
+    "static/js/516.c6a61510.chunk.js": "/GooseTrack/static/js/516.c6a61510.chunk.js",
+    "static/js/955.6a421b37.chunk.js": "/GooseTrack/static/js/955.6a421b37.chunk.js",
     "static/js/900.d5dc7c24.chunk.js": "/GooseTrack/static/js/900.d5dc7c24.chunk.js",
     "static/js/65.4f6f5dbf.chunk.js": "/GooseTrack/static/js/65.4f6f5dbf.chunk.js",
     "static/js/478.80713396.chunk.js": "/GooseTrack/static/js/478.80713396.chunk.js",
@@ -62,11 +62,11 @@
     "static/media/Coolvetica W01 Regular Italic.woff2": "/GooseTrack/static/media/Coolvetica W01 Regular Italic.5fa41c3154b1a9b93651.woff2",
     "index.html": "/GooseTrack/index.html",
     "main.37877676.css.map": "/GooseTrack/static/css/main.37877676.css.map",
-    "main.1b30cda9.js.map": "/GooseTrack/static/js/main.1b30cda9.js.map",
+    "main.a83f85aa.js.map": "/GooseTrack/static/js/main.a83f85aa.js.map",
     "974.a87b175a.chunk.js.map": "/GooseTrack/static/js/974.a87b175a.chunk.js.map",
     "664.95752115.chunk.js.map": "/GooseTrack/static/js/664.95752115.chunk.js.map",
-    "516.8f12769e.chunk.js.map": "/GooseTrack/static/js/516.8f12769e.chunk.js.map",
-    "955.6fc48e3a.chunk.js.map": "/GooseTrack/static/js/955.6fc48e3a.chunk.js.map",
+    "516.c6a61510.chunk.js.map": "/GooseTrack/static/js/516.c6a61510.chunk.js.map",
+    "955.6a421b37.chunk.js.map": "/GooseTrack/static/js/955.6a421b37.chunk.js.map",
     "900.d5dc7c24.chunk.js.map": "/GooseTrack/static/js/900.d5dc7c24.chunk.js.map",
     "65.4f6f5dbf.chunk.js.map": "/GooseTrack/static/js/65.4f6f5dbf.chunk.js.map",
     "478.80713396.chunk.js.map": "/GooseTrack/static/js/478.80713396.chunk.js.map",
@@ -74,6 +74,6 @@
   },
   "entrypoints": [
     "static/css/main.37877676.css",
-    "static/js/main.1b30cda9.js"
+    "static/js/main.a83f85aa.js"
   ]
 }
