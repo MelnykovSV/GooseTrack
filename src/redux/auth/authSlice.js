@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isError, isPending } from '../statusCheckers';
 
-import { signUp } from './operations';
+import { signUp, signIn, logOut, getUserData } from './operations';
 
 const initialState = {
   user: {
@@ -24,7 +24,29 @@ const authSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addCase(signUp.fulfilled, (state, action) => {});
+    builder.addCase(signUp.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.user = { ...state.user, ...action.payload.user };
+      state.isLoading = false;
+      state.status = 'fulfilled';
+    });
+    builder.addCase(signIn.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.user = { ...state.user, ...action.payload.user };
+      state.isLoading = false;
+      state.status = 'fulfilled';
+    });
+    builder.addCase(logOut.fulfilled, state => {
+      state.accessToken = null;
+      state.user = { ...initialState.user };
+      state.isLoading = false;
+      state.status = 'fulfilled';
+    });
+    builder.addCase(getUserData.fulfilled, (state, action) => {
+      state.user = { ...state.user, ...action.payload.user };
+      state.isLoading = false;
+      state.status = 'fulfilled';
+    });
 
     builder.addMatcher(isPending, state => {
       state.isLoading = true;
