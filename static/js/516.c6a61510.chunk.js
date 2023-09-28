@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkGooseTrack=self.webpackChunkGooseTrack||[]).push([[516],{5516:function(n,t,e){e.r(t);var c=e(9434),o=e(7689),r=e(6351),u=e(184);t.default=function(){var n=(0,c.v9)(r.r),t=(0,o.TH)();return console.log(n),n?(0,u.jsx)(o.Fg,{to:t.state?t.state:"/account"}):(0,u.jsx)(o.j3,{})}},6351:function(n,t,e){e.d(t,{r:function(){return c}});var c=function(n){return n.auth.accessToken}}}]);
-//# sourceMappingURL=516.c6a61510.chunk.js.map
