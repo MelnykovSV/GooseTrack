@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const MainPage = () => {
+const MainPage = () => {
   return (
     <>
       <Link to="/register">Sign up</Link>
@@ -8,3 +8,5 @@ export const MainPage = () => {
     </>
   );
 };
+
+export default MainPage;

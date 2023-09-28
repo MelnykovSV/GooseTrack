@@ -1,16 +1,18 @@
 import { SharedLayout } from 'components/SharedLayout/SharedLayout';
 import Container from './App.styled';
 import { ModernNormalize } from 'emotion-modern-normalize';
-import { Suspense } from 'react';
+import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { RegistrationPage } from 'pages/RegistrationPage/RegistrationPage';
-import { LoginPage } from 'pages/LoginPage/LoginPage';
-import { PublicRoute } from 'PublicRoutes/PublicRoute';
-import { PrivateRoute } from 'PrivateRoutes/PrivateRoute';
-import { AccountPage } from 'pages/AccountPage/AccountPage';
-import { Calendar } from 'pages/Calendar/Calendar';
-import { Statistics } from 'pages/Statistics/Statistics';
-import { MainPage } from 'pages/MainPage/MainPage';
+const RegistrationPage = lazy(() =>
+  import('../../pages/RegistrationPage/RegistrationPage')
+);
+const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
+const PublicRoute = lazy(() => import('../../PublicRoutes/PublicRoute'));
+const PrivateRoute = lazy(() => import('../../PrivateRoutes/PrivateRoute'));
+const AccountPage = lazy(() => import('../../pages/AccountPage/AccountPage'));
+const Calendar = lazy(() => import('../../pages/Calendar/Calendar'));
+const Statistics = lazy(() => import('../../pages/Statistics/Statistics'));
+const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
   return (
@@ -18,7 +20,7 @@ export const App = () => {
       <ModernNormalize />
       <h1>GooseTrack</h1>
 
-      <Suspense>
+      <Suspense fallback={<div>Loading...</div>}>
         <Routes>
           <Route element={<PublicRoute />}>
             <Route path="/" element={<MainPage />} />

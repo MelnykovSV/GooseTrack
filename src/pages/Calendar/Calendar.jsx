@@ -1,6 +1,6 @@
 import { Outlet } from 'react-router';
 
-export const Calendar = () => {
+const Calendar = () => {
   return (
     <>
       <div>calendar</div>
@@ -8,3 +8,5 @@ export const Calendar = () => {
     </>
   );
 };
+
+export default Calendar;
