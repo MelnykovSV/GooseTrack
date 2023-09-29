@@ -41,6 +41,7 @@ export const MainSectionTitle = styled.h1`
   font-weight: 700;
   line-height: 1.09;
   color: #fff;
+  // width: 258px;
 
   @media screen and (min-width: 768px) {
     font-size: 100px;
@@ -67,6 +68,13 @@ export const AuthLink = styled(Link)`
   font-weight: 600;
   line-height: 14px; /* 116.667% */
   text-decoration-line: underline;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const AuthLinkLogIn = styled(Link)`
@@ -78,14 +86,30 @@ export const AuthLinkLogIn = styled(Link)`
   line-height: 18px; /* 128.571% */
   letter-spacing: -0.28px;
   background-color: #fff;
-  padding: 14px 33px;
+  padding: 14px 32px;
   border-radius: 16px;
   margin-bottom: 16px;
   text-decoration: none;
+
+  @media screen and (min-width: 768px) {
+    padding: 15px 32px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
 
 export const AuthLinkBlock = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (min-width: 768px) {
+    flex-direction: row-reverse;
+    align-items: baseline;
+    gap: 24px;
+  }
+
+  @media screen and (min-width: 1440px) {
+  }
 `;
