@@ -5,6 +5,7 @@ import { isError, isPending } from '../statusCheckers';
 //     title: string;
 //     priority: 'low' | 'medium' | 'high';
 //     status: 'todo' | 'inProgress' | 'done';
+// date: string|null;  //YYYY-MM-DD
 //     start: string; // hh:mm
 //     end: string; // hh:mm
 //   }
