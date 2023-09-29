@@ -1,7 +1,22 @@
 import styled from '@emotion/styled';
 
 export const DescriptionContainer = styled.div`
-  padding: 0px 20px 0 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+  max-width: 375px;
+
+  @media screen and (min-width: 768px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 1440px;
+  }
 `;
 
 export const Number = styled.h2`
@@ -135,10 +150,19 @@ export const DescriptionImg = styled.img`
   }
 
   @media screen and (min-width: 1440px) {
+    width: 604px;
+    height: 700px;
   }
 `;
 
-export const DescriptionSectionOne = styled.section``;
+export const DescriptionSectionOne = styled.section`
+  @media screen and (min-width: 1440px) {
+    display: flex;
+    max-width: 1107px;
+    margin-top: 64px;
+    gap: 228px;
+  }
+`;
 
 export const DescriptionSectionTwo = styled.section``;
 export const DescriptionSectionThree = styled.section``;
@@ -148,9 +172,6 @@ export const DescriptionSectionRevers = styled.div`
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-  }
-  @media screen and (min-width: 1440px) {
-    display: block;
   }
 `;
 
