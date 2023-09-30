@@ -10,11 +10,15 @@ import {
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { emailRegexp } from 'regExp';
 
 const schema = yup
   .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(5).required(),
+    email: yup
+      .string()
+      .required('Email is required')
+      .matches(emailRegexp, 'Invalid email'),
+    password: yup.string().required('User name is required'),
   })
   .required();
 
@@ -68,7 +72,7 @@ export const LoginForm = ({ loginHandler }) => {
 
         <StyledSpan style={{ color: errors?.email ? '#E74A3B' : '#3CBC81' }}>
           {errors?.email
-            ? 'This is an ERROR email'
+            ? errors?.email.message
             : getValues('email')
             ? 'This is a CORRECT email'
             : ''}
@@ -103,8 +107,12 @@ export const LoginForm = ({ loginHandler }) => {
           }}
         ></Input>
 
-        <StyledSpan>
-          {errors?.password && 'Must be at least 5 characters'}
+        <StyledSpan style={{ color: errors?.password ? '#E74A3B' : '#3CBC81' }}>
+          {errors?.password
+            ? errors?.password.message
+            : getValues('password')
+            ? 'This is a CORRECT password'
+            : ''}
         </StyledSpan>
       </WrapperInput>
       <Button type="submit">Log In</Button>

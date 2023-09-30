@@ -10,11 +10,33 @@ import {
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { emailRegexp, userNameRegexp, passwordRegexp } from 'regExp';
 
 const schema = yup
   .object({
-    email: yup.string().email().required(),
-    password: yup.string().min(5).required(),
+    userName: yup
+      .string()
+      .required('User name is required')
+      .max(16, 'Username can be up to 16 characters in length')
+      .matches(
+        userNameRegexp,
+        'Your username should consist of letters, numbers, and underscores only'
+      ),
+    email: yup
+      .string()
+      .required('Email is required')
+      .matches(emailRegexp, 'Invalid email'),
+    password: yup
+      .string()
+      .required('User name is required')
+      .min(
+        8,
+        'For added security, please ensure that your password contains a minimum of 8 characters.'
+      )
+      .matches(
+        passwordRegexp,
+        'Please ensure your password includes at least one lowercase letter, one uppercase letter, and one symbol or number for enhanced security.'
+      ),
   })
   .required();
 
@@ -32,21 +54,47 @@ export const RegisterForm = ({ registerHandler }) => {
     console.log(data);
     registerHandler(data);
   };
-  const handleError = errors => {};
+  const handleError = error => {
+    console.log(error);
+  };
 
   return (
     <Form onSubmit={handleSubmit(handleRegister, handleError)}>
       <Heading>Sign Up</Heading>
       <WrapperInput>
-        <InputHeader type="text" htmlFor="userName">
+        <InputHeader
+          type="text"
+          htmlFor="userName"
+          style={{
+            color: errors?.userName
+              ? '#E74A3B'
+              : getValues('userName')
+              ? '#3CBC81'
+              : '#111',
+          }}
+        >
           Name
         </InputHeader>
         <Input
           placeholder="Enter your name"
-          id="username"
+          id="userName"
           name="userName"
           {...register('userName')}
+          style={{
+            borderColor: errors?.userName
+              ? '#E74A3B'
+              : getValues('userName')
+              ? '#3CBC81'
+              : '#111',
+          }}
         />
+        <StyledSpan style={{ color: errors?.userName ? '#E74A3B' : '#3CBC81' }}>
+          {errors?.userName
+            ? errors?.userName.message
+            : getValues('userName')
+            ? 'This is a CORRECT user name'
+            : ''}
+        </StyledSpan>
       </WrapperInput>
       <WrapperInput>
         <InputHeader
@@ -79,7 +127,7 @@ export const RegisterForm = ({ registerHandler }) => {
 
         <StyledSpan style={{ color: errors?.email ? '#E74A3B' : '#3CBC81' }}>
           {errors?.email
-            ? 'This is an ERROR email'
+            ? errors?.email.message
             : getValues('email')
             ? 'This is a CORRECT email'
             : ''}
@@ -113,11 +161,15 @@ export const RegisterForm = ({ registerHandler }) => {
           }}
         ></Input>
 
-        <StyledSpan>
-          {errors?.password && 'Must be at least 5 characters'}
+        <StyledSpan style={{ color: errors?.password ? '#E74A3B' : '#3CBC81' }}>
+          {errors?.password
+            ? errors?.password.message
+            : getValues('password')
+            ? 'This is a CORRECT password'
+            : ''}
         </StyledSpan>
       </WrapperInput>
-      <Button type="submit">Log In</Button>
+      <Button type="submit">Sign Up</Button>
     </Form>
   );
 };
