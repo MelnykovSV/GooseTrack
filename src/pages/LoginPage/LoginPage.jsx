@@ -7,13 +7,13 @@ import { Hyperlink } from './LoginPage.styled';
 
 const LoginPage = () => {
 	const dispatch = useDispatch();
-	const loginHandler = e => {
-		e.preventDefault();
-		const requestBody = {
-			email: e.target.email.value,
-			password: e.target.password.value,
-		};
-		dispatch(signIn(requestBody));
+	const loginHandler = data => {
+		// e.preventDefault();
+		// const requestBody = {
+		// 	email: e.target.email.value,
+		// 	password: e.target.password.value,
+		// };
+		dispatch(signIn(data));
 	};
 
 	return (
@@ -31,7 +31,7 @@ const LoginPage = () => {
 				<button type="submit">Submit</button>
 			</form> */}
 			<LoginContainer>
-				<LoginForm></LoginForm>
+				<LoginForm loginHandler={loginHandler}></LoginForm>
 				<Hyperlink to="/register">Sign up</Hyperlink>
 			</LoginContainer>
 
