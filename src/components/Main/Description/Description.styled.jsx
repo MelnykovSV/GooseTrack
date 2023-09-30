@@ -46,12 +46,12 @@ export const DescriptionBlock = styled.li`
     align-items: center;
     flex-direction: row;
     gap: 228px;
-    margin-left: auto;
+    margin-left: 205px;
 
     &:nth-of-type(2) {
       flex-direction: row-reverse;
       margin-right: auto;
-      margin-left: 0;
+      margin-left: 100px;
     }
   }
 `;
