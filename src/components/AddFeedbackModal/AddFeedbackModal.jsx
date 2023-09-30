@@ -2,7 +2,7 @@
 // import Modal from 'components/Modal/Modal';
 
 export const AddFeedbackModal = () => {
-  return <div></div>;
+	return <div></div>;
 
-  // <Modal>{/* <FeedbackForm /> */}</Modal>;
+	// <Modal>{/* <FeedbackForm /> */}</Modal>;
 };
