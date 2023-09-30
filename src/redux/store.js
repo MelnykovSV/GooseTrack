@@ -16,7 +16,7 @@ import {
 } from 'redux-persist';
 
 const persistConfig = {
-  key: 'gooseAuth',
+  key: 'GooseTrackAuth',
   storage,
   whitelist: ['accessToken', 'refreshToken'],
 };
