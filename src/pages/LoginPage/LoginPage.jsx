@@ -1,10 +1,17 @@
-import { Link } from 'react-router-dom';
+import LoginContainer from 'components/LoginContainer/LoginContainer';
+import { Hyperlink } from './LoginPage.styled';
+import { LoginForm } from 'components/LoginForm/LoginForm';
 
 export const LoginPage = () => {
-  return (
-    <>
-      <div>login page</div>
-      <Link to="/register">Sign up</Link>
-    </>
-  );
+	const onSubmit = (values) => {
+		console.log(values);
+	}
+
+	return (
+		<LoginContainer>
+			<LoginForm>
+			</LoginForm>
+			<Hyperlink to="/register">Sign up</Hyperlink>
+		</LoginContainer>
+	)
 };

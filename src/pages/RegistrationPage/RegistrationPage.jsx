@@ -1,10 +1,14 @@
-import { Link } from 'react-router-dom';
+import LoginContainer from 'components/LoginContainer/LoginContainer';
+import { RegisterForm } from 'components/RegisterForm/RegisterForm';
+import { Hyperlink } from 'pages/LoginPage/LoginPage.styled';
 
 export const RegistrationPage = () => {
-  return (
-    <>
-      <div>registration page</div>
-      <Link to="/login">Log in</Link>
-    </>
-  );
+
+
+	return (
+		<LoginContainer>
+			<RegisterForm />
+			<Hyperlink to="/login">Log in</Hyperlink>
+		</LoginContainer>
+	);
 };
