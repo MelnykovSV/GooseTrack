@@ -43,6 +43,7 @@ export const DescriptionBlock = styled.li`
   flex-direction: column;
   margin-bottom: 64px;
   @media (min-width: 1440px) {
+    align-items: center;
     flex-direction: row;
     gap: 228px;
     margin-left: auto;
