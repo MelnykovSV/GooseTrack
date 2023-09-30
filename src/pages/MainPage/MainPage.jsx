@@ -1,10 +1,11 @@
-import { Link } from 'react-router-dom';
+import AuthSection from '../../components/Main/AuthSection/AuthSection';
+import DescriptionSection from '../../components/Main/Description/Description';
 
 const MainPage = () => {
   return (
     <>
-      <Link to="/register">Sign up</Link>
-      <Link to="/login">Log in</Link>
+      <AuthSection />
+      <DescriptionSection />
     </>
   );
 };
