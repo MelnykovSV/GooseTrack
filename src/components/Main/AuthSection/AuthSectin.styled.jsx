@@ -90,7 +90,7 @@ export const AuthLinkLogIn = styled(Link)`
   border-radius: 16px;
   margin-bottom: 16px;
   text-decoration: none;
-
+  box-shadow: rgba(136, 165, 191, 0.48) 4px 2px 16px 0px;
   @media screen and (min-width: 768px) {
     padding: 15px 32px;
   }
