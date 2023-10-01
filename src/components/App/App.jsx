@@ -19,7 +19,9 @@ const LoginPage = lazy(() => import('../../pages/LoginPage/LoginPage'));
 const PublicRoute = lazy(() => import('../../PublicRoutes/PublicRoute'));
 const PrivateRoute = lazy(() => import('../../PrivateRoutes/PrivateRoute'));
 const AccountPage = lazy(() => import('../../pages/AccountPage/AccountPage'));
-const Calendar = lazy(() => import('../../pages/Calendar/Calendar'));
+const CalendarPage = lazy(() =>
+  import('../../pages/CalendarPage/CalendarPage')
+);
 const Statistics = lazy(() => import('../../pages/Statistics/Statistics'));
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
@@ -73,7 +75,7 @@ export const App = () => {
           <Route element={<PrivateRoute />}>
             <Route element={<SharedLayout />}>
               <Route path="account" element={<AccountPage />} />
-              <Route path="calendar" element={<Calendar />}>
+              <Route path="calendar" element={<CalendarPage />}>
                 <Route
                   path="month/:currentMonth"
                   element={<div>current month</div>}

@@ -15,15 +15,15 @@ import { injectStore } from './api';
 injectStore(store);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ThemeProvider theme={lightTheme}>
-    <React.StrictMode>
-      <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
-          <BrowserRouter basename="/GooseTrack">
+  <React.StrictMode>
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
+        <BrowserRouter basename="/GooseTrack">
+          <ThemeProvider theme={lightTheme}>
             <App />
-          </BrowserRouter>
-        </PersistGate>
-      </Provider>
-    </React.StrictMode>
-  </ThemeProvider>
+          </ThemeProvider>
+        </BrowserRouter>
+      </PersistGate>
+    </Provider>
+  </React.StrictMode>
 );
