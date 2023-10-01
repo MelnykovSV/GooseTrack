@@ -55,7 +55,10 @@ export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
         MenuListProps={{
           'aria-labelledby': 'more-button',
         }}
-        sx={{ '.MuiPaper-root': menuStyles, '& .MuiList-root': { padding: 0 } }}
+        sx={{
+          '.MuiPaper-root': { ...menuStyles, borderRadius: '8px' },
+          '& .MuiList-root': { padding: 0 },
+        }}
       >
         {tasks.map(({ id, title, priority }) => (
           <S.MiniCard
