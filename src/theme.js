@@ -5,6 +5,7 @@ export const lightTheme = createTheme({
   textPrimaryTransparent: 'rgba(17, 17, 17, 0.15)',
   textPrimaryLight: '#343434',
   textPrimaryLightTransparent: 'rgba(52, 52, 52, 0.5)',
+  textModalTransparent: 'rgba(52, 52, 52, 0.8)',
   textSecondary: '#171820',
   bgPrimary: '#ffffff',
   bgSidebar: '#ffffff',
@@ -32,6 +33,7 @@ export const lightTheme = createTheme({
   starUnactive: '#CEC9C1',
   error: '#E74A3B',
   success: '#3CBC81',
+  shadowColor: 'rgba(17, 17, 17, 0.05)',
 
   gradients: {
     red: 'linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%)',
@@ -41,6 +43,15 @@ export const lightTheme = createTheme({
     time: '0.3s',
     cubic: 'linear',
   },
+  components: {
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
+  },
 });
 
 export const darkTheme = createTheme({
@@ -48,6 +59,7 @@ export const darkTheme = createTheme({
   textPrimaryTransparent: 'rgba(255, 255, 255, 0.15)',
   textPrimaryLight: '#ffffff',
   textPrimaryLightTransparent: '#ffffff',
+  textModalTransparent: 'rgba(250, 250, 250, 0.30)',
   textSecondary: '#ffffff',
   bgPrimary: '#171820',
   bgSidebar: '#13151A',
@@ -74,6 +86,7 @@ export const darkTheme = createTheme({
   starUnactive: '#353647',
   error: '#E74A3B',
   success: '#3CBC81',
+  shadowColor: 'rgba(17, 17, 17, 0.05)',
 
   gradients: {
     red: 'linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%)',
@@ -83,5 +96,14 @@ export const darkTheme = createTheme({
   transitions: {
     time: '0.3s',
     cubic: 'linear',
+  },
+  components: {
+    MuiBackdrop: {
+      styleOverrides: {
+        root: {
+          backgroundColor: 'transparent',
+        },
+      },
+    },
   },
 });

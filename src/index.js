@@ -12,6 +12,7 @@ import { store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from './redux/store';
 import { injectStore } from './api';
+import { AddFeedbackModal } from 'components/AddFeedbackModal/AddFeedbackModal';
 injectStore(store);
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -21,6 +22,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <PersistGate loading={null} persistor={persistor}>
           <BrowserRouter basename="/GooseTrack">
             <App />
+            <AddFeedbackModal />
           </BrowserRouter>
         </PersistGate>
       </Provider>
