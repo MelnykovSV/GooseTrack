@@ -3,7 +3,10 @@ import { Header } from '../Header/Header';
 import { SideBar } from '../SideBar/SideBar';
 import { Suspense } from 'react';
 
+
 export const SharedLayout = () => {
+
+
   return (
     <>
       <Header />

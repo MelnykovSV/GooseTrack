@@ -1,7 +1,7 @@
-export const AddFeedbackBtn = () => {
+export const AddFeedbackBtn = ({ onFeedbackBtn }) => {
   return (
     <>
-      <button>Feedback</button>
+      <button onClick={onFeedbackBtn}>Feedback</button>
     </>
   );
 };

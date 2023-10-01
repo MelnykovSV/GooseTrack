@@ -1,10 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isError, isPending } from '../statusCheckers';
+import { isTasksError, isTasksPending } from '../statusCheckers';
 
 // interface ITask {
 //     title: string;
 //     priority: 'low' | 'medium' | 'high';
 //     status: 'todo' | 'inProgress' | 'done';
+// date: string|null;  //YYYY-MM-DD
 //     start: string; // hh:mm
 //     end: string; // hh:mm
 //   }
@@ -20,16 +21,17 @@ const tasksSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addMatcher(isPending, state => {
+    builder.addMatcher(isTasksPending, state => {
       state.isLoading = true;
       state.status = 'pending';
     });
-    builder.addMatcher(isError, (state, action) => {
+    builder.addMatcher(isTasksError, (state, action) => {
       state.isLoading = false;
       state.status = 'rejected';
-      state.error = action.error.message || 'Something went wrong';
+      state.error = action.payload || 'Something went wrong';
     });
   },
 });
 
 export const tasksReducer = tasksSlice.reducer;
+export const getTasksError = state => state.tasks.error;
