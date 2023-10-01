@@ -6,7 +6,7 @@ import {
   Label,
   RatingBox,
   StyledButton,
-  StyledForm,
+  Form,
   Textarea,
   TextareaBox,
 } from './FeedbackForm.styled';
@@ -15,17 +15,31 @@ import { useTheme } from '@mui/material';
 
 import icons from '../../assets/images/icons.svg';
 import LabelWithControls from './LabelWithControls/LabelWithControls';
+import { useDispatch } from 'react-redux';
+import { addReview, getReview } from 'redux/reviews/operations';
 
 export function FeedbackForm({ onClose, edit }) {
-  const [rating, setRating] = useState(0);
   const theme = useTheme();
+  const dispatch = useDispatch();
+
+  const [rating, setRating] = useState(0);
+  const [comment, setComment] = useState('');
 
   const changeRating = newRating => {
     setRating(newRating);
   };
 
+  const onSubmitForm = e => {
+    e.preventDefault();
+
+    console.log({ rating, comment });
+    console.log(typeof rating);
+    dispatch(addReview({ rating, comment }));
+    onClose();
+  };
+
   return (
-    <StyledForm>
+    <Form onSubmit={onSubmitForm}>
       <CloseIcon onClick={onClose}>
         <Icon>
           <use href={`${icons}#icon-close`} />
@@ -47,7 +61,11 @@ export function FeedbackForm({ onClose, edit }) {
       </RatingBox>
       <TextareaBox>
         {edit ? <LabelWithControls /> : <Label>Review</Label>}
-        <Textarea rows={10} placeholder="Enter text"></Textarea>
+        <Textarea
+          placeholder="Enter text"
+          value={comment}
+          onChange={e => setComment(e.target.value)}
+        ></Textarea>
       </TextareaBox>
       {!edit && (
         <ButtonBox>
@@ -57,6 +75,6 @@ export function FeedbackForm({ onClose, edit }) {
           </StyledButton>
         </ButtonBox>
       )}
-    </StyledForm>
+    </Form>
   );
 }

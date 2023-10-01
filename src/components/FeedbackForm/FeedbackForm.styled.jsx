@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import Button from 'components/Button/Button';
 
-export const StyledForm = styled.form(
+export const Form = styled.form(
   ({ theme }) => `
   padding: 20px 28px;
   max-width: 100%;
