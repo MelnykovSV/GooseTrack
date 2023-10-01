@@ -1,4 +1,4 @@
-import { Modal } from '@mui/material';
+import Modal from '@mui/material/Modal';
 import { Box } from '@mui/system';
 
 const backdrop = {

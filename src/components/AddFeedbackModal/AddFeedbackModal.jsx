@@ -12,7 +12,7 @@ export const AddFeedbackModal = () => {
     <div>
       <button onClick={handleOpen}>Open modal</button>
       <CustomModal open={open} onClose={handleClose}>
-        <FeedbackForm />
+        <FeedbackForm onClose={handleClose} />
       </CustomModal>
     </div>
   );

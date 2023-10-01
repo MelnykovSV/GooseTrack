@@ -14,6 +14,48 @@ export const StyledForm = styled.form(
 `
 );
 
+export const CloseIcon = styled.svg(
+  ({ theme }) => `
+  position: absolute;
+  top: 14px;
+  right: 14px;
+
+  width: 24px;
+  height: 24px;
+
+  color: ${theme.iconClose}
+`
+);
+
+export const RatingBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+`;
+
+export const Icon = styled.svg`
+  width: 16px;
+  height: 16px;
+
+  fill: currentColor;
+`;
+
+export const Label = styled.p(
+  ({ theme }) => `
+  margin: 0;
+  font-size: 12px;
+  line-height: 1.16;
+
+  color: ${theme.textModalTransparent};`
+);
+
+export const TextareaBox = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 20px;
+`;
+
 export const Textarea = styled.textarea(
   ({ theme }) => `
   padding: 12px 14px;
@@ -21,23 +63,19 @@ export const Textarea = styled.textarea(
   height: 130px;
   resize: none;
 
+  outline: none;
+  border-radius: 8px;
+  border-color: ${theme.bgTextarea}; 
+  background-color: ${theme.bgTextarea};
+
+
+
   color: ${theme.textPrimaryLight};
   font-size: 14px;
   font-weight: 600;
   line-height: 1.28;
 `
 );
-
-export const Label = styled.p(
-  ({ theme }) => `
-  font-size: 12px;
-  line-height: 1.16;
-
-  color: ${theme.textModalTransparent};`
-);
-export const TextareaBox = styled.label`
-  margin-top: 20px;
-`;
 
 export const ButtonBox = styled.div`
   margin-top: 14px;
