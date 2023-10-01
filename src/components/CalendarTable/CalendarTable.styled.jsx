@@ -9,10 +9,14 @@ export const TableContainer = styled.div`
 `;
 
 export const Table = styled.div`
-  border: 1px solid ${({ theme }) => theme.strokeTransparant};
+  border: 1px solid ${({ theme }) => theme.stroke};
   border-radius: 8px;
 
   overflow: hidden;
+
+  @media screen and (min-width: 768px) {
+    border-color: ${({ theme }) => theme.strokeTransparant};
+  }
 `;
 
 export const TableRow = styled.div`
@@ -23,13 +27,17 @@ export const TableRow = styled.div`
   background-color: ${({ theme }) => theme.bgPrimary};
 
   &:not(:last-child) {
-    border-bottom-color: ${({ theme }) => theme.strokeTransparant};
+    border-bottom-color: ${({ theme }) => theme.stroke};
     border-bottom-width: 1px;
     border-bottom-style: solid;
   }
 
   @media screen and (min-width: 768px) {
     min-height: 144px;
+
+    &:not(:last-child) {
+      border-bottom-color: ${({ theme }) => theme.strokeTransparant};
+    }
   }
 
   @media screen and (min-width: 1440px) {
@@ -50,7 +58,7 @@ export const TableCell = styled.div`
   cursor: ${({ $isEmpty }) => ($isEmpty ? 'default' : 'pointer')};
 
   &:not(:first-of-type) {
-    border-left-color: ${({ theme }) => theme.strokeTransparant};
+    border-left-color: ${({ theme }) => theme.stroke};
     border-left-width: 1px;
     border-left-style: solid;
   }
@@ -70,6 +78,10 @@ export const TableCell = styled.div`
     padding-right: 4px;
     padding-top: 58px;
     padding-bottom: 4px;
+
+    &:not(:last-child) {
+      border-bottom-color: ${({ theme }) => theme.strokeTransparant};
+    }
   }
 
   @media screen and (min-width: 1440px) {
