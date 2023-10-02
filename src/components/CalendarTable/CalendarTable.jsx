@@ -1,4 +1,5 @@
 import { useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -94,6 +95,7 @@ const BasicDatePicker = ({ onChangeDate, value }) => {
 
 export const CalendarTable = () => {
   const [date, setDate] = useState(new Date());
+  const navigate = useNavigate();
   const { isMobile, isTablet, isDesktop } = useResizeScreen();
 
   const tableData = useMemo(() => {
@@ -118,6 +120,7 @@ export const CalendarTable = () => {
 
       const rowData = {
         dayOfMonth: i,
+        fullDate: formattedDate,
         isCurrentDate: currentDate === formattedDate,
         tasks: tasks.filter(({ date }) => date === formattedDate),
       };
@@ -148,18 +151,14 @@ export const CalendarTable = () => {
     }
   };
 
-  const handleChooseDayCell = e => {
+  const handleChooseDayCell = choseDate => e => {
     if (e.target !== e.currentTarget) return;
 
-    alert(
-      'Клік по комірці переадресовує юзера на відповідний день по маршруту /calendar/day/:date і показує модуль одного дня ChoosedDay з відповідною датою.'
-    );
+    navigate(`/calendar/day/${choseDate}`);
   };
 
-  const handleChooseDay = () => {
-    alert(
-      'Клік по комірці переадресовує юзера на відповідний день по маршруту /calendar/day/:date і показує модуль одного дня ChoosedDay з відповідною датою.'
-    );
+  const handleChooseDay = choseDate => () => {
+    navigate(`/calendar/day/${choseDate}`);
   };
 
   const handleOpenTaskModal = () => {
@@ -175,58 +174,63 @@ export const CalendarTable = () => {
       <S.Table>
         {tableData.map((tableRowData, idx) => (
           <S.TableRow key={idx}>
-            {tableRowData.map(({ dayOfMonth, tasks, isCurrentDate }, idx) => {
-              const numberOfDisplayedTasks = countNumberOfDisplayedTasks(tasks);
+            {tableRowData.map(
+              ({ dayOfMonth, fullDate, tasks, isCurrentDate }, idx) => {
+                const numberOfDisplayedTasks =
+                  countNumberOfDisplayedTasks(tasks);
 
-              const isEmptyCell = dayOfMonth === null;
+                const isEmptyCell = dayOfMonth === null;
 
-              return (
-                <S.TableCell
-                  key={idx}
-                  $isEmpty={isEmptyCell}
-                  onClick={isEmptyCell ? () => {} : handleChooseDayCell}
-                >
-                  <div className="disabled-hover">
-                    <div>
-                      {tasks
-                        .slice(0, numberOfDisplayedTasks)
-                        .map(({ id, title, priority }) => (
-                          <S.MiniCard
-                            type="button"
-                            key={id}
-                            $priority={priority}
-                            onClick={handleOpenTaskModal}
-                          >
-                            {title}
-                          </S.MiniCard>
-                        ))}
+                return (
+                  <S.TableCell
+                    key={idx}
+                    $isEmpty={isEmptyCell}
+                    onClick={
+                      isEmptyCell ? () => {} : handleChooseDayCell(fullDate)
+                    }
+                  >
+                    <div className="disabled-hover">
+                      <div>
+                        {tasks
+                          .slice(0, numberOfDisplayedTasks)
+                          .map(({ id, title, priority }) => (
+                            <S.MiniCard
+                              type="button"
+                              key={id}
+                              $priority={priority}
+                              onClick={handleOpenTaskModal}
+                            >
+                              {title}
+                            </S.MiniCard>
+                          ))}
+                      </div>
+                      {((tasks.length > 2 && isMobile) ||
+                        (tasks.length > 3 && isTablet) ||
+                        (tasks.length > 2 && isDesktop)) && (
+                        <DropDownTaskList
+                          tasks={tasks}
+                          onOpenTaskModal={handleOpenTaskModal}
+                        />
+                      )}
                     </div>
-                    {((tasks.length > 2 && isMobile) ||
-                      (tasks.length > 3 && isTablet) ||
-                      (tasks.length > 2 && isDesktop)) && (
-                      <DropDownTaskList
-                        tasks={tasks}
-                        onOpenTaskModal={handleOpenTaskModal}
-                      />
-                    )}
-                  </div>
-                  {dayOfMonth && (
-                    <S.DayOfMonthContainer
-                      className="container"
-                      $isCurrentDate={isCurrentDate}
-                      onClick={handleChooseDay}
-                    >
-                      <S.DayOfMonth
-                        className="value"
+                    {dayOfMonth && (
+                      <S.DayOfMonthContainer
+                        className="container"
                         $isCurrentDate={isCurrentDate}
+                        onClick={handleChooseDay(fullDate)}
                       >
-                        {dayOfMonth}
-                      </S.DayOfMonth>
-                    </S.DayOfMonthContainer>
-                  )}
-                </S.TableCell>
-              );
-            })}
+                        <S.DayOfMonth
+                          className="value"
+                          $isCurrentDate={isCurrentDate}
+                        >
+                          {dayOfMonth}
+                        </S.DayOfMonth>
+                      </S.DayOfMonthContainer>
+                    )}
+                  </S.TableCell>
+                );
+              }
+            )}
           </S.TableRow>
         ))}
       </S.Table>
