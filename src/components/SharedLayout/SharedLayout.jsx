@@ -16,10 +16,10 @@ export const SharedLayout = () => {
   const [isOpen, setOpen] = useState(false);
   const size = useResize();
 
-  const handleOpenClick = useCallback(e => {
-    e.preventDefault();
-    setOpen(true);
-  }, []);
+  // const handleOpenClick = useCallback(e => {
+  //   e.preventDefault();
+  //   setOpen(true);
+  // }, []);
 
   const handleCloseClick = useCallback(e => {
     e.preventDefault();
