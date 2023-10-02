@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isError, isPending } from '../statusCheckers';
+import { isAuthError, isAuthPending } from '../statusCheckers';
 
 import { signUp, signIn, logOut, getUserData } from './operations';
 
@@ -43,6 +43,7 @@ const authSlice = createSlice({
       state.user = { ...state.user, ...action.payload.user };
       state.isLoading = false;
       state.status = 'fulfilled';
+      state.error = null;
     });
     builder.addCase(signIn.fulfilled, (state, action) => {
       state.accessToken = action.payload.accessToken;
@@ -50,6 +51,7 @@ const authSlice = createSlice({
       state.user = { ...state.user, ...action.payload.user };
       state.isLoading = false;
       state.status = 'fulfilled';
+      state.error = null;
     });
     builder.addCase(logOut.fulfilled, state => {
       state.accessToken = null;
@@ -57,11 +59,13 @@ const authSlice = createSlice({
       state.user = { ...initialState.user };
       state.isLoading = false;
       state.status = 'fulfilled';
+      state.error = null;
     });
     builder.addCase(getUserData.fulfilled, (state, action) => {
       state.user = { ...state.user, ...action.payload.user };
       state.isLoading = false;
       state.status = 'fulfilled';
+      state.error = null;
     });
     // builder.addCase(refresh.fulfilled, (state, action) => {
     //   state.accessToken = action.payload.accessToken;
@@ -70,14 +74,15 @@ const authSlice = createSlice({
     //   state.status = 'fulfilled';
     // });
 
-    builder.addMatcher(isPending, state => {
+    builder.addMatcher(isAuthPending, state => {
       state.isLoading = true;
       state.status = 'pending';
     });
-    builder.addMatcher(isError, (state, action) => {
+    builder.addMatcher(isAuthError, (state, action) => {
       state.isLoading = false;
       state.status = 'rejected';
-      state.error = action.error.message || 'Something went wrong';
+      state.error = action.payload || { message: 'Unknown error', code: null };
+      // console.log(action.payload.code);
     });
   },
 });
@@ -87,4 +92,7 @@ export const { updateTokens, forceLogOut } = authSlice.actions;
 
 export const getAccessToken = state => state.auth.accessToken;
 export const getRefreshToken = state => state.auth.refreshToken;
+
 export const getUser = state => state.auth.user;
+export const getAuthError = state => state.auth.error;
+
