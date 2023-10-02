@@ -87,3 +87,4 @@ export const { updateTokens, forceLogOut } = authSlice.actions;
 
 export const getAccessToken = state => state.auth.accessToken;
 export const getRefreshToken = state => state.auth.refreshToken;
+export const getUser = state => state.auth.user;
