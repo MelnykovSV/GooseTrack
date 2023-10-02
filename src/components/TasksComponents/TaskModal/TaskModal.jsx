@@ -1,35 +1,9 @@
-// import { useState } from 'react';
-
 import Modal from 'components/Modal/Modal';
-// import { TaskForm } from '../TaskForm/TaskForm';
+import { TaskForm } from '..';
 
-export const TaskModal = ({
-  onCloseModal,
-  // showEditBtn,
-  // id,
-  // editTask,
-  // addCategory,
-  isOpen,
-}) => {
-  // const [animationModal, setAnimationModal] = useState(isOpened);
-
-  return (
-    isOpen && (
-      <Modal
-        onClose={onCloseModal}
-        // isOpened={isOpened}
-        // animationModalOnSubmit={animationModal}
-      >
-        Modal
-        {/* <TaskForm
-        onCloseModal={onCloseModal}
-        // showEditBtn={showEditBtn}
-        // id={id}
-        // editTask={editTask}
-        // addCategory={addCategory}
-        // setAnimationModal={setAnimationModal}
-      /> */}
-      </Modal>
-    )
+export const TaskModal = ({ onCloseModal, isOpenModal, task }) =>
+  isOpenModal && (
+    <Modal onClose={onCloseModal}>
+      <TaskForm task={task} onCloseTaskModal={onCloseModal} />
+    </Modal>
   );
-};
