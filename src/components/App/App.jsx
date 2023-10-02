@@ -28,19 +28,22 @@ export const App = () => {
             <Route path="login" element={<LoginPage />} />
             <Route path="register" element={<RegistrationPage />} />
           </Route>
-          {/* <Route element={<PrivateRoute />}> */}
-          <Route element={<SharedLayout />}>
-            <Route path="account" element={<AccountPage />} />
-            <Route path="calendar" element={<Calendar />}>
-              <Route
-                path="month/:currentMonth"
-                element={<div>current month</div>}
-              />
-              <Route path="day/:currentDay" element={<div>current day</div>} />
+          <Route element={<PrivateRoute />}>
+            <Route element={<SharedLayout />}>
+              <Route path="account" element={<AccountPage />} />
+              <Route path="calendar" element={<Calendar />}>
+                <Route
+                  path="month/:currentMonth"
+                  element={<div>current month</div>}
+                />
+                <Route
+                  path="day/:currentDay"
+                  element={<div>current day</div>}
+                />
+              </Route>
+              <Route path="statistics" element={<Statistics />} />
             </Route>
-            <Route path="statistics" element={<Statistics />} />
           </Route>
-          {/* </Route> */}
 
           <Route path="*" element={<div>not found</div>} />
         </Routes>
