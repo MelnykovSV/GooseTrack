@@ -1,17 +1,19 @@
 // import Icons from 'images/sprite.svg';
-import * as S from //   BtnArrow, // {
-//   BtnStyled,
-//   ChouseCat,
+import * as S from //   ChouseCat, //   BtnStyled, //   BtnArrow, // {
 //   InputStyled,
 //   LabelStyled,
 //   ToolBarItem,
 //   Wraper,
 // }
 './TaskToolbar.styled';
-import { TaskModal } from '..';
+// import { TaskModal } from '..';
 
-import { deleteTask, fetchDayTasks, patchTask } from 'redux/tasks/operations';
-import { useDispatch, useSelector } from 'react-redux';
+// import { deleteTask, fetchDayTasks, patchTask } from 'redux/tasks/operations';
+
+import { deleteTask, fetchDayTasks } from 'redux/tasks/operations';
+import { useDispatch } from 'react-redux';
+// import { useDispatch, useSelector } from 'react-redux';
+
 // import { selectTasks } from 'redux/tasks/selectors';
 import { useEffect, useRef, useState } from 'react';
 import { useParams } from 'react-router-dom';
@@ -24,16 +26,16 @@ export const TaskToolBar = ({ id, addCategory }) => {
 
   // const currentLanguageCode = Cookies.get('i18next');
 
-  const category = [
-    { name: 'to-do', en: 'To do', ua: 'Зробити' },
-    { name: 'in-progress', en: 'In progress', ua: 'В процесі' },
-    { name: 'done', en: 'Done', ua: 'Зроблено' },
-  ];
+  // const category = [
+  //   { name: 'to-do', en: 'To do', ua: 'Зробити' },
+  //   { name: 'in-progress', en: 'In progress', ua: 'В процесі' },
+  //   { name: 'done', en: 'Done', ua: 'Зроблено' },
+  // ];
 
-  const [showEditBtn, setShowEditBtn] = useState(false);
+  // const [showEditBtn, setShowEditBtn] = useState(false);
   const [isOpened, setIsOpened] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [selectedOption, setSelectedOption] = useState('');
+  // const [selectedOption, setSelectedOption] = useState('');
   const handleClick = () => {
     setIsClicked(prevState => !prevState);
   };
@@ -42,12 +44,12 @@ export const TaskToolBar = ({ id, addCategory }) => {
     setIsOpened(!isOpened);
   };
 
-  function handleOptionChange(event) {
-    setSelectedOption(event.target.value);
-    // editTask = { ...editTask, category: event.target.value };
+  // function handleOptionChange(event) {
+  // setSelectedOption(event.target.value);
+  // editTask = { ...editTask, category: event.target.value };
 
-    // dispatch(patchTask({ id: id, task: { category: editTask.category } }));
-  }
+  // dispatch(patchTask({ id: id, task: { category: editTask.category } }));
+  // }
   let { currentDay } = useParams();
   const onDeleteHendler = async () => {
     await dispatch(deleteTask(id));
@@ -126,7 +128,7 @@ export const TaskToolBar = ({ id, addCategory }) => {
         type="button"
         onClick={() => {
           handleToggleModal();
-          setShowEditBtn(true);
+          // setShowEditBtn(true);
         }}
       >
         <S.ToolBarItem>
