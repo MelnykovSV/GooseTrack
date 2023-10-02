@@ -1,10 +1,14 @@
+import { useSelector } from 'react-redux';
+import { getUser } from 'redux/auth/authSlice';
+import { UserImg, UserInfoWrapper, UserName } from './UserInfo.styled';
+
 export const UserInfo = () => {
+  const user = useSelector(getUser);
+
   return (
-    <>
-      <div>
-        <p>name</p>
-        <img src="#" alt="user" />
-      </div>
-    </>
+    <UserInfoWrapper>
+      <UserName>{user.userName}ddddddd</UserName>
+      <UserImg src={user.avatarUrl} alt="user" />
+    </UserInfoWrapper>
   );
 };
