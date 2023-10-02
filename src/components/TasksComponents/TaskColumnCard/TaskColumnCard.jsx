@@ -9,7 +9,11 @@ export const TaskColumnCard = ({ priority }) => {
           <S.Avatar />
           <S.Priority>Low</S.Priority>
         </S.PriorityWraper>
-        <S.ToolsWrapper>qqq</S.ToolsWrapper>
+        <S.ToolsWrapper>
+          <S.ArrowIcon />
+          <S.PencilIcon />
+          <S.TrashIcon />
+        </S.ToolsWrapper>
       </S.Wraper>
     </S.CardWraper>
   );

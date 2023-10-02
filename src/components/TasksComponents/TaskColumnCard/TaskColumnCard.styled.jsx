@@ -1,4 +1,7 @@
 import styled from '@emotion/styled';
+import { ReactComponent as Arrow } from '../../../images/TaskIcons/arrow-circle-broken-right.svg';
+import { ReactComponent as Pencil } from '../../../images/TaskIcons/pencil-01.svg';
+import { ReactComponent as Trash } from '../../../images/TaskIcons/trash-04.svg';
 // import { BsFillPencilFill } from 'react-icons/bs';
 
 // export const Icon = styled(BsFillPencilFill)``;
@@ -59,11 +62,14 @@ export const PriorityWraper = styled.div`
   justify-content: space-between;
 `;
 export const ToolsWrapper = styled.div`
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 10px;
   margin-top: 18px;
   width: 82px;
   height: 14px;
-  outline: 1px solid tomato;
 `;
+
 export const Priority = styled.div`
   margin: 0;
   margin-top: 12px;
@@ -79,4 +85,34 @@ export const Priority = styled.div`
   line-height: 12px; /* 120% */
   /* -o-text-overflow: ellipsis; */
   text-overflow: ellipsis;
+`;
+
+export const ArrowIcon = styled(Arrow)`
+  height: 14px;
+  width: 14px;
+
+  @media screen and (min-width: 768px) {
+    height: 16px;
+    width: 16px;
+  }
+`;
+
+export const PencilIcon = styled(Pencil)`
+  height: 14px;
+  width: 14px;
+
+  @media screen and (min-width: 768px) {
+    height: 16px;
+    width: 16px;
+  }
+`;
+
+export const TrashIcon = styled(Trash)`
+  height: 14px;
+  width: 14px;
+
+  @media screen and (min-width: 768px) {
+    height: 16px;
+    width: 16px;
+  }
 `;
