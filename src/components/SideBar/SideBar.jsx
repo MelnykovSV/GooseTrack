@@ -2,8 +2,16 @@
 import { UserNav } from '../UserNav/UserNav';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
+import {
+  Container,
+  LogoContainer,
+  LogoImg,
+  Logotext,
+  LogOutBtn,
+  CloseBtn,
+} from './SideBar.styled';
 
-export const SideBar = () => {
+export const SideBar = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
@@ -11,10 +19,15 @@ export const SideBar = () => {
     dispatch(logOut());
   };
   return (
-    <>
+    <Container>
+      <LogoContainer>
+        <LogoImg src="" alt="" />
+        <Logotext>GooseTrack</Logotext>
+        <CloseBtn onClick={onClose}>X</CloseBtn>
+      </LogoContainer>
       <UserNav />
-      <button onClick={logoutHandler}>log out</button>
+      <LogOutBtn onClick={logoutHandler}>log out</LogOutBtn>
       {/* <LogoutBtn  /> */}
-    </>
+    </Container>
   );
 };

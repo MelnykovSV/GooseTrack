@@ -1,7 +1,5 @@
+import { ThemeToggle } from './ThemeToggler.styled';
+
 export const ThemeToggler = () => {
-  return (
-    <>
-      <p>theme toggler</p>
-    </>
-  );
+  return <ThemeToggle>theme</ThemeToggle>;
 };
