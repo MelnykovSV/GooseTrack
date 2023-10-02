@@ -9,6 +9,8 @@ import { format, getMonth, getYear } from 'date-fns';
 
 import { useResizeScreen } from 'hooks';
 
+import { TaskModal } from 'components/TasksComponents';
+
 import * as S from './CalendarTable.styled';
 
 import { tasks } from './defaultData';
@@ -95,7 +97,11 @@ const BasicDatePicker = ({ onChangeDate, value }) => {
 
 export const CalendarTable = () => {
   const [date, setDate] = useState(new Date());
+  const [isOpenTaskModal, setIsOpenTaskModal] = useState(false);
+  const [choseTask, setChoseTask] = useState(null);
+
   const navigate = useNavigate();
+
   const { isMobile, isTablet, isDesktop } = useResizeScreen();
 
   const tableData = useMemo(() => {
@@ -161,10 +167,14 @@ export const CalendarTable = () => {
     navigate(`/calendar/day/${choseDate}`);
   };
 
-  const handleOpenTaskModal = () => {
-    alert(
-      'Клік по завданню з комірки, відкриває модалку для редагування даного завдання, заповнену даними з цього завдання.'
-    );
+  const handleOpenTaskModal = task => () => {
+    setChoseTask(task);
+    setIsOpenTaskModal(true);
+  };
+
+  const handleCloseTaskModal = () => {
+    setIsOpenTaskModal(false);
+    setChoseTask(null);
   };
 
   return (
@@ -191,18 +201,16 @@ export const CalendarTable = () => {
                   >
                     <div className="disabled-hover">
                       <div>
-                        {tasks
-                          .slice(0, numberOfDisplayedTasks)
-                          .map(({ id, title, priority }) => (
-                            <S.MiniCard
-                              type="button"
-                              key={id}
-                              $priority={priority}
-                              onClick={handleOpenTaskModal}
-                            >
-                              {title}
-                            </S.MiniCard>
-                          ))}
+                        {tasks.slice(0, numberOfDisplayedTasks).map(task => (
+                          <S.MiniCard
+                            type="button"
+                            key={task.id}
+                            $priority={task.priority}
+                            onClick={handleOpenTaskModal(task)}
+                          >
+                            {task.title}
+                          </S.MiniCard>
+                        ))}
                       </div>
                       {((tasks.length > 2 && isMobile) ||
                         (tasks.length > 3 && isTablet) ||
@@ -234,6 +242,14 @@ export const CalendarTable = () => {
           </S.TableRow>
         ))}
       </S.Table>
+
+      {choseTask && (
+        <TaskModal
+          isOpenModal={isOpenTaskModal}
+          onCloseModal={handleCloseTaskModal}
+          task={choseTask}
+        />
+      )}
     </S.TableContainer>
   );
 };
