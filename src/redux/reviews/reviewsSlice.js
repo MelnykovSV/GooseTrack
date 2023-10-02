@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isReviewsError, isReviewsPending } from '../statusCheckers';
-import { addReview, getReview } from './operations';
+import { addReview, deleteReview, updateReview } from './operations';
 
 // interface IReview {
 //     userName: string | null;
@@ -15,15 +15,20 @@ const initialState = {
   error: null,
 };
 
-const handleGetReview = (state, action) => {
-  console.log(action.payload);
+const handleAddReview = (state, action) => {
+  state.reviews.push(action.payload);
   state.isLoading = false;
   state.error = null;
   state.status = 'fulfilled';
 };
 
-const handleAddReview = (state, action) => {
-  state.reviews.push(action.payload);
+const handleUpdateReview = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.status = 'fulfilled';
+};
+
+const handleDeleteReview = (state, action) => {
   state.isLoading = false;
   state.error = null;
   state.status = 'fulfilled';
@@ -32,31 +37,22 @@ const handleAddReview = (state, action) => {
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: initialState,
-  reducers: {
-    // getReview(state, action) {
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.status = 'fulfilled';
-    // },
-    // addReview(state, action) {
-    //   state.reviews.push(action.payload);
-    //   state.isLoading = false;
-    //   state.error = null;
-    //   state.status = 'fulfilled';
-    // },
-  },
+  reducers: {},
   extraReducers: builder => {
-    // builder.addCase(getReview.fulfilled, handleGetReview);
-    // builder.addCase(addReview.fulfilled, handleAddReview);
-    builder.addMatcher(isReviewsPending, state => {
-      state.isLoading = true;
-      state.status = 'pending';
-    });
-    builder.addMatcher(isReviewsError, (state, action) => {
-      state.isLoading = false;
-      state.status = 'rejected';
-      state.error = action.payload || 'Something went wrong';
-    });
+    builder
+      .addCase(addReview.fulfilled, handleAddReview)
+      .addCase(updateReview.fulfilled, handleUpdateReview)
+      .addCase(deleteReview.fulfilled, handleDeleteReview);
+    builder
+      .addMatcher(isReviewsPending, state => {
+        state.isLoading = true;
+        state.status = 'pending';
+      })
+      .addMatcher(isReviewsError, (state, action) => {
+        state.isLoading = false;
+        state.status = 'rejected';
+        state.error = action.payload || 'Something went wrong';
+      });
   },
 });
 
