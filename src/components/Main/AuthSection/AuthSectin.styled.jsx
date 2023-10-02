@@ -19,11 +19,11 @@ export const MainSectionContent = styled.div`
 export const MainSectionGoose = styled.picture`
   width: 142px;
   height: 142px;
-margin left: auto;
-margin right: auto;
+  margin-left: auto;
+  margin-right: auto;
 
- @media screen and (min-width: 1440px) {
-     width: 150px;
+  @media screen and (min-width: 1440px) {
+    width: 150px;
     height: 149px;
   }
 `;
