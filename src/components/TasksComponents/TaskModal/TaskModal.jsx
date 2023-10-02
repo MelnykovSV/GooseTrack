@@ -1,7 +1,7 @@
 // import { useState } from 'react';
 
 import Modal from 'components/Modal/Modal';
-import { TaskForm } from '../TaskForm/TaskForm';
+// import { TaskForm } from '../TaskForm/TaskForm';
 
 export const TaskModal = ({
   onCloseModal,
