@@ -1,16 +1,18 @@
 import React from 'react';
 import { MainButton, SecondaryButton } from './Button.styled';
 
-function Button({ children, secondary, ...props }) {
+export default function Button({ children, secondary, ...props }) {
   return (
     <>
       {secondary ? (
-        <SecondaryButton {...props}>{children}</SecondaryButton>
+        <SecondaryButton variant="contained" {...props}>
+          {children}{' '}
+        </SecondaryButton>
       ) : (
-        <MainButton {...props}>{children}</MainButton>
+        <MainButton variant="contained" {...props}>
+          {children}
+        </MainButton>
       )}
     </>
   );
 }
-
-export default Button;
