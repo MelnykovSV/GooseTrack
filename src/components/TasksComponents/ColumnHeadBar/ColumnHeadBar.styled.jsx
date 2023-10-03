@@ -33,6 +33,6 @@ export const Button = styled(LuPlusCircle)`
 
   transition: stroke 250ms linear;
   &:hover {
-    stroke: #3e85f3;
+    stroke: ${({ theme }) => theme.accentPrimary};
   }
 `;
