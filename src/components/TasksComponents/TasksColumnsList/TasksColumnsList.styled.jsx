@@ -9,12 +9,17 @@ export const Container = styled.ul`
   width: 100%;
   /* background-color: ${({ theme }) => theme.bgSecondary}; */
 
+  @media screen and (min-width: 1440px) {
+    gap: 27px;
+  }
+
   ::-webkit-scrollbar {
     width: 12px;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #f2f2f2;
+    background-color: ${({ theme }) => theme.accentPrimary};
+
     border-radius: 12px;
   }
 
