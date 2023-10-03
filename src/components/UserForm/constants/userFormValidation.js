@@ -1,7 +1,7 @@
 import { object, string, date } from 'yup';
 
 export const userFormValidation = object({
-  name: string()
+  userName: string()
     .min(3, 'Too short!')
     .max(16, 'Too long!')
     .required('Please enter your name'),
@@ -13,7 +13,8 @@ export const userFormValidation = object({
     )
     .required('Please enter your email.'),
   skype: string().max(16),
-  phone: string().matches(/^\+[\d-]+$/, 'Number should start from +'),
+  phone: string().max(19, 'Phone must include 10 numbers'),
+  avatarUrl: string(),
 });
 
 // /^([+]?[0-9])*$/i;

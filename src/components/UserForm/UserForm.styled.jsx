@@ -2,10 +2,15 @@ import styled from '@emotion/styled';
 import { ErrorMessage, Field } from 'formik';
 import { ReactComponent as UpdateAvatarIcon } from '../../icons/plus.svg';
 import { ReactComponent as UserIcon } from '../../icons/ph_user.svg';
+import { ReactComponent as ErrorIcon } from '../../icons/error.svg';
+import { ReactComponent as ValidIcon } from '../../icons/valid.svg';
 
 export const UserSection = styled.section`
   display: flex;
+  width: 100%;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
   padding: 0 18px 40px 18px;
   margin-top: 64px;
   margin-bottom: 40px;
@@ -19,7 +24,8 @@ export const UserSection = styled.section`
       padding: 40px 175px 40px 175px;
   }
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 1200px) {
+    width: inherit;
     padding: 60px 165px 60px 165px;
     margin-top: 32px;
     margin-bottom: 32px;
@@ -39,8 +45,8 @@ export const UserAvatar = styled.div`
   height: 72px;
   border: 2px solid #3e85f3;
   border-radius: 50%;
-  //   -o-object-fit: cover;
-  //   object-fit: cover;
+    // -o-object-fit: cover;
+    // object-fit: cover;
   margin-bottom: 20px;
 
   @media screen and (min-width: 767px) {
@@ -113,7 +119,6 @@ export const AvatarUploadBtn = styled.label`
   position: absolute;
   width: 14px;
   height: 14px;
-  //   top: 100px;
   z-index: 1;
 
   @media screen and (min-width: 767px) {
@@ -151,8 +156,15 @@ export const UserFormWrap = styled.div`
   margin-top: 40px;
   display: flex;
   flex-direction: column;
+  gap: 18px;
+  justify-content: center;
+  align-items: center;
 
-  @media screen and (min-width: 1440px) {
+  @media screen and (min-width: 767px) {
+    gap: 26px;
+  }
+
+  @media screen and (min-width: 1200px) {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 24px 50px;
@@ -165,12 +177,23 @@ export const LabelText = styled.p`
   font-style: normal;
   font-size: 14px;
   font-weight: 600;
-  color: #111111;
+  color: ${({ status }) => {
+    switch (status) {
+      case 'error':
+        return '#E74A3B';
+      case 'valid':
+        return '#3CBC81';
+      default:
+        return '#111111';
+    }
+  }};
   text-align: left;
-  margin-bottom: 0px;
+  margin-bottom: 8px;
+  margin-top: 0px;
 `;
 
 export const Label = styled.label`
+  position: relative;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.25;
@@ -181,16 +204,27 @@ export const Label = styled.label`
     font-size: 14px;
     line-height: 1.2;
   }
+  @media screen and (min-width: 1200px) {
+    position: relative;
+  }
 `;
 
 export const FormInput = styled(Field)`
   box-sizing: border-box;
-  width: 100%;
+  min-width: 300px;
   height: 42px;
-  margin-top: 8px;
-  margin-bottom: 8px;
+  margin: 0px;
   padding: 14px 18px 14px 18px;
-  border: 1px solid #11111126;
+  border: ${p => {
+    switch (p.status) {
+      case 'error':
+        return '1px solid #E74A3B';
+      case 'valid':
+        return '1px solid #3CBC81';
+      default:
+        return '1px solid #11111126';
+    }
+  }};
   border-radius: 8px;
   font-style: normal;
   font-weight: 600;
@@ -203,12 +237,31 @@ export const FormInput = styled(Field)`
     border: 1px solid #111111;
   }
 
+  @media screen and (min-width: 768px) {
+    min-width: 350px;
+  }
+
   @media screen and (min-width: 1200px) {
-  &:nth-of-type(1),
-  &:nth-of-type(3) {
-    margin-right: 50px;
+    &:nth-of-type(1),
+    &:nth-of-type(3) {
+      margin-right: 50px;
+    }
   }
 `;
+
+export const DataIconWrap = styled.span`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 31px;
+  font-size: x-large;
+
+  @media screen and (min-width: 1200px) {
+    right: 60px;
+  }
+`;
+
 
 export const Feedback = styled.div`
   height: 25px;
@@ -216,7 +269,36 @@ export const Feedback = styled.div`
   margin-left: 10px;
 `;
 
+export const ValidFeedback = styled.div`
+  color: #3cbc81;
+  font-size: 12px;
+`;
+
 export const InvalidFeedback = styled(ErrorMessage)`
   color: #da1414;
   font-size: 12px;
+`;
+
+export const ValidationIcon = styled.span`
+  border: none;
+  background-color: transparent;
+  position: absolute;
+  right: 10px;
+  top: 34px;
+  font-size: x-large;
+
+  @media screen and (min-width: 1200px) {
+    right: 60px;
+  }
+`;
+
+export const InvalidInputIcon = styled(ErrorIcon)`
+  width: 24px;
+  height: 24px;
+  fill: #E74A3B;
+`;
+export const ValidInputIcon = styled(ValidIcon)`
+  width: 24px;
+  height: 24px;
+  fill: #3cbc81;
 `;

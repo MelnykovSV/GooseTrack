@@ -17,16 +17,26 @@ export const SaveBtn = styled.button`
   margin-top: 40px;
   isolation: isolate;
   min-width: 195px;
-  background: #3e85f3;
+  background-color: ${({ disabled }) => {
+    return disabled ? '#d3d3d3' : '#3e85f3';
+  }};
+
   border-radius: 16px;
   grid-column-start: 1;
   grid-column-end: 3;
-  cursor: pointer;
+  cursor: ${({ disabled }) => {
+    return disabled ? 'not-allowed' : 'pointer';
+  }};
+  
   transition: box-shadow linear 350ms;
 
   :hover,
   :focus {
-    background-color: #2b78ef;
+    background-color: ${({ disabled }) => {
+      return disabled ? '#d3d3d3' : '#2b78ef';
+    }};
+    
+  
   }
 
   @media screen and (min-width: 767px) {
