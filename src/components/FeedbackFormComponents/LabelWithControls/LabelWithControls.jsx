@@ -8,9 +8,9 @@ import {
 
 import icons from '../../../assets/images/icons.svg';
 import { EditBox } from './LabelWithControls.styled';
-import { Icon, Label } from '../FeedbackForm.styled';
+import { Icon, Label } from '../FeedbackForm/FeedbackForm.styled';
 
-export default function LabelWithControls({ active, onEdit, onDelete }) {
+export function LabelWithControls({ active, onEdit, onDelete }) {
   return (
     <EditBox>
       <Label>Review</Label>
