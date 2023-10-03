@@ -35,7 +35,7 @@ export function FeedbackForm({
   const dispatch = useDispatch();
 
   const [rating, setRating] = useState(0);
-  const [_, setComment] = useState('');
+  const [, setComment] = useState('');
 
   const [isEdit, setIsEdit] = useState(false);
 
