@@ -3,7 +3,12 @@ import { useTheme } from '@emotion/react';
 import { Label, RatingBox } from '../FeedbackForm.styled';
 import StarRatings from 'react-star-ratings';
 
-export default function StarRating({ rating, changeRating, isSelectable }) {
+export default function StarRating({
+  rating,
+  changeRating,
+  isSelectable,
+  name,
+}) {
   const theme = useTheme();
 
   return (

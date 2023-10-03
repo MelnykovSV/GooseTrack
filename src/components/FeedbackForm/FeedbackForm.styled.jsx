@@ -106,3 +106,9 @@ export const StyledButton = styled(Button)`
     width: 198px;
   }
 `;
+export const Error = styled.p`
+  margin: 0;
+  font-size: 10px;
+  font-weight: 400;
+  color: ${({ theme }) => theme.error};
+`;

@@ -1,7 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { privateApi } from 'api';
-
-import { CloseIcon, Icon, Form } from './FeedbackForm.styled';
 
 import icons from '../../assets/images/icons.svg';
 import { useDispatch } from 'react-redux';
@@ -10,65 +7,67 @@ import {
   deleteReview,
   updateReview,
 } from 'redux/reviews/operations';
+
+import {
+  ButtonBox,
+  CloseIcon,
+  Icon,
+  Label,
+  StyledButton,
+  Form,
+  Textarea,
+  TextareaBox,
+  Error,
+} from './FeedbackForm.styled';
 import StarRating from './StarRating/StarRating';
-import Comment from './Comment/Comment';
-import ControlButtons from './ControlButtons/ControlButtons';
 import { reviewSchema } from 'assets/schemas/reviewSchema';
+import { useFormik } from 'formik';
+import LabelWithControls from './LabelWithControls/LabelWithControls';
 
-const data = { rating: 3, comment: '' };
-
-const validate = async () => {
-  const result = await reviewSchema.validate(data);
-  console.log(result);
-};
-
-validate();
-
-export function FeedbackForm({ onClose }) {
+export function FeedbackForm({
+  onClose,
+  review,
+  isFeedbackAlreadyExist,
+  setIsFeedbackAlreadyExist,
+  setRatingInModal,
+  setCommentInModal,
+}) {
   const dispatch = useDispatch();
 
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [_, setComment] = useState('');
+
   const [isEdit, setIsEdit] = useState(false);
-  const [isFeedbackAlreadyExist, setIsFeedbackAlreadyExist] = useState(false);
 
   const isEnable = isFeedbackAlreadyExist || isEdit;
 
-  useEffect(() => {
-    const getReview = async () => {
-      try {
-        const response = await privateApi.get('/api/reviews/own');
-        if (
-          response &&
-          response.response &&
-          response.response.data.code === 404
-        ) {
-          setRating(0);
-          setComment('');
-          setIsFeedbackAlreadyExist(false);
-          return;
-        }
-        console.log(response.data.data);
-
-        setRating(response.data.data.rating);
-        setComment(response.data.data.comment);
-        setIsFeedbackAlreadyExist(true);
-
-        return response.data.data;
-      } catch (error) {
-        console.log(error);
+  const formik = useFormik({
+    initialValues: {
+      rating,
+      comment: review.comment,
+    },
+    onSubmit: review => {
+      if (isEdit) {
+        dispatch(updateReview(review));
+      } else {
+        dispatch(addReview(review));
       }
-    };
 
-    getReview();
-  }, []);
+      setCommentInModal(review.comment);
+      setRatingInModal(review.rating);
+      setIsEdit(false);
+      onClose();
+    },
+    validationSchema: reviewSchema,
+  });
+
+  useEffect(() => {
+    setRating(review.rating);
+    setComment(review.comment);
+  }, [review]);
 
   const changeRating = newRating => {
     setRating(newRating);
-  };
-
-  const handleChange = e => {
-    setComment(e.target.value);
   };
 
   const handleEdit = () => {
@@ -78,26 +77,9 @@ export function FeedbackForm({ onClose }) {
   const handleDeleteReview = () => {
     dispatch(deleteReview());
     setIsEdit(false);
+    setCommentInModal('');
+    setRatingInModal(0);
     setIsFeedbackAlreadyExist(false);
-    onClose();
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-
-    console.log({ rating, comment });
-
-    if (isEdit) {
-      console.log('Update review');
-
-      dispatch(updateReview({ rating, comment }));
-    } else {
-      console.log('Add review');
-
-      dispatch(addReview({ rating, comment }));
-    }
-
-    setIsEdit(false);
     onClose();
   };
 
@@ -107,33 +89,67 @@ export function FeedbackForm({ onClose }) {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <CloseIcon onClick={handleClose}>
-        <Icon>
-          <use href={`${icons}#icon-close`} />
-        </Icon>
-      </CloseIcon>
+    <>
+      <Form onSubmit={formik.handleSubmit}>
+        <CloseIcon onClick={handleClose}>
+          <Icon>
+            <use href={`${icons}#icon-close`} />
+          </Icon>
+        </CloseIcon>
 
-      <StarRating
-        rating={rating}
-        changeRating={changeRating}
-        isSelectable={!isFeedbackAlreadyExist || isEdit}
-      />
-      {/* <input type="number" {...register('rating')} /> */}
+        <StarRating
+          rating={rating}
+          changeRating={changeRating}
+          isSelectable={!isFeedbackAlreadyExist || isEdit}
+        />
+        <input
+          type="number"
+          id="comment"
+          name="rating"
+          className="visually-hidden"
+          value={(formik.values.rating = rating)}
+          onChange={formik.handleChange}
+        />
+        {formik.errors.rating && formik.touched.rating ? (
+          <Error>{formik.errors.rating}</Error>
+        ) : null}
 
-      <Comment
-        enable={isEnable}
-        disabled={!(!isFeedbackAlreadyExist || isEdit)}
-        active={isEdit}
-        comment={comment}
-        onEdit={handleEdit}
-        onDelete={handleDeleteReview}
-        onChange={handleChange}
-      />
+        <TextareaBox>
+          {isEnable ? (
+            <LabelWithControls
+              active={isEdit}
+              onEdit={handleEdit}
+              onDelete={handleDeleteReview}
+            />
+          ) : (
+            <Label>Review</Label>
+          )}
+          <Textarea
+            type="text"
+            placeholder="Enter text"
+            id="comment"
+            name="comment"
+            disabled={!(!isFeedbackAlreadyExist || isEdit)}
+            value={formik.values.comment}
+            onChange={formik.handleChange}
+          ></Textarea>
 
-      {(!isFeedbackAlreadyExist || isEdit) && (
-        <ControlButtons isEdit={!isEnable} onClose={handleClose} />
-      )}
-    </Form>
+          {formik.errors.comment && formik.touched.comment ? (
+            <Error>{formik.errors.comment}</Error>
+          ) : null}
+        </TextareaBox>
+
+        {(!isFeedbackAlreadyExist || isEdit) && (
+          <ButtonBox>
+            <StyledButton type="submit">
+              {isEdit ? 'Edit' : 'Save'}
+            </StyledButton>
+            <StyledButton type="button" onClick={handleClose} secondary>
+              Cancel
+            </StyledButton>
+          </ButtonBox>
+        )}
+      </Form>
+    </>
   );
 }

@@ -11,25 +11,22 @@ export const Controls = styled.div`
   gap: 8px;
 `;
 
-export const EditIcon = styled.div(
-  ({ theme }) => `
+export const EditIcon = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
 
   width: 30px;
   height: 30px;
-  
+
   border-radius: 50%;
   border: 0;
 
-  color: ${theme.accentBlue};
-  background-color: ${theme.bgEditIcon};
+  color: ${({ theme }) => theme.accentBlue};
+  background-color: ${({ theme }) => theme.bgEditIcon};
 
   cursor: pointer;
-
-`
-);
+`;
 
 export const EditIconActive = styled.div(
   ({ theme }) => `

@@ -23,8 +23,11 @@ export default function Comment({
         <Label>Review</Label>
       )}
       <Textarea
-        disabled={disabled}
+        name="comment"
+        type="text"
+        component="textarea"
         placeholder="Enter text"
+        disabled={disabled}
         value={comment}
         onChange={onChange}
       ></Textarea>
