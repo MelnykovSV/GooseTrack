@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkGooseTrack=self.webpackChunkGooseTrack||[]).push([[900],{8900:function(e,c,n){n.r(c);var u=n(184);c.default=function(){return(0,u.jsx)("div",{children:"account page"})}}}]);
-//# sourceMappingURL=900.d5dc7c24.chunk.js.map
