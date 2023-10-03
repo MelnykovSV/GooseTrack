@@ -31,6 +31,7 @@ export const Button = styled.button`
 
   @media screen and (min-width: 768px) {
     padding: 14px;
+    margin-bottom: 14px;
   }
 `;
 

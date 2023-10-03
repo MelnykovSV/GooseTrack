@@ -7,7 +7,7 @@ export const Container = styled.ul`
   gap: 16px;
   overflow-x: auto;
   width: 100%;
-  background-color: ${({ theme }) => theme.bgSecondary};
+  /* background-color: ${({ theme }) => theme.bgSecondary}; */
 
   ::-webkit-scrollbar {
     width: 12px;
