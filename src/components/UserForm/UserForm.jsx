@@ -47,7 +47,7 @@ export const UserForm = () => {
     birthday: userInfo.birthday ? new Date(userInfo.birthday) : new Date(),
     phone: userInfo.phone || '',
     skype: userInfo.skype || '',
-    // avatarUrl: '',
+    avatarUrl: '',
     email: userInfo.email || '',
   };
 
