@@ -1,13 +1,14 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from './UserNav.styled';
+import { Container, Navigation } from './UserNav.styled';
 
 export const UserNav = () => {
   return (
-    <>
-      <nav>
-        <Link to="/account">my account</Link>
-        <Link to="/calendar">calendar</Link>
-        <Link to="/statistics">statistics</Link>
-      </nav>
-    </>
+    <Container>
+      <Navigation>
+        <NavLink to="/account">My account</NavLink>
+        <NavLink to="/calendar">Calendar</NavLink>
+        <NavLink to="/statistics">Statistics</NavLink>
+      </Navigation>
+    </Container>
   );
 };

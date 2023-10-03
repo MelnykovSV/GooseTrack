@@ -13,8 +13,10 @@ export const signUp = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
-      console.log(thunkAPI.rejectWithValue(error.message));
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        message: error.response.data.message,
+        code: error.response.status,
+      });
     }
   }
 );
@@ -29,8 +31,10 @@ export const signIn = createAsyncThunk(
       });
       return response.data.data;
     } catch (error) {
-      console.log(thunkAPI.rejectWithValue(error.message));
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        message: error.response.data.message,
+        code: error.response.status,
+      });
     }
   }
 );
@@ -39,8 +43,10 @@ export const logOut = createAsyncThunk('auth/logOut', async (_, thunkAPI) => {
   try {
     await privateApi.post('/api/auth/logout');
   } catch (error) {
-    console.log(thunkAPI.rejectWithValue(error.message));
-    return thunkAPI.rejectWithValue(error.message);
+    return thunkAPI.rejectWithValue({
+      message: error.response.data.message,
+      code: error.response.status,
+    });
   }
 });
 
@@ -53,8 +59,10 @@ export const getUserData = createAsyncThunk(
 
       return response.data.data;
     } catch (error) {
-      console.log(thunkAPI.rejectWithValue(error.message));
-      return thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue({
+        message: error.response.data.message,
+        code: error.response.status,
+      });
     }
   }
 );

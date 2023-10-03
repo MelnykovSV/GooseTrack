@@ -1,25 +1,46 @@
 import styled from '@emotion/styled';
+import { Button } from '@mui/material';
 
-export const MainButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+export const MainButton = styled(Button)(
+  ({ theme }) => `
+  padding: 12px;
 
-  font-family: Inter;
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.28;
 
-  border: 0;
-  color: #fff;
-  background-color: #3e85f3;
-`;
+  border-radius: 8px;
 
-export const SecondaryButton = styled.button`
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  text-transform: none;
+  box-shadow: none;
+  color: ${theme.white};
+  background-color: ${theme.accentPrimary};
 
-  font-family: Inter;
+  &:hover {
+    background-color: ${theme.accentPrimaryHover};
+    box-shadow: none;
+  }
+`
+);
 
-  border: 0;
-  color: #343434;
-  background-color: #e5edfa;
-`;
+export const SecondaryButton = styled(Button)(
+  ({ theme }) => `
+  padding: 12px;
+
+  font-weight: 600;
+  font-size: 14px;
+  line-height: 1.28;
+
+  border-radius: 8px;
+
+  text-transform: none;
+  box-shadow: none;
+  color: ${theme.textPrimaryLight};
+  background-color: ${theme.bgSecondaryBtn};
+
+  &:hover {
+    background-color: ${theme.bgSecondaryBtn};
+    box-shadow: none;
+  }
+`
+);
