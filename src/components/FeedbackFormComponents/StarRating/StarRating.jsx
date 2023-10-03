@@ -1,14 +1,9 @@
 import React from 'react';
 import { useTheme } from '@emotion/react';
-import { Label, RatingBox } from '../FeedbackForm.styled';
+import { Label, RatingBox } from '../FeedbackForm/FeedbackForm.styled';
 import StarRatings from 'react-star-ratings';
 
-export default function StarRating({
-  rating,
-  changeRating,
-  isSelectable,
-  name,
-}) {
+export function StarRating({ rating, changeRating, isSelectable, name }) {
   const theme = useTheme();
 
   return (

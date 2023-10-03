@@ -25,6 +25,8 @@ export const CloseIcon = styled.svg`
   width: 24px;
   height: 24px;
 
+  cursor: pointer;
+
   color: ${({ theme }) => theme.iconClose};
 
   @media screen and (min-width: 768px) {
