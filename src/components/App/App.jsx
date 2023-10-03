@@ -22,7 +22,7 @@ const AccountPage = lazy(() => import('../../pages/AccountPage/AccountPage'));
 const CalendarPage = lazy(() =>
   import('../../pages/CalendarPage/CalendarPage')
 );
-const Statistics = lazy(() => import('../../pages/Statistics/Statistics'));
+const Statistics = lazy(() => import('../../pages/StatisticsPage/StatisticsPage'));
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
