@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isReviewsError, isReviewsPending } from '../statusCheckers';
+import { addReview, deleteReview, updateReview } from './operations';
 
 // interface IReview {
 //     userName: string | null;
@@ -14,22 +15,47 @@ const initialState = {
   error: null,
 };
 
+const handleAddReview = (state, action) => {
+  state.reviews.push(action.payload);
+  state.isLoading = false;
+  state.error = null;
+  state.status = 'fulfilled';
+};
+
+const handleUpdateReview = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.status = 'fulfilled';
+};
+
+const handleDeleteReview = (state, action) => {
+  state.isLoading = false;
+  state.error = null;
+  state.status = 'fulfilled';
+};
+
 const reviewsSlice = createSlice({
   name: 'reviews',
   initialState: initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addMatcher(isReviewsPending, state => {
-      state.isLoading = true;
-      state.status = 'pending';
-    });
-    builder.addMatcher(isReviewsError, (state, action) => {
-      state.isLoading = false;
-      state.status = 'rejected';
-      state.error = action.payload || 'Something went wrong';
-    });
+    builder
+      .addCase(addReview.fulfilled, handleAddReview)
+      .addCase(updateReview.fulfilled, handleUpdateReview)
+      .addCase(deleteReview.fulfilled, handleDeleteReview);
+    builder
+      .addMatcher(isReviewsPending, state => {
+        state.isLoading = true;
+        state.status = 'pending';
+      })
+      .addMatcher(isReviewsError, (state, action) => {
+        state.isLoading = false;
+        state.status = 'rejected';
+        state.error = action.payload || 'Something went wrong';
+      });
   },
 });
 
 export const reviewsReducer = reviewsSlice.reducer;
+
 export const getReviewsError = state => state.reviews.error;

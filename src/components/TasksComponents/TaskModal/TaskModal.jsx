@@ -1,9 +1,9 @@
-import Modal from 'components/Modal/Modal';
 import { TaskForm } from '..';
+import { CustomModal } from 'components/CustomModal/CustomModal';
 
 export const TaskModal = ({ onCloseModal, isOpenModal, task }) =>
   isOpenModal && (
-    <Modal onClose={onCloseModal}>
+    <CustomModal onClose={onCloseModal}>
       <TaskForm task={task} onCloseTaskModal={onCloseModal} />
-    </Modal>
+    </CustomModal>
   );

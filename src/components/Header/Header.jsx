@@ -7,6 +7,9 @@ import { HeaderWrapper, PageTitle, UserWrapper } from './Header.styled';
 import useResize from 'utils/useResize';
 
 export const Header = ({ onToggle }) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [activePage, setActivePage] = useState('');
   const size = useResize();
 
@@ -41,10 +44,10 @@ export const Header = ({ onToggle }) => {
           )}
         </PageTitle>
         <UserWrapper>
-          <AddFeedbackBtn />
+          <AddFeedbackBtn onFeedbackBtn={handleOpen} />
           <ThemeToggler />
           <UserInfo />
-          <AddFeedbackModal />
+          <AddFeedbackModal open={open} onClose={handleClose} />
         </UserWrapper>
       </HeaderWrapper>
     </>

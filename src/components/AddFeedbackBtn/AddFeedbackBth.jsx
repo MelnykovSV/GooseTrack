@@ -1,7 +1,9 @@
-export const AddFeedbackBtn = () => {
+import { FeedbackBtn } from './AddFeedbackBth.styled';
+
+export const AddFeedbackBtn = ({ onFeedbackBtn }) => {
   return (
     <>
-      <button>Feedback</button>
+      <FeedbackBtn onClick={onFeedbackBtn}>Feedback</FeedbackBtn  >
     </>
   );
 };
