@@ -24,24 +24,24 @@ const DateInfoComponent = ({ selectedDate, pickerType }) => {
 
   console.log(daysOfWeek);
 
-  const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December',
-  ];
+  // const months = [
+  //   'January',
+  //   'February',
+  //   'March',
+  //   'April',
+  //   'May',
+  //   'June',
+  //   'July',
+  //   'August',
+  //   'September',
+  //   'October',
+  //   'November',
+  //   'December',
+  // ];
 
-  const handleMonthClick = month => {
-    console.log(`${month}`);
-  };
+  // const handleMonthClick = month => {
+  //   console.log(`${month}`);
+  // };
 
   const handleDayClick = day => {
     // console.log(day);
