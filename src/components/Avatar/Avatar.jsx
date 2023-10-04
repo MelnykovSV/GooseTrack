@@ -16,8 +16,8 @@ export const Avatar = () => {
     console.log(file);
   }, [avatarUrl, file]);
 
-  console.log(acceptedFiles)
-  console.log(getRootProps)
+  // console.log(acceptedFiles)
+  // console.log(getRootProps)
 
   return (
     <>
