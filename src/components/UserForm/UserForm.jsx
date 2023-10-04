@@ -6,8 +6,6 @@ import {
   AvatarContainer,
   AvatarUploadBtn,
   AvatarUploadContainer,
-  CircularAvatar,
-  DefaultUserIcon,
   Feedback,
   FormInput,
   InvalidFeedback,
@@ -70,34 +68,22 @@ export const UserForm = () => {
         validationSchema={userFormValidation}
         onSubmit={handleSubmit}
       >
+
         {({ setFieldValue, errors, touched, values, dirty, setTouched }) => {
           return (
             <Form autoComplete="off">
-              <Avatar />
               <AvatarContainer>
                 <UserAvatar>
-                  {userInfo.avatarUrl ? (
-                    <CircularAvatar
-                      src={
-                        typeof userInfo.avatarUrl === 'string'
-                          ? userInfo.avatarUrl
-                          : URL.createObjectURL(userInfo.avatarUrl)
-                      }
-                      alt="avatarUrl"
-                    />
-                  ) : (
-                    <DefaultUserIcon />
-                  )}
-
+                  <Avatar />
                   <AvatarUploadContainer>
                     <Field
                       id="avatarUrl"
                       name="avatarUrl"
                       type="file"
                       accept="image/*,.png,.jpg,.gif"
-                      value={values.avatarUrl}
                       onChange={e => {
                         const file = e.target.files[0];
+
                         if (file) {
                           const maxSizeInBytes = 600 * 1024;
                           if (file.size > maxSizeInBytes) {
@@ -109,15 +95,16 @@ export const UserForm = () => {
                           }
                         }
 
-                        setFieldValue('avatar', file);
                         const formData = new FormData();
                         formData.append('avatar', file);
+
                         try {
                           dispatch(updateAvatar(formData));
                         } catch (error) {
                           setIsFormChanged(false);
                         }
                       }}
+
                       style={{ display: 'none' }}
                     />
 

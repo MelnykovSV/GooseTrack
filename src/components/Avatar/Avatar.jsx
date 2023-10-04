@@ -1,62 +1,35 @@
-import { useDropzone } from 'react-dropzone';
-import { ReactComponent as UpdateAvatarIcon } from '../../icons/plus.svg';
-import { useCallback } from 'react';
-import { useDispatch } from 'react-redux';
-import { updateAvatar } from 'redux/auth/operations';
-import { formatDistance } from 'date-fns/esm';
+import {  useEffect, useState } from 'react';
+import {  useSelector } from 'react-redux';
+import { selectUser } from 'redux/selectors';
+import { CircularAvatar, DefaultAvatar, Letter } from './Avatar.styled';
 
 export const Avatar = () => {
-  const dispatch = useDispatch();
+  const { avatarUrl, userName } = useSelector(selectUser);
+  const letter = userName.slice(0, 1);
 
-  const onDrop = useCallback(acceptedFiles => {
-    const file = acceptedFiles[0];
-    console.log(URL.createObjectURL(file));
+  const [file, setFile] = useState(avatarUrl || null);
 
-    const formData = new FormData();
-    formData.append('avatar', file);
-
-    dispatch(updateAvatar(formData));
-  });
-
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
-    onDrop,
-  });
+  useEffect(() => {
+    setFile(avatarUrl);
+    console.log(file);
+  }, [avatarUrl, file]);
 
   return (
-    <div>
-      <div
-        // {...getRootProps()}
-        style={{
-          width: '72px',
-          height: '72px',
-          border: '2px solid #3e85f3',
-          borderRadius: '50%',
-        }}
-      >
-        <img
-          style={{
-            width: '100%',
-            height: ' 100%',
-            objectFit: 'cover',
-            // border: '2px solid #3e85f3',
-            borderRadius: '50%',
-          }}
-          alt="avatar"
+    <>
+      {file ? (
+        <CircularAvatar
+          src={
+            typeof avatarUrl === 'string'
+              ? avatarUrl
+              : URL.createObjectURL(avatarUrl)
+          }
+          alt="avatarUrl"
         />
-        <div>
-          <input
-            id="avatarUrl"
-            name="avatarUrl"
-            {...getInputProps({ id: 'avatarUrl', name: 'avatarUrl' })}
-            style={{ display: 'none' }}
-          />
-          <label htmlFor="avatarUrl">
-            <UpdateAvatarIcon
-              style={{ fill: '#3e85f3', width: '14px', height: '14px' }}
-            />
-          </label>
-        </div>
-      </div>
-    </div>
+      ) : (
+        <DefaultAvatar>
+          <Letter>{letter}</Letter>
+        </DefaultAvatar>
+      )}
+    </>
   );
 };
