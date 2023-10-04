@@ -13,3 +13,16 @@ export const getTasksByMonth = createAsyncThunk(
     }
   }
 );
+
+export const getTasksByDay = createAsyncThunk(
+  'tasks/getTasksByDay',
+  async (day, { rejectWithValue }) => {
+    try {
+      const { data } = await privateApi.get(`/api/tasks/getByDay/${day}`);
+
+      return data.data;
+    } catch (error) {
+      return rejectWithValue({ message: 'error' });
+    }
+  }
+);

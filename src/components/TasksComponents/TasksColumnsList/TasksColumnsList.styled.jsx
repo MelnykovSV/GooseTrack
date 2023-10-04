@@ -18,7 +18,7 @@ export const Container = styled.ul`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: ${({ theme }) => theme.accentPrimary};
+    background-color: #f2f2f2;
 
     border-radius: 12px;
   }
