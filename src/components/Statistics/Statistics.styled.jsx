@@ -136,6 +136,7 @@ export const IconNext = styled(FaChevronRight)`
 export const List = styled.ul`
   margin-top: 20px;
   display: flex;
+  list-style-type: none;
   @media ${device.tablet} {
     margin-top: 0px;
   }

@@ -1,67 +1,116 @@
 import React, { useState, useEffect } from 'react';
 import ReactDatePicker from 'react-datepicker';
-
-import { DateInfoComponent } from '../showDateInfo/ShowDateInfo';
+import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
-import styles from './datepicker.module.css';
-
+import { DatePickerContainer } from './datePicker.styled';
+import { useNavigate } from 'react-router';
+// import styles from './datepicker.module.css'
 const DatePicker = () => {
+  const navigate = useNavigate();
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [showDateInfo, setShowDateInfo] = useState(true);
+  const [pickerType, setPickerType] = useState('month');
+  // const [showDateInfo, setShowDateInfo] = useState(true);
+
   const handleDateChange = date => {
     setSelectedDate(date);
-    setShowDateInfo(true);
+    // setShowDateInfo(true);
+    console.log(date);
   };
 
   useEffect(() => {
-    setShowDateInfo(true);
-  }, []);
+    if (pickerType === 'month') {
+      const selectedMonth = `${selectedDate.getFullYear()}-${
+        selectedDate.getMonth() + 1
+      }`;
+      navigate(`month/${selectedMonth}`);
+    } else {
+      const selectedDay = `${selectedDate.getFullYear()}-${(
+        selectedDate.getMonth() + 1
+      )
+        .toString()
+        .padStart(2, '0')}-${selectedDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`;
+      navigate(`day/${selectedDay}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedDate, pickerType]);
 
   const handlePrevDay = () => {
-    if (selectedDate) {
-      const newDate = new Date(selectedDate);
+    const newDate = new Date(selectedDate);
+    if (pickerType === 'month') {
+      newDate.setMonth(selectedDate.getMonth() - 1);
+    } else {
       newDate.setDate(selectedDate.getDate() - 1);
-      setSelectedDate(newDate);
     }
+
+    setSelectedDate(newDate);
   };
-  // const SelectedDateComponent = ({ selectedDate }) => {
-  //   const options = {
-  //     weekday: 'long',
-  //     day: 'numeric',
-  //   };
-  // };
+
   const handleNextDay = () => {
-    if (selectedDate) {
-      const newDate = new Date(selectedDate);
+    const newDate = new Date(selectedDate);
+    if (pickerType === 'month') {
+      newDate.setMonth(selectedDate.getMonth() + 1);
+    } else {
       newDate.setDate(selectedDate.getDate() + 1);
-      setSelectedDate(newDate);
     }
+    setSelectedDate(newDate);
+  };
+
+  const handleTypeChange = type => {
+    setPickerType(type);
   };
 
   return (
-    <div className={styles.navigation}>
-      <div className={styles.wrapBox}>
-        <div className={styles.wrap}>
-          <ReactDatePicker
-            selected={selectedDate}
-            onSelect={handleDateChange}
-            onChange={handleDateChange}
-            className={styles.myDatepicker}
-            calendarClassName={styles.myCalendar}
-          />
-          <div className={styles.boxButton}>
-            <button className={styles.buttonLeft} onClick={handlePrevDay}>
-              {'<'}
+    <DatePickerContainer>
+      <div className="navigation">
+        <div className={'wrapBox'}>
+          <div className={'wrap'}>
+            <ReactDatePicker
+              selected={selectedDate}
+              onSelect={handleDateChange}
+              onChange={handleDateChange}
+              className={'myDatepicker'}
+              calendarClassName={'myCalendar'}
+              dateFormat={pickerType === 'month' ? 'MMMM yyyy' : 'dd MMM yyyy'}
+              showMonthYearPicker={pickerType === 'month'}
+            />
+            <div className={'boxButton'}>
+              <button className={'buttonLeft'} onClick={handlePrevDay}>
+                {'<'}
+              </button>
+              <button className={'buttonRight'} onClick={handleNextDay}>
+                {'>'}
+              </button>
+            </div>
+          </div>
+          <div className={'boxButtonDayMonth'}>
+            <button
+              // className={'showMonths'}
+              className={
+                pickerType === 'month' ? 'showMonths active' : 'showMonths'
+              }
+              onClick={() => handleTypeChange('month')}
+            >
+              Months
             </button>
-            <button className={styles.buttonRight} onClick={handleNextDay}>
-              {'>'}
+            <button
+              // className={'showDay'}
+              className={pickerType === 'month' ? 'showDay' : 'showDay active'}
+              onClick={() => handleTypeChange('day')}
+            >
+              Days
             </button>
           </div>
-        </div>
 
-        {showDateInfo && <DateInfoComponent selectedDate={selectedDate} />}
+          <DateInfoComponent
+            selectedDate={selectedDate}
+            pickerType={pickerType}
+          />
+        </div>
       </div>
-    </div>
+    </DatePickerContainer>
   );
 };
 

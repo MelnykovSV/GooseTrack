@@ -1,3 +1,4 @@
+
 import {  useEffect, useState } from 'react';
 import {  useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
@@ -9,10 +10,14 @@ export const Avatar = () => {
 
   const [file, setFile] = useState(avatarUrl || null);
 
+
   useEffect(() => {
     setFile(avatarUrl);
     console.log(file);
   }, [avatarUrl, file]);
+
+  console.log(acceptedFiles)
+  console.log(getRootProps)
 
   return (
     <>
