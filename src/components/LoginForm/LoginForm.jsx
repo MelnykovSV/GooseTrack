@@ -38,13 +38,13 @@ export const LoginForm = ({ loginHandler }) => {
 				<InputHeader
 					type="email"
 					htmlFor="email"
-					style={{
-						color: errors?.email
-							? '#E74A3B'
+					status={
+						errors?.email
+							? 'error'
 							: getValues('email')
-								? '#3CBC81'
-								: '#111',
-					}}
+								? 'valid'
+								: 'default'
+					}
 				>
 					Email
 				</InputHeader>
@@ -54,20 +54,27 @@ export const LoginForm = ({ loginHandler }) => {
 					id="email"
 					name="email"
 					{...register('email')}
-					style={{
-						borderColor: errors?.email
-							? '#E74A3B'
+					status={
+						errors?.email
+							? 'error'
 							: getValues('email')
-								? '#3CBC81'
-								: 'rgba(17, 17, 17, 0.15)',
-					}}
+								? 'valid'
+								: 'default'
+					}
+
 
 				/>
 				<ErrorSvg>
 					{errors?.email ? errorSVG : getValues('password') ? correctSVG : null}
 				</ErrorSvg>
 
-				<StyledSpan style={{ color: errors?.email ? '#E74A3B' : '#3CBC81' }}>
+				<StyledSpan status={
+					errors?.email
+						? 'error'
+						: getValues('email')
+							? 'valid'
+							: 'default'
+				}>
 					{errors?.email
 						? errors?.email.message
 						: getValues('email')
@@ -79,13 +86,13 @@ export const LoginForm = ({ loginHandler }) => {
 			<ParentWrapper>
 				<InputHeader
 					htmlFor="password"
-					style={{
-						color: errors?.password
-							? '#E74A3B'
-							: getValues('password')
-								? '#3CBC81'
-								: '#111',
-					}}
+					status={
+						errors?.password
+							? 'error'
+							: getValues('email')
+								? 'valid'
+								: 'default'
+					}
 				>
 					Password
 				</InputHeader>
@@ -96,18 +103,24 @@ export const LoginForm = ({ loginHandler }) => {
 					{...register('password')}
 					placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
 					id="password"
-					style={{
-						borderColor: errors?.password
-							? '#E74A3B'
-							: getValues('password')
-								? '#3CBC81'
-								: 'rgba(17, 17, 17, 0.15)',
-					}}
+					status={
+						errors?.password
+							? 'error'
+							: getValues('email')
+								? 'valid'
+								: 'default'
+					}
 				></Input>
 				<ErrorSvg>
 					{errors?.password ? errorSVG : getValues('password') ? correctSVG : null}
 				</ErrorSvg>
-				<StyledSpan style={{ color: errors?.password ? '#E74A3B' : '#3CBC81' }}>
+				<StyledSpan status={
+					errors?.password
+						? 'error'
+						: getValues('email')
+							? 'valid'
+							: 'default'
+				}>
 					{errors?.password
 						? errors?.password.message
 						: getValues('password')

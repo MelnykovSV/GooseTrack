@@ -40,13 +40,13 @@ export const RegisterForm = ({ registerHandler }) => {
 				<InputHeader
 					type="text"
 					htmlFor="userName"
-					style={{
-						color: errors?.userName
-							? '#E74A3B'
+					status={
+						errors?.userName
+							? 'error'
 							: getValues('userName')
-								? '#3CBC81'
-								: '#111',
-					}}
+								? 'valid'
+								: 'default'
+					}
 				>
 					Name
 				</InputHeader>
@@ -57,20 +57,26 @@ export const RegisterForm = ({ registerHandler }) => {
 						id="userName"
 						name="userName"
 						{...register('userName')}
-						style={{
-							borderColor: errors?.userName
-								? '#E74A3B'
+						status={
+							errors?.userName
+								? 'error'
 								: getValues('userName')
-									? '#3CBC81'
-									: '#111',
-						}}
+									? 'valid'
+									: 'default'
+						}
 					/>
 					<ErrorSvg>
 						{errors?.userName ? errorSVG : getValues('userName') ? correctSVG : null}
 					</ErrorSvg>
 				</ParentWrapper>
 
-				<StyledSpan style={{ color: errors?.userName ? '#E74A3B' : '#3CBC81' }}>
+				<StyledSpan status={
+					errors?.userName
+						? 'error'
+						: getValues('userName')
+							? 'valid'
+							: 'default'
+				}>
 					{errors?.userName
 						? errors?.userName.message
 						: getValues('userName')
@@ -82,13 +88,13 @@ export const RegisterForm = ({ registerHandler }) => {
 				<InputHeader
 					type="email"
 					htmlFor="email"
-					style={{
-						color: errors?.email
-							? '#E74A3B'
+					status={
+						errors?.email
+							? 'error'
 							: getValues('email')
-								? '#3CBC81'
-								: '#111',
-					}}
+								? 'valid'
+								: 'default'
+					}
 				>
 					{' '}
 					Email
@@ -100,20 +106,26 @@ export const RegisterForm = ({ registerHandler }) => {
 						id="email"
 						name="email"
 						{...register('email')}
-						style={{
-							borderColor: errors?.email
-								? '#E74A3B'
+						status={
+							errors?.email
+								? 'error'
 								: getValues('email')
-									? '#3CBC81'
-									: 'rgba(17, 17, 17, 0.15)',
-						}}
+									? 'valid'
+									: 'default'
+						}
 					/>
 					<ErrorSvg>
 						{errors?.email ? errorSVG : getValues('email') ? correctSVG : null}
 					</ErrorSvg>
 				</ParentWrapper>
 
-				<StyledSpan style={{ color: errors?.email ? '#E74A3B' : '#3CBC81' }}>
+				<StyledSpan status={
+					errors?.email
+						? 'error'
+						: getValues('email')
+							? 'valid'
+							: 'default'
+				}>
 					{errors?.email
 						? errors?.email.message
 						: getValues('email')
@@ -124,13 +136,13 @@ export const RegisterForm = ({ registerHandler }) => {
 			<ParentWrapper>
 				<InputHeader
 					htmlFor="password"
-					style={{
-						color: errors?.password
-							? '#E74A3B'
+					status={
+						errors?.password
+							? 'error'
 							: getValues('password')
-								? '#3CBC81'
-								: '#111',
-					}}
+								? 'valid'
+								: 'default'
+					}
 				>
 					Password
 				</InputHeader>
@@ -142,20 +154,26 @@ export const RegisterForm = ({ registerHandler }) => {
 						{...register('password')}
 						placeholder="Enter your password"
 						id="password"
-						style={{
-							borderColor: errors?.password
-								? '#E74A3B'
-								: getValues('password')
-									? '#3CBC81'
-									: 'rgba(17, 17, 17, 0.15)',
-						}}
+						status={
+							errors?.password
+								? 'error'
+								: getValues('email')
+									? 'valid'
+									: 'default'
+						}
 					/>
 					<ErrorSvg>
 						{errors?.password ? errorSVG : getValues('password') ? correctSVG : null}
 					</ErrorSvg>
 				</ParentWrapper>
 
-				<StyledSpan style={{ color: errors?.password ? '#E74A3B' : '#3CBC81' }}>
+				<StyledSpan status={
+					errors?.password
+						? 'error'
+						: getValues('password')
+							? 'valid'
+							: 'default'
+				}>
 					{errors?.password
 						? errors?.password.message
 						: getValues('password')

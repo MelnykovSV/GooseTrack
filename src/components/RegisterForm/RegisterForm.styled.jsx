@@ -42,10 +42,20 @@ const Input = styled.input`
   font-style: normal;
   font-weight: 400;
   line-height: 18px; /* 128.571% */
+  border: ${({ status }) => {
+		switch (status) {
+			case 'error':
+				return '1px solid #E74A3B';
+			case 'valid':
+				return '1px solid #3CBC81';
+			default:
+				return '1px solid rgba(220, 227, 229, 0.60);';
+		}
+	}};
 `;
 const Heading = styled.h1`
   margin: 0;
-  margin-bottom: 8px;
+  margin-bottom: 32px;
   color: #3e85f3;
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
@@ -65,8 +75,16 @@ const InputHeader = styled.label`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  color: #111;
-`;
+  color:  ${({ status }) => {
+		switch (status) {
+			case 'error':
+				return ' #E74A3B';
+			case 'valid':
+				return ' #3CBC81';
+			default:
+				return ' #111';
+		}
+	}};`
 
 const Button = styled.button`
   display: flex;
@@ -118,8 +136,17 @@ const StyledSpan = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 14px; /* 116.667% */
-  color: #e74a3b;
-  margin-bottom: 5px;
+  color:  ${({ status }) => {
+		switch (status) {
+			case 'error':
+				return ' #E74A3B';
+			case 'valid':
+				return ' #3CBC81';
+			default:
+				return ' #111';
+		}
+	}};
+  margin-bottom: 12px;
 `;
 
 const ParentWrapper = styled.div`
