@@ -60,4 +60,37 @@ export const DatePickerContainer = styled.div`
   .myDatepicker {
     text-transform: uppercase;
   }
+  .showMonths {
+    background-color: rgba(227, 243, 255, 1);
+    color: rgba(62, 133, 243, 1);
+    font-size: 16px;
+    border: 1px solid rgba(227, 243, 255, 1);
+    width: 82px;
+    height: 34px;
+    border-bottom-left-radius: 8px;
+    border-top-left-radius: 8px;
+  }
+
+  .showDay {
+    background-color: rgba(227, 243, 255, 1);
+    color: rgba(62, 133, 243, 1);
+    font-size: 16px;
+    border: 1px solid rgba(227, 243, 255, 1);
+    width: 82px;
+    height: 34px;
+    border-bottom-right-radius: 8px;
+    border-top-right-radius: 8px;
+  }
+
+  .showDay.active {
+    background-color: rgba(202, 232, 255, 1);
+  }
+
+  .showMonths.active {
+    background-color: rgba(202, 232, 255, 1);
+  }
+  .boxButtonDayMonth {
+    display: flex;
+    justify-content: end;
+  }
 `;

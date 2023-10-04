@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Container } from './showDateInfo.styled';
 
-const DateInfoComponent = ({ selectedDate }) => {
-  const [selectedType, setSelectedType] = useState('days');
+const DateInfoComponent = ({ selectedDate, pickerType }) => {
+  // const [selectedType, setSelectedType] = useState('days');
 
   const options = { weekday: 'long', day: 'numeric' };
   const startOfWeek = new Date(selectedDate);
@@ -40,14 +40,14 @@ const DateInfoComponent = ({ selectedDate }) => {
     console.log(`${day}`);
   };
 
-  const handleTypeChange = type => {
-    setSelectedType(type);
-  };
+  // const handleTypeChange = type => {
+  //   setSelectedType(type);
+  // };
 
   return (
     <Container>
       <div className={'container'}>
-        <div className={'boxButtonDayMonth'}>
+        {/* <div className={'boxButtonDayMonth'}>
           <button
             className={'showMonths'}
             onClick={() => handleTypeChange('months')}
@@ -60,8 +60,8 @@ const DateInfoComponent = ({ selectedDate }) => {
           >
             Days
           </button>
-        </div>
-        {selectedType === 'months' ? (
+        </div> */}
+        {selectedDate === 'month' ? (
           <div className={'dateBox'}>
             {months.map((month, index) => (
               <div className={'containerMonth'} key={index}>
