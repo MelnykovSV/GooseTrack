@@ -35,6 +35,7 @@ import { selectUser } from 'redux/selectors';
 import { format } from 'date-fns';
 import { editData, updateAvatar } from 'redux/auth/operations';
 import { Notify } from 'notiflix';
+import { Avatar } from 'components/Avatar/Avatar';
 
 export const UserForm = () => {
   const dispatch = useDispatch();
@@ -47,12 +48,10 @@ export const UserForm = () => {
     birthday: userInfo.birthday ? new Date(userInfo.birthday) : new Date(),
     phone: userInfo.phone || '',
     skype: userInfo.skype || '',
-    avatarUrl: '',
     email: userInfo.email || '',
   };
 
   const handleSubmit = (values, { resetForm }) => {
-
     values.birthday = format(values.birthday, 'yyyy-MM-dd');
 
     try {
@@ -74,6 +73,7 @@ export const UserForm = () => {
         {({ setFieldValue, errors, touched, values, dirty, setTouched }) => {
           return (
             <Form autoComplete="off">
+              <Avatar />
               <AvatarContainer>
                 <UserAvatar>
                   {userInfo.avatarUrl ? (
@@ -108,10 +108,10 @@ export const UserForm = () => {
                             return;
                           }
                         }
-      
-                        setFieldValue('avatarUrl', file);
+
+                        setFieldValue('avatar', file);
                         const formData = new FormData();
-                        formData.append('avatarUrl', file);
+                        formData.append('avatar', file);
                         try {
                           dispatch(updateAvatar(formData));
                         } catch (error) {

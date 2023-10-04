@@ -80,13 +80,14 @@ export const getUserData = createAsyncThunk(
 
 export const updateAvatar = createAsyncThunk(
   'auth/avatar',
-  async (credentials, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await privateApi.patch('/api/auth/avatar');
+      const response = await privateApi.patch('/api/auth/avatar', formData);
+      Notify.success('User avatar updated successfully!');
       console.log(response);
-      return credentials.data.data;
+      return response.data.data;
     } catch (error) {
-      Notify.failure(`Something went wrong: ${error.message}`);
+      // Notify.failure(`Something went wrong: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -97,7 +98,6 @@ export const editData = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await privateApi.patch('/api/auth/user', credentials);
-      console.log(response);
       Notify.success('User data updated successfully!');
       return response.data.data;
     } catch (error) {
