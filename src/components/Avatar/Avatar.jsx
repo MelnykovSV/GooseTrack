@@ -13,7 +13,7 @@ export const Avatar = () => {
     console.log(URL.createObjectURL(file));
 
     const formData = new FormData();
-    formData.append('avatar', URL.createObjectURL(file));
+    formData.append('avatar', file);
 
     dispatch(updateAvatar(formData));
   });

@@ -80,12 +80,12 @@ export const getUserData = createAsyncThunk(
 
 export const updateAvatar = createAsyncThunk(
   'auth/avatar',
-  async (credentials, thunkAPI) => {
+  async (formData, thunkAPI) => {
     try {
-      const response = await privateApi.patch('/api/auth/avatar');
+      const response = await privateApi.patch('/api/auth/avatar', formData);
       Notify.success('User avatar updated successfully!');
       console.log(response);
-      return credentials.data.data;
+      return response.data.data;
     } catch (error) {
       // Notify.failure(`Something went wrong: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);

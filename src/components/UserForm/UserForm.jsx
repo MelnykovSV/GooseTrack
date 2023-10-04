@@ -109,9 +109,9 @@ export const UserForm = () => {
                           }
                         }
 
-                        setFieldValue('avatarUrl', file);
+                        setFieldValue('avatar', file);
                         const formData = new FormData();
-                        formData.append('avatarUrl', file);
+                        formData.append('avatar', file);
                         try {
                           dispatch(updateAvatar(formData));
                         } catch (error) {
