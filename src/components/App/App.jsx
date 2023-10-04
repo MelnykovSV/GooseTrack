@@ -11,6 +11,8 @@ import { getAuthError } from 'redux/auth/authSlice';
 import { getTasksError } from 'redux/tasks/tasksSlice';
 import { getReviewsError } from 'redux/reviews/reviewsSlice';
 import { ToastContainer, toast } from 'react-toastify';
+import { CalendarDatepickerPage } from 'pages/CalendarDatepicerPage/CalendarDatepickerPage';
+import { DayTasksListPage } from 'pages/DayTasksListPage/DayTasksListPage';
 
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
@@ -22,7 +24,9 @@ const AccountPage = lazy(() => import('../../pages/AccountPage/AccountPage'));
 const CalendarPage = lazy(() =>
   import('../../pages/CalendarPage/CalendarPage')
 );
-const Statistics = lazy(() => import('../../pages/Statistics/Statistics'));
+const Statistics = lazy(() =>
+  import('../../pages/StatisticsPage/StatisticsPage')
+);
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
@@ -75,15 +79,9 @@ export const App = () => {
           <Route element={<PrivateRoute />}>
             <Route element={<SharedLayout />}>
               <Route path="account" element={<AccountPage />} />
-              <Route path="calendar" element={<CalendarPage />}>
-                <Route
-                  path="month/:currentMonth"
-                  element={<div>current month</div>}
-                />
-                <Route
-                  path="day/:currentDay"
-                  element={<div>current day</div>}
-                />
+              <Route path="/calendar" element={<CalendarDatepickerPage />}>
+                <Route path="month/:month" element={<CalendarPage />} />
+                <Route path="day/:day" element={<DayTasksListPage />} />
               </Route>
               <Route path="statistics" element={<Statistics />} />
             </Route>

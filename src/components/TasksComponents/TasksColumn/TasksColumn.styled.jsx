@@ -8,7 +8,7 @@ export const Container = styled.div`
   padding: 18px;
   width: calc(100vw - 40px);
   min-height: 155px;
-  /* max-height: 432px; */
+  max-height: 432px;
 
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.stroke};
@@ -21,7 +21,7 @@ export const Container = styled.div`
   @media screen and (min-width: 768px) {
     padding: 20px;
     min-height: 165px;
-    /* max-height: 568px; */
+    max-height: 568px;
     width: calc((100vw - 54px) / 3);
     min-width: 344px;
   }

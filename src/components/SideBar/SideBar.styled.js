@@ -41,10 +41,13 @@ export const LogoImg = styled.img`
 `;
 
 export const Logotext = styled.p`
+  font-size: 16px;
+  line-height: 24px;
   margin-left: 6px;
   color: ${props => props.theme.accentPrimary};
   @media (min-width: 1440px) {
     margin-left: 10px;
+    font-size: 24px;
   }
 `;
 

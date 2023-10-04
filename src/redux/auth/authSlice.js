@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isAuthError, isAuthPending } from '../statusCheckers';
 
-import { signUp, signIn, logOut, getUserData } from './operations';
+import { signUp, signIn, logOut, getUserData, editData, updateAvatar } from './operations';
 
 const initialState = {
   user: {
@@ -73,7 +73,18 @@ const authSlice = createSlice({
     //   state.isLoading = false;
     //   state.status = 'fulfilled';
     // });
-
+    builder.addCase(editData.fulfilled, (state, action) => {
+      state.user = { ...state.user, ...action.payload.user };
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    });
+    builder.addCase(updateAvatar.fulfilled, (state, action) => {
+      state.user = { ...state.user, ...action.payload.user };
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.isRefreshing = false;
+    });
     builder.addMatcher(isAuthPending, state => {
       state.isLoading = true;
       state.status = 'pending';

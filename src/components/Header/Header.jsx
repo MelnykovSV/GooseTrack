@@ -3,10 +3,20 @@ import { AddFeedbackBtn } from '../AddFeedbackBtn/AddFeedbackBth';
 import { AddFeedbackModal } from '../AddFeedbackModal/AddFeedbackModal';
 import { ThemeToggler } from '../ThemeToggler/ThemeToggler';
 import { UserInfo } from '../UserInfo/UserInfo';
-import { HeaderWrapper, PageTitle, UserWrapper } from './Header.styled';
+import BurgerIcon from '../../images/SideBar/menu-01.svg';
+import {
+  HeaderWrapper,
+  PageTitle,
+  UserWrapper,
+  BurgerBtn,
+} from './Header.styled';
 import useResize from 'utils/useResize';
+// import { CloseBtn } from 'components/SideBar/SideBar.styled';
 
 export const Header = ({ onToggle }) => {
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
   const [activePage, setActivePage] = useState('');
   const size = useResize();
 
@@ -35,16 +45,18 @@ export const Header = ({ onToggle }) => {
       <HeaderWrapper>
         <PageTitle>
           {size[0] < 1440 ? (
-            <button onClick={onToggle}>=</button>
+            <BurgerBtn onClick={onToggle}>
+              <img src={BurgerIcon} alt="close" />
+            </BurgerBtn>
           ) : (
             <p>{activePage}</p>
           )}
         </PageTitle>
         <UserWrapper>
-          <AddFeedbackBtn />
+          <AddFeedbackBtn onFeedbackBtn={handleOpen} />
           <ThemeToggler />
           <UserInfo />
-          <AddFeedbackModal />
+          <AddFeedbackModal open={open} onClose={handleClose} />
         </UserWrapper>
       </HeaderWrapper>
     </>
