@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { format, parseISO, startOfToday, parse } from 'date-fns';
 import Icons from '../../images/Statistics/Icons/icon-Ellipse.svg';
-import { CalendarTable } from '../CalendarTable/CalendarTable';
+import Calendar from './Calendar/Calendar';
 import Chart from './StatisticsChart';
 import {
   General,
@@ -20,7 +20,7 @@ import {
 
 const Statistics = () => {
   const today = startOfToday();
-  const [firstDayCurrentMonth, setFirstDayCurrentMonth] = useState(
+  const [currentDayMonth, setCurrentDayMonth] = useState(
     parseISO(format(today, 'yyyy-MM-dd'))
   );
 
@@ -28,20 +28,20 @@ const Statistics = () => {
 
   const handleDateChange = newDate => {
     const parsedDate = parse(newDate, 'dd MMMM yyyy', new Date());
-    setFirstDayCurrentMonth(parsedDate);
+    setCurrentDayMonth(parsedDate);
     setShowCalendar(false);
   };
 
   const handleLastDay = () => {
-    const newDate = new Date(firstDayCurrentMonth);
+    const newDate = new Date(currentDayMonth);
     newDate.setDate(newDate.getDate() - 1);
-    setFirstDayCurrentMonth(newDate);
+    setCurrentDayMonth(newDate);
   };
 
   const handleNextDay = () => {
-    const newDate = new Date(firstDayCurrentMonth);
+    const newDate = new Date(currentDayMonth);
     newDate.setDate(newDate.getDate() + 1);
-    setFirstDayCurrentMonth(newDate);
+    setCurrentDayMonth(newDate);
   };
 
   const miniCalendar = () => {
@@ -52,15 +52,15 @@ const Statistics = () => {
     <General>
       <Option>
         <Buttons>
-          <ButtonData type='button' onClick={miniCalendar}>
-            {format(firstDayCurrentMonth, 'dd MMMM yyyy')}
+          <ButtonData type="button" onClick={miniCalendar}>
+            {format(currentDayMonth, 'dd MMMM yyyy')}
           </ButtonData>
           <ButtonsIcon>
-            <ButtonLast type='button' onClick={handleLastDay}>
-              <IconLast fill='#ffffff' />
+            <ButtonLast type="button" onClick={handleLastDay}>
+              <IconLast fill="#ffffff" />
             </ButtonLast>
-            <ButtonNext type='button' onClick={handleNextDay}>
-              <IconNext fill='#ffffff' />
+            <ButtonNext type="button" onClick={handleNextDay}>
+              <IconNext fill="#ffffff" />
             </ButtonNext>
           </ButtonsIcon>
         </Buttons>
@@ -80,10 +80,10 @@ const Statistics = () => {
         </List>
       </Option>
       <Chart
-        firstDayCurrentMonth={firstDayCurrentMonth}
-        setFirstDayCurrentMonth={setFirstDayCurrentMonth}
+        currentDayMonth={currentDayMonth}
+        setCurrentDayMonth={setCurrentDayMonth}
       />
-      {showCalendar && <CalendarTable onDateChange={handleDateChange} />}
+      {showCalendar && <Calendar onDateChange={handleDateChange} />}
     </General>
   );
 };

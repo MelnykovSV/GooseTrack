@@ -74,16 +74,12 @@ const authSlice = createSlice({
     //   state.status = 'fulfilled';
     // });
     builder.addCase(editData.fulfilled, (state, action) => {
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
       state.user = { ...state.user, ...action.payload.user };
       state.isLoading = false;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     });
     builder.addCase(updateAvatar.fulfilled, (state, action) => {
-      state.accessToken = action.payload.accessToken;
-      state.refreshToken = action.payload.refreshToken;
       state.user = { ...state.user, ...action.payload.user };
       state.isLoading = false;
       state.isLoggedIn = true;
