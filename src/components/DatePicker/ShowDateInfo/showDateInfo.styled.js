@@ -8,10 +8,10 @@ export const Container = styled.div`
     border: 1px solid rgba(227, 243, 255, 1);
     width: 82px;
     height: 34px;
-
     border-bottom-left-radius: 8px;
     border-top-left-radius: 8px;
   }
+
   .showDay {
     background-color: rgba(227, 243, 255, 1);
     color: rgba(62, 133, 243, 1);
@@ -22,19 +22,21 @@ export const Container = styled.div`
     border-bottom-right-radius: 8px;
     border-top-right-radius: 8px;
   }
+
   .showDay:focus {
     background-color: rgba(202, 232, 255, 1);
   }
+
   .showMonths:focus {
     background-color: rgba(202, 232, 255, 1);
   }
+
   .dateBox {
     width: 704px;
     height: 68px;
     border: 1px solid rgba(220, 227, 229, 0.8);
     display: flex;
     border-radius: 8px;
-
     align-items: center;
     margin-top: 10px;
   }
@@ -46,6 +48,7 @@ export const Container = styled.div`
   .dateNumber {
     text-align: center;
   }
+
   .dayContainer {
     display: flex;
     flex-direction: column;
@@ -85,6 +88,7 @@ export const Container = styled.div`
   .container {
     max-width: 1440px;
   }
+
   .boxButtonDay {
     display: flex;
   }
