@@ -15,17 +15,18 @@ import {
 
 import { Schedule, Container, Title } from './StatisticsChart.styled';
 
-const Chart = ({ firstDayCurrentMonth, _ }) => {
+const Chart = ({ CurrentDayMonth, _ }) => {
   const [data, setData] = useState(null);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const token = useSelector(state => state.auth.token);
 
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `statistics?date=${format(firstDayCurrentMonth, 'yyyy-MM-dd')}`,
+          `${process.env.DB_HOST}/statistics?data=${format(CurrentDayMonth, 'yyyy-MM-dd')}`,
           {
             headers: {
               Authorization: `Bearer ${token}`,
@@ -38,12 +39,22 @@ const Chart = ({ firstDayCurrentMonth, _ }) => {
       }
     };
     fetchData();
-  }, [firstDayCurrentMonth, token]);
+  }, [CurrentDayMonth, token]);
 
   if (!data) {
     return null;
   }
-  const { todo, inProgres, done } = data;
+
+    const { todo, inProgres, done } = data;
+
+const totalTasks = Math.max(
+  todo.forDay.quantity,
+  todo.forMonth.quantity,
+  inProgres.forDay.quantity,
+  inProgres.forMonth.quantity,
+  done.forDay.quantity,
+  done.forMonth.quantity
+);
 
   const chartData = [
     {
@@ -116,14 +127,15 @@ const Chart = ({ firstDayCurrentMonth, _ }) => {
               axisLine={false}
             />
             <YAxis
-              domain={[0, 10]}
-              tickCount={11}
-              tick={{ fill: '#343434' }}
+              tickFormatter={value => value}
+              domain={[0, 'dataMax']}
               allowDataOverflow={true}
-              scale='linear'
+              scale="linear"
               axisLine={false}
+              tickCount={totalTasks}
               tickLine={false}
               tickMargin={30}
+              tick={{ fill: '#343434' }}
             />
             <Bar
               dataKey='day'
