@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import ReactDatePicker from 'react-datepicker';
-import { DateInfoComponent } from '../showDateInfo/showDateInfo';
+import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DatePickerContainer } from './datePicker.styled';
-import styles from './datepicker.module.css'
+// import styles from './datepicker.module.css'
 const DatePicker = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showDateInfo, setShowDateInfo] = useState(true);
