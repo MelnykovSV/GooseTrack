@@ -24,9 +24,14 @@ const DatePicker = () => {
       }`;
       navigate(`month/${selectedMonth}`);
     } else {
-      const selectedDay = `${selectedDate.getFullYear()}-${
+      const selectedDay = `${selectedDate.getFullYear()}-${(
         selectedDate.getMonth() + 1
-      }-${selectedDate.getDate()}`;
+      )
+        .toString()
+        .padStart(2, '0')}-${selectedDate
+        .getDate()
+        .toString()
+        .padStart(2, '0')}`;
       navigate(`day/${selectedDay}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
