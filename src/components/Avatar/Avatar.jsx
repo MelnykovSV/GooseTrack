@@ -1,5 +1,5 @@
 import { useDropzone } from 'react-dropzone';
-import { ReactComponent as UpdateAvatarIcon } from '../../icons/plus.svg';
+// import { ReactComponent as UpdateAvatarIcon } from '../../icons/plus.svg';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateAvatar } from 'redux/auth/operations';
@@ -22,7 +22,7 @@ export const Avatar = () => {
     dispatch(updateAvatar(formData));
   });
 
-  const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
+  const { acceptedFiles, getRootProps } = useDropzone({
     onDrop,
   });
 
