@@ -4,7 +4,6 @@ import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateAvatar } from 'redux/auth/operations';
 
-
 export const Avatar = () => {
   const dispatch = useDispatch();
 
@@ -23,8 +22,8 @@ export const Avatar = () => {
     onDrop,
   });
 
-  console.log(acceptedFiles)
-  console.log(getRootProps)
+  console.log(acceptedFiles);
+  console.log(getRootProps);
 
   return (
     <div>

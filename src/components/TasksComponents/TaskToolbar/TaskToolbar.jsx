@@ -1,3 +1,39 @@
+// import * as S from './TaskToolbar.styled';
+// import { Title, ArrowIcon } from '../ColumnHeadBar/ColumnHeadBar.styled';
+
+// export const TaskToolbar = () => {
+// return (
+// <S.Container>
+{
+  /* <S.ToolBarItem> */
+}
+{
+  /* <Title /> */
+}
+{
+  /* <ArrowIcon /> */
+}
+{
+  /* </S.ToolBarItem> */
+}
+{
+  /* <S.ToolBarItem> */
+}
+{
+  /* <Title /> */
+}
+{
+  /* <ArrowIcon /> */
+}
+{
+  /* </S.ToolBarItem> */
+}
+{
+  /* </S.Container> */
+}
+// );
+// };
+
 // // import Icons from 'images/sprite.svg';
 // import * as S from //   BtnArrow, // {
 // //   BtnStyled,

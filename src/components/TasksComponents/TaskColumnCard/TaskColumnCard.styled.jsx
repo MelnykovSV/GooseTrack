@@ -21,10 +21,14 @@ export const Wraper = styled.div`
   width: 100%;
 `;
 
-export const ToolsWraper = styled.div`
+export const ToolsWrapper = styled.div`
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 10px;
+
+  margin-top: 18px;
+  width: 62px;
+  height: 14px;
 `;
 
 export const TaskText = styled.p`
@@ -56,14 +60,6 @@ export const PriorityWraper = styled.div`
   display: flex;
   gap: 8px;
   justify-content: space-between;
-`;
-export const ToolsWrapper = styled.div`
-  display: flex;
-  /* justify-content: space-between; */
-  gap: 10px;
-  margin-top: 18px;
-  width: 82px;
-  height: 14px;
 `;
 
 export const Priority = styled.div`
