@@ -1,4 +1,4 @@
-import { FeedbackForm } from 'components/FeedbackForm/FeedbackForm';
+import { FeedbackForm } from 'components/FeedbackFormComponents';
 import { CustomModal } from 'components/CustomModal/CustomModal';
 import { useEffect, useState } from 'react';
 import { privateApi } from 'api';

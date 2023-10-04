@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import icons from '../../assets/images/icons.svg';
+import icons from 'assets/images/icons.svg';
 import { useDispatch } from 'react-redux';
 import {
   addReview,
@@ -19,10 +19,9 @@ import {
   TextareaBox,
   Error,
 } from './FeedbackForm.styled';
-import StarRating from './StarRating/StarRating';
 import { reviewSchema } from 'assets/schemas/reviewSchema';
 import { useFormik } from 'formik';
-import LabelWithControls from './LabelWithControls/LabelWithControls';
+import { LabelWithControls, StarRating } from '../';
 
 export function FeedbackForm({
   onClose,
