@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import ReactDatePicker from 'react-datepicker';
+import { Container } from './datePicker.styled';
 
 // import { DateInfoComponent } from '../showDateInfo/ShowDateInfo';
 import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
-import styles from './datepicker.module.css';
+// import styles from './datepicker.module.css';
 
 const DatePicker = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -41,31 +42,33 @@ const DatePicker = () => {
   };
 
   return (
-    <div className={styles.navigation}>
-      <div className={styles.wrapBox}>
-        <div className={styles.wrap}>
-          <ReactDatePicker
-            selected={selectedDate}
-            onSelect={handleDateChange}
-            onChange={handleDateChange}
-            className={styles.myDatepicker}
-            calendarClassName={styles.myCalendar}
-            showMonthYearPicker
-            dateFormat="MM/yyyy"
-          />
-          <div className={styles.boxButton}>
-            <button className={styles.buttonLeft} onClick={handlePrevDay}>
-              {'<'}
-            </button>
-            <button className={styles.buttonRight} onClick={handleNextDay}>
-              {'>'}
-            </button>
+    <Container>
+      <div className="navigation">
+        <div className={'wrapBox'}>
+          <div className={'wrap'}>
+            <ReactDatePicker
+              selected={selectedDate}
+              onSelect={handleDateChange}
+              onChange={handleDateChange}
+              className={'myDatepicker'}
+              calendarClassName={'myCalendar'}
+              showMonthYearPicker
+              dateFormat="MM/yyyy"
+            />
+            <div className={'boxButton'}>
+              <button className={'buttonLeft'} onClick={handlePrevDay}>
+                {'<'}
+              </button>
+              <button className={'buttonRight'} onClick={handleNextDay}>
+                {'>'}
+              </button>
+            </div>
           </div>
-        </div>
 
-        {showDateInfo && <DateInfoComponent selectedDate={selectedDate} />}
+          {showDateInfo && <DateInfoComponent selectedDate={selectedDate} />}
+        </div>
       </div>
-    </div>
+    </Container>
   );
 };
 
