@@ -13,6 +13,7 @@ import { getTasksByMonth, getTasksByDay } from './operations';
 
 const initialState = {
   tasks: [],
+  month: null,
   isLoading: false,
   error: null,
 };
@@ -24,7 +25,8 @@ const tasksSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
-        state.tasks = action.payload;
+        state.tasks = action.payload.data;
+        state.month = action.payload.month
       })
       .addCase(getTasksByDay.fulfilled, (state, action) => {
         state.tasks = action.payload;
@@ -43,3 +45,5 @@ const tasksSlice = createSlice({
 
 export const tasksReducer = tasksSlice.reducer;
 export const getTasksError = state => state.tasks.error;
+export const getTasks = state => state.tasks.tasks;
+export const getMonth = state => state.tasks.month;
