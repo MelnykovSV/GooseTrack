@@ -1,37 +1,23 @@
 import React from 'react';
-import {
-  Container,
-  Navigation,
-  StyledNavLink,
-  CommonSvgStyled,
-} from './UserNav.styled';
-import { ReactComponent as UserAccountIcon } from '../../icons/SideBarIcons/user-check-01.svg';
-import { ReactComponent as CalendarIcon } from '../../icons/SideBarIcons/calendar-check-02.svg';
-import { ReactComponent as StatisticsIcon } from '../../icons/SideBarIcons/chart.svg';
+import * as S from './UserNav.styled';
 
 export const UserNav = () => {
   return (
-    <Container>
-      <Navigation>
-        <StyledNavLink to="/account">
-          <CommonSvgStyled>
-            <UserAccountIcon />
-          </CommonSvgStyled>
+    <S.Container>
+      <S.Navigation>
+        <S.StyledNavLink to="/account">
+          <S.UserIcon />
           My account
-        </StyledNavLink>
-        <StyledNavLink to="/calendar">
-          <CommonSvgStyled>
-            <CalendarIcon />
-          </CommonSvgStyled>
+        </S.StyledNavLink>
+        <S.StyledNavLink to="/calendar">
+          <S.CalendarIcon />
           Calendar
-        </StyledNavLink>
-        <StyledNavLink to="/statistics">
-          <CommonSvgStyled>
-            <StatisticsIcon />
-          </CommonSvgStyled>
+        </S.StyledNavLink>
+        <S.StyledNavLink to="/statistics">
+          <S.StatisticsIcon />
           Statistics
-        </StyledNavLink>
-      </Navigation>
-    </Container>
+        </S.StyledNavLink>
+      </S.Navigation>
+    </S.Container>
   );
 };

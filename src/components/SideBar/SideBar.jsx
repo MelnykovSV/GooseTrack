@@ -10,7 +10,6 @@ import {
   LogoContainer,
   LogoImg,
   Logotext,
-  LogOutBtn,
   CloseBtn,
 } from './SideBar.styled';
 import { ReactComponent as LogoutBtnIcon } from '../../icons/SideBarIcons/log-out-01.svg';
