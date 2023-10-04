@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import styles from './showDateinfo.module.css';
+// import styles from './showDateinfo.module.css';
+import { Container } from './showDateInfo.styled';
 
 const DateInfoComponent = ({ selectedDate }) => {
   const [selectedType, setSelectedType] = useState('days');
@@ -46,56 +47,58 @@ const DateInfoComponent = ({ selectedDate }) => {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.boxButtonDayMonth}>
-        <button
-          className={styles.showMonths}
-          onClick={() => handleTypeChange('months')}
-        >
-          Months
-        </button>
-        <button
-          className={styles.showDay}
-          onClick={() => handleTypeChange('days')}
-        >
-          Days
-        </button>
-      </div>
-      {selectedType === 'months' ? (
-        <div className={styles.dateBox}>
-          {months.map((month, index) => (
-            <div className={styles.containerMonth}>
-              <p
-                className={styles.dayOfMonth}
+    <Container>
+      <div className={'container'}>
+        <div className={'boxButtonDayMonth'}>
+          <button
+            className={'showMonths'}
+            onClick={() => handleTypeChange('months')}
+          >
+            Months
+          </button>
+          <button
+            className={'showDay'}
+            onClick={() => handleTypeChange('days')}
+          >
+            Days
+          </button>
+        </div>
+        {selectedType === 'months' ? (
+          <div className={'dateBox'}>
+            {months.map((month, index) => (
+              <div className={'containerMonth'}>
+                <p
+                  className={'dayOfMonth'}
+                  key={index}
+                  onClick={() => handleMonthClick(month)}
+                >
+                  {month.substring(0, 3)}
+                </p>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div className={'dateBox'}>
+            {daysOfWeek.map((day, index) => (
+              <div
+                className={'dayContainer'}
                 key={index}
-                onClick={() => handleMonthClick(month)}
+                onClick={() => handleDayClick(day)}
               >
-                {month.substring(0, 3)}
-              </p>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <div className={styles.dateBox}>
-          {daysOfWeek.map((day, index) => (
-            <div
-              className={styles.dayContainer}
-              key={index}
-              onClick={() => handleDayClick(day)}
-            >
-              <div className={styles.dayOfWeek}>
-                {day.split(' ')[0].substring(0, 3).toUpperCase()}
+                <div className={'dayOfWeek'}>
+                  {day.split(' ')[0].substring(0, 3).toUpperCase()}
+                </div>
+                <div className={'dateNumber'}>
+                  <p className={'dateText'}>
+                    {day.split(' ')[1].substring(0, 3)}
+                  </p>{' '}
+                </div>
               </div>
-              <div className={styles.dateNumber}>
-                <p className={styles.dateText}>
-                  {day.split(' ')[1].substring(0, 3)}
-                </p>{' '}
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+            ))}
+          </div>
+        )}
+      </div>
+    </Container>
   );
 };
 
