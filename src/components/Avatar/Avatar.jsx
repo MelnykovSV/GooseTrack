@@ -3,11 +3,12 @@ import { ReactComponent as UpdateAvatarIcon } from '../../icons/plus.svg';
 import { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateAvatar } from 'redux/auth/operations';
-import { formatDistance } from 'date-fns/esm';
+
 
 export const Avatar = () => {
   const dispatch = useDispatch();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0];
     console.log(URL.createObjectURL(file));
@@ -21,6 +22,9 @@ export const Avatar = () => {
   const { acceptedFiles, getRootProps, getInputProps } = useDropzone({
     onDrop,
   });
+
+  console.log(acceptedFiles)
+  console.log(getRootProps)
 
   return (
     <div>

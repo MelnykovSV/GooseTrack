@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import ReactDatePicker from 'react-datepicker';
 
-import { DateInfoComponent } from '../showDateInfo/ShowDateInfo';
+// import { DateInfoComponent } from '../showDateInfo/ShowDateInfo';
+import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 import styles from './datepicker.module.css';
 
@@ -11,6 +12,7 @@ const DatePicker = () => {
   const handleDateChange = date => {
     setSelectedDate(date);
     setShowDateInfo(true);
+    console.log(date);
   };
 
   useEffect(() => {
@@ -48,6 +50,8 @@ const DatePicker = () => {
             onChange={handleDateChange}
             className={styles.myDatepicker}
             calendarClassName={styles.myCalendar}
+            showMonthYearPicker
+            dateFormat="MM/yyyy"
           />
           <div className={styles.boxButton}>
             <button className={styles.buttonLeft} onClick={handlePrevDay}>
