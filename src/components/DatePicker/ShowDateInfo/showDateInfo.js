@@ -1,9 +1,8 @@
-import React, { useState } from 'react';
-// import styles from './showDateinfo.module.css';
+import React from 'react';
 import { Container } from './showDateInfo.styled';
 
-const DateInfoComponent = ({ selectedDate }) => {
-  const [selectedType, setSelectedType] = useState('days');
+const DateInfoComponent = ({ selectedDate, pickerType }) => {
+  // const [selectedType, setSelectedType] = useState('days');
 
   const options = { weekday: 'long', day: 'numeric' };
   const startOfWeek = new Date(selectedDate);
@@ -34,7 +33,6 @@ const DateInfoComponent = ({ selectedDate }) => {
   ];
 
   const handleMonthClick = month => {
-    // додати таску
     console.log(`${month}`);
   };
 
@@ -42,14 +40,14 @@ const DateInfoComponent = ({ selectedDate }) => {
     console.log(`${day}`);
   };
 
-  const handleTypeChange = type => {
-    setSelectedType(type);
-  };
+  // const handleTypeChange = type => {
+  //   setSelectedType(type);
+  // };
 
   return (
     <Container>
       <div className={'container'}>
-        <div className={'boxButtonDayMonth'}>
+        {/* <div className={'boxButtonDayMonth'}>
           <button
             className={'showMonths'}
             onClick={() => handleTypeChange('months')}
@@ -62,14 +60,13 @@ const DateInfoComponent = ({ selectedDate }) => {
           >
             Days
           </button>
-        </div>
-        {selectedType === 'months' ? (
+        </div> */}
+        {selectedDate === 'month' ? (
           <div className={'dateBox'}>
             {months.map((month, index) => (
-              <div className={'containerMonth'}>
+              <div className={'containerMonth'} key={index}>
                 <p
                   className={'dayOfMonth'}
-                  key={index}
                   onClick={() => handleMonthClick(month)}
                 >
                   {month.substring(0, 3)}
@@ -80,16 +77,12 @@ const DateInfoComponent = ({ selectedDate }) => {
         ) : (
           <div className={'dateBox'}>
             {daysOfWeek.map((day, index) => (
-              <div
-                className={'dayContainer'}
-                key={index}
-                onClick={() => handleDayClick(day)}
-              >
+              <div className={'dayContainer'} key={index}>
                 <div className={'dayOfWeek'}>
                   {day.split(' ')[0].substring(0, 3).toUpperCase()}
                 </div>
                 <div className={'dateNumber'}>
-                  <p className={'dateText'}>
+                  <p className={'dateText'} onClick={() => handleDayClick(day)}>
                     {day.split(' ')[1].substring(0, 3)}
                   </p>{' '}
                 </div>

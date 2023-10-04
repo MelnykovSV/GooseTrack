@@ -80,8 +80,8 @@ export const App = () => {
             <Route element={<SharedLayout />}>
               <Route path="account" element={<AccountPage />} />
               <Route path="/calendar" element={<CalendarDatepickerPage />}>
-                <Route index element={<CalendarPage />} />
-                <Route path=":day" element={<DayTasksListPage />} />
+                <Route path="month/:month" element={<CalendarPage />} />
+                <Route path="day/:day" element={<DayTasksListPage />} />
               </Route>
               <Route path="statistics" element={<Statistics />} />
             </Route>
