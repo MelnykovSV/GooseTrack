@@ -1,15 +1,20 @@
-
-import {  useEffect, useState } from 'react';
-import {  useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { CircularAvatar, DefaultAvatar, Letter } from './Avatar.styled';
 
 export const Avatar = () => {
   const { avatarUrl, userName } = useSelector(selectUser);
-  const letter = userName.slice(0, 1);
+
+  const [letter, setLetter] = useState(null);
+
+  useEffect(() => {
+    if (userName) {
+      setLetter(userName.slice(0, 1));
+    }
+  }, [userName]);
 
   const [file, setFile] = useState(avatarUrl || null);
-
 
   useEffect(() => {
     setFile(avatarUrl);
@@ -32,7 +37,7 @@ export const Avatar = () => {
         />
       ) : (
         <DefaultAvatar>
-          <Letter>{letter}</Letter>
+          <Letter>{letter || ''}</Letter>
         </DefaultAvatar>
       )}
     </>
