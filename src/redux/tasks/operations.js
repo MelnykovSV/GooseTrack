@@ -1,11 +1,15 @@
-// export const getTasks = createAsyncThunk(
-//   'tasks/getAll',
-//   async ({ day }, { rejectWithValue }) => {
-//     try {
-//       const { data } = await privateApi.get(`/getByDay/${day}`);
-//       return data;
-//     } catch (error) {
-//       return rejectWithValue({ message: 'error' });
-//     }
-//   }
-// );
+const { createAsyncThunk } = require('@reduxjs/toolkit');
+const { privateApi } = require('api');
+
+export const getTasksByMonth = createAsyncThunk(
+  'tasks/getTasksByMonth',
+  async (month, { rejectWithValue }) => {
+    try {
+      const { data } = await privateApi.get(`/api/tasks/getByMonth/${month}`);
+
+      return data.data;
+    } catch (error) {
+      return rejectWithValue({ message: 'error' });
+    }
+  }
+);

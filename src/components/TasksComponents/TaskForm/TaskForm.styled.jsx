@@ -54,14 +54,35 @@ export const LabelText = styled.span`
   display: block;
   margin-bottom: 8px;
 
-  color: ${({ theme }) => theme.textPrimaryLightTransparent};
+  color: rgba(52, 52, 52, 0.8);
   font-size: 12px;
   line-height: 1.16;
 `;
 
-export const Input = styled.input``;
+export const Input = styled.input`
+  padding: 12px 14px;
+  width: 100%;
+
+  color: ${({ theme }) => theme.textPrimaryLight};
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 1.28;
+
+  border: none;
+  border-radius: 8px;
+  background: #f6f6f6;
+
+  &::placeholder {
+    color: ${({ theme }) => theme.textPrimaryLight};
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.28;
+  }
+`;
 
 export const InputContainer = styled.div`
   display: grid;
   gap: 15px;
+  grid-template-columns: repeat(2, 1fr);
+  margin-bottom: 16px;
 `;

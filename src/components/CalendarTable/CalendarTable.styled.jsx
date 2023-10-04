@@ -1,13 +1,5 @@
 import styled from '@emotion/styled';
 
-export const TableContainer = styled.div`
-  padding: 0 20px;
-
-  @media screen and (min-width: 768px) {
-    padding: 0 32px;
-  }
-`;
-
 export const Table = styled.div`
   border: 1px solid ${({ theme }) => theme.stroke};
   border-radius: 8px;
@@ -159,6 +151,7 @@ const Button = styled.button`
   border-color: transparent;
 
   user-select: none;
+  outline: none;
 
   transition: border-color
     ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
