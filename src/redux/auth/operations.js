@@ -87,7 +87,6 @@ export const updateAvatar = createAsyncThunk(
       console.log(response);
       return response.data.data;
     } catch (error) {
-      // Notify.failure(`Something went wrong: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -101,7 +100,6 @@ export const editData = createAsyncThunk(
       Notify.success('User data updated successfully!');
       return response.data.data;
     } catch (error) {
-      Notify.failure(`Something went wrong: ${error.message}`);
       return thunkAPI.rejectWithValue(error.message);
     }
   }

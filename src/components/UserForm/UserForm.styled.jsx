@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import { ErrorMessage, Field } from 'formik';
 import { ReactComponent as UpdateAvatarIcon } from '../../icons/plus.svg';
-import { ReactComponent as UserIcon } from '../../icons/ph_user.svg';
 import { ReactComponent as ErrorIcon } from '../../icons/error.svg';
 import { ReactComponent as ValidIcon } from '../../icons/valid.svg';
 
@@ -52,29 +51,6 @@ export const UserAvatar = styled.div`
   @media screen and (min-width: 767px) {
     width: 124px;
     height: 124px;
-  }
-`;
-
-export const CircularAvatar = styled.img`
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  //   border: 2px solid #3e85f3;
-  border-radius: 50%;
-`;
-
-export const DefaultUserIcon = styled(UserIcon)`
-  position: absolute;
-  width: 24px;
-  height: 24px;
-  top: 30%;
-  right: 30%;
-
-  @media screen and (min-width: 767px) {
-    width: 48px;
-    height: 48px;
-    top: 30%;
-    right: 30%;
   }
 `;
 
@@ -135,8 +111,8 @@ export const UpdateIcon = styled(UpdateAvatarIcon)`
   fill: #3e85f3;
   width: 14px;
   height: 14px;
-  top: 52px;
-  left: 54px;
+  bottom: 13px;
+  left: 45px;
   cursor: pointer;
   z-index: 1;
 
@@ -147,8 +123,8 @@ export const UpdateIcon = styled(UpdateAvatarIcon)`
   @media screen and (min-width: 767px) {
     width: 24px;
     height: 24px;
-    top: 95px;
-    left: 90px;
+    bottom: 20px;
+    left: 78px;
   }
 `;
 
