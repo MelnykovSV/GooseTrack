@@ -17,6 +17,20 @@ export const HeaderWrapper = styled.div`
   }
 `;
 
+export const BurgerBtn = styled.button`
+  height: 24px;
+  width: 24px;
+  border: none;
+  background-color: ${props => props.theme.bgSecondary};
+  @media (min-width: 768px) {
+    height: 34px;
+    width: 34px;
+  }
+  @media (min-width: 1440px) {
+    display: none;
+  }
+`;
+
 export const PageTitle = styled.div``;
 
 export const UserWrapper = styled.div`
