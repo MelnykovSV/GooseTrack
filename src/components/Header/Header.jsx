@@ -11,7 +11,7 @@ import {
   BurgerBtn,
 } from './Header.styled';
 import useResize from 'utils/useResize';
-import { CloseBtn } from 'components/SideBar/SideBar.styled';
+// import { CloseBtn } from 'components/SideBar/SideBar.styled';
 
 export const Header = ({ onToggle }) => {
   const [open, setOpen] = useState(false);
