@@ -31,6 +31,7 @@ const Form = styled.form`
 const Input = styled.input`
   display: block;
   padding: 14px;
+  padding-right: 40px;
   margin-bottom: 8px;
   width: 100%;
   height: 46px;
@@ -120,9 +121,10 @@ const StyledSpan = styled.span`
   color: #e74a3b;
   margin-bottom: 5px;
 `;
-const WrapperInput = styled.div`
+
+const ParentWrapper = styled.div`
   position: relative;
-`;
+`
 
 const Hyperlink = styled(Link)`
   color: #3e85f3;
@@ -139,16 +141,22 @@ const Hyperlink = styled(Link)`
     color: #2b78ef;
   }
 `;
-
+const ErrorSvg = styled.span`
+	position: absolute;
+	top:52%;
+	transform: translateY(-50%);
+	right: 10px;
+`
 export {
-  Container,
-  Form,
-  Input,
-  Heading,
-  InputHeader,
-  Button,
-  StyledLink,
-  StyledSpan,
-  WrapperInput,
-  Hyperlink,
+	Container,
+	Form,
+	Input,
+	Heading,
+	InputHeader,
+	Button,
+	StyledLink,
+	StyledSpan,
+	ParentWrapper,
+	Hyperlink,
+	ErrorSvg
 };
