@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isTasksError, isTasksPending } from '../statusCheckers';
-import { getTasksByMonth } from './operations';
+import { getTasksByMonth, getTasksByDay } from './operations';
 
 // interface ITask {
 //     title: string;
@@ -24,6 +24,9 @@ const tasksSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
+        state.tasks = action.payload;
+      })
+      .addCase(getTasksByDay.fulfilled, (state, action) => {
         state.tasks = action.payload;
       })
       .addMatcher(isTasksPending, state => {

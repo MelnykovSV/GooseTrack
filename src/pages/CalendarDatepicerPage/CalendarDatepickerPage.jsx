@@ -5,7 +5,7 @@ export const CalendarDatepickerPage = () => {
   return (
     <div>
       <h2>Datepicker will be here</h2>
-      {/* <DatePicker /> */}
+      <DatePicker />
       <Outlet />
     </div>
   );
