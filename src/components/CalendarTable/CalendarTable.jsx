@@ -1,19 +1,16 @@
-import { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import Menu from '@mui/material/Menu';
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import { format, getMonth, getYear } from 'date-fns';
+import Menu from '@mui/material/Menu';
 
+import { getTasksByMonth } from 'redux/tasks/operations';
+import { selectTasks } from 'redux/selectors';
 import { useResizeScreen } from 'hooks';
 
 import { TaskModal } from 'components/TasksComponents';
 
 import * as S from './CalendarTable.styled';
-
-import { tasks } from './defaultData';
 
 export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -78,31 +75,23 @@ export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
   );
 };
 
-const BasicDatePicker = ({ onChangeDate, value }) => {
-  return (
-    <div style={{ backgroundColor: 'white', marginBottom: 20 }}>
-      <LocalizationProvider dateAdapter={AdapterDateFns}>
-        <DemoContainer components={['DatePicker']}>
-          <DatePicker
-            label={'"month" and "year"'}
-            views={['month', 'year']}
-            value={value}
-            onChange={onChangeDate}
-          />
-        </DemoContainer>
-      </LocalizationProvider>
-    </div>
-  );
-};
-
 export const CalendarTable = () => {
-  const [date, setDate] = useState(new Date());
+  const { month } = useParams();
+  const dispatch = useDispatch();
+  const tasks = useSelector(selectTasks);
+
+  const [date, setDate] = useState(new Date(month));
   const [isOpenTaskModal, setIsOpenTaskModal] = useState(false);
   const [choseTask, setChoseTask] = useState(null);
 
   const navigate = useNavigate();
 
   const { isMobile, isTablet, isDesktop } = useResizeScreen();
+
+  useEffect(() => {
+    setDate(new Date(month));
+    dispatch(getTasksByMonth(month));
+  }, [month, dispatch]);
 
   const tableData = useMemo(() => {
     const year = getYear(date);
@@ -145,7 +134,7 @@ export const CalendarTable = () => {
     }
 
     return tableData;
-  }, [date]);
+  }, [date, tasks]);
 
   const countNumberOfDisplayedTasks = tasks => {
     if (isMobile) {
@@ -178,70 +167,65 @@ export const CalendarTable = () => {
   };
 
   return (
-    <S.TableContainer>
-      <BasicDatePicker onChangeDate={value => setDate(value)} value={date} />
+    <S.Table>
+      {tableData.map((tableRowData, idx) => (
+        <S.TableRow key={idx}>
+          {tableRowData.map(
+            ({ dayOfMonth, fullDate, tasks, isCurrentDate }, idx) => {
+              const numberOfDisplayedTasks = countNumberOfDisplayedTasks(tasks);
 
-      <S.Table>
-        {tableData.map((tableRowData, idx) => (
-          <S.TableRow key={idx}>
-            {tableRowData.map(
-              ({ dayOfMonth, fullDate, tasks, isCurrentDate }, idx) => {
-                const numberOfDisplayedTasks =
-                  countNumberOfDisplayedTasks(tasks);
+              const isEmptyCell = dayOfMonth === null;
 
-                const isEmptyCell = dayOfMonth === null;
-
-                return (
-                  <S.TableCell
-                    key={idx}
-                    $isEmpty={isEmptyCell}
-                    onClick={
-                      isEmptyCell ? () => {} : handleChooseDayCell(fullDate)
-                    }
-                  >
-                    <div className="disabled-hover">
-                      <div>
-                        {tasks.slice(0, numberOfDisplayedTasks).map(task => (
-                          <S.MiniCard
-                            type="button"
-                            key={task.id}
-                            $priority={task.priority}
-                            onClick={handleOpenTaskModal(task)}
-                          >
-                            {task.title}
-                          </S.MiniCard>
-                        ))}
-                      </div>
-                      {((tasks.length > 2 && isMobile) ||
-                        (tasks.length > 3 && isTablet) ||
-                        (tasks.length > 2 && isDesktop)) && (
-                        <DropDownTaskList
-                          tasks={tasks}
-                          onOpenTaskModal={handleOpenTaskModal}
-                        />
-                      )}
-                    </div>
-                    {dayOfMonth && (
-                      <S.DayOfMonthContainer
-                        className="container"
-                        $isCurrentDate={isCurrentDate}
-                        onClick={handleChooseDay(fullDate)}
-                      >
-                        <S.DayOfMonth
-                          className="value"
-                          $isCurrentDate={isCurrentDate}
+              return (
+                <S.TableCell
+                  key={idx}
+                  $isEmpty={isEmptyCell}
+                  onClick={
+                    isEmptyCell ? () => {} : handleChooseDayCell(fullDate)
+                  }
+                >
+                  <div className="disabled-hover">
+                    <div>
+                      {tasks.slice(0, numberOfDisplayedTasks).map(task => (
+                        <S.MiniCard
+                          type="button"
+                          key={task.id}
+                          $priority={task.priority}
+                          onClick={handleOpenTaskModal(task)}
                         >
-                          {dayOfMonth}
-                        </S.DayOfMonth>
-                      </S.DayOfMonthContainer>
+                          {task.title}
+                        </S.MiniCard>
+                      ))}
+                    </div>
+                    {((tasks.length > 2 && isMobile) ||
+                      (tasks.length > 3 && isTablet) ||
+                      (tasks.length > 2 && isDesktop)) && (
+                      <DropDownTaskList
+                        tasks={tasks}
+                        onOpenTaskModal={handleOpenTaskModal}
+                      />
                     )}
-                  </S.TableCell>
-                );
-              }
-            )}
-          </S.TableRow>
-        ))}
-      </S.Table>
+                  </div>
+                  {dayOfMonth && (
+                    <S.DayOfMonthContainer
+                      className="container"
+                      $isCurrentDate={isCurrentDate}
+                      onClick={handleChooseDay(fullDate)}
+                    >
+                      <S.DayOfMonth
+                        className="value"
+                        $isCurrentDate={isCurrentDate}
+                      >
+                        {dayOfMonth}
+                      </S.DayOfMonth>
+                    </S.DayOfMonthContainer>
+                  )}
+                </S.TableCell>
+              );
+            }
+          )}
+        </S.TableRow>
+      ))}
 
       {choseTask && (
         <TaskModal
@@ -250,6 +234,6 @@ export const CalendarTable = () => {
           task={choseTask}
         />
       )}
-    </S.TableContainer>
+    </S.Table>
   );
 };
