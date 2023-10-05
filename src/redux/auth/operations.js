@@ -1,6 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { publicApi, privateApi } from 'api';
-import { Notify } from 'notiflix';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
