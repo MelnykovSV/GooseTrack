@@ -39,15 +39,12 @@ export const Container = styled.div`
     border-radius: 8px;
     align-items: center;
     margin-top: 10px;
+    position: absolute;
+    left: 0;
+    top: 58px;
   }
 
-  .dayOfWeek {
-    text-align: center;
-  }
 
-  .dateNumber {
-    text-align: center;
-  }
 
   .dayContainer {
     display: flex;
@@ -77,12 +74,18 @@ export const Container = styled.div`
 
   .dateText {
     text-transform: uppercase;
-    margin: 0;
+    margin:0;
+    margin-bottom: 8px
+    font-size: 16px;
+    ;
   }
 
   .boxButtonDayMonth {
     display: flex;
-    justify-content: end;
+    position: absolute;
+    left: 539px;
+    top: 0px;
+    height: 34px;
   }
 
   .container {
@@ -91,5 +94,38 @@ export const Container = styled.div`
 
   .boxButtonDay {
     display: flex;
+  }
+
+  .dateText:hover {
+ color:rgba(62, 133, 243, 1);
+    cursor: pointer;
+  }
+
+  .myDatepicker:focus {
+    color:gba(62, 133, 243, 1);
+    cursor: pointer;
+  }
+  .selected-date {
+    background-color:rgba(62, 133, 243, 1);
+color:white;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+  
+
+  }
+  .active{
+        background-color:rgba(202, 232, 255, 1);
+  }
+
+  .dayOfMonth:hover{
+cursor:pointer;
+color:rgba(62, 133, 243, 1);
+  }
+  .dayContainer:hover{
+    cursor:pointer;
+color:rgba(62, 133, 243, 1);
   }
 `;

@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container } from './showDateInfo.styled';
 
-const DateInfoComponent = ({ selectedDate }) => {
-  const [selectedType, setSelectedType] = useState('days');
-
+const DateInfoComponent = ({ selectedDate, customInputRef }) => {
   const options = { weekday: 'long', day: 'numeric' };
   const startOfWeek = new Date(selectedDate);
   startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
@@ -17,6 +15,7 @@ const DateInfoComponent = ({ selectedDate }) => {
     daysOfWeek.push(formattedDate);
   }
 
+  const [selectedType, setSelectedType] = useState('days');
   const months = [
     'January',
     'February',
@@ -32,6 +31,12 @@ const DateInfoComponent = ({ selectedDate }) => {
     'December',
   ];
 
+  useEffect(() => {
+    if (customInputRef && customInputRef.current) {
+      customInputRef.current.focus();
+    }
+  }, [selectedDate, customInputRef]);
+
   const handleMonthClick = month => {
     console.log(`${month}`);
   };
@@ -46,51 +51,52 @@ const DateInfoComponent = ({ selectedDate }) => {
 
   return (
     <Container>
-      <div className={'container'}>
-        <div className={'boxButtonDayMonth'}>
-          <button
-            className={'showMonths'}
-            onClick={() => handleTypeChange('months')}
-          >
-            Months
-          </button>
-          <button
-            className={'showDay'}
-            onClick={() => handleTypeChange('days')}
-          >
-            Days
-          </button>
+      <div className="boxButtonDayMonth">
+        <button
+          className={`showMonths ${selectedType === 'months' ? 'active' : ''}`}
+          onClick={() => handleTypeChange('months')}
+        >
+          Months
+        </button>
+        <button
+          className={`showDay ${selectedType === 'days' ? 'active' : ''}`}
+          onClick={() => handleTypeChange('days')}
+        >
+          Days
+        </button>
+      </div>
+      {selectedType === 'months' ? (
+        <div className="dateBox">
+          {months.map((month, index) => (
+            <div className="containerMonth" key={index}>
+              <p className="dayOfMonth" onClick={() => handleMonthClick(month)}>
+                {month.substring(0, 3)}
+              </p>
+            </div>
+          ))}
         </div>
-        {selectedType === 'months' ? (
-          <div className={'dateBox'}>
-            {months.map((month, index) => (
-              <div className={'containerMonth'} key={index}>
-                <p
-                  className={'dayOfMonth'}
-                  onClick={() => handleMonthClick(month)}
-                >
-                  {month.substring(0, 3)}
+      ) : (
+        <div className="dateBox">
+          {daysOfWeek.map((day, index) => (
+            <div className="dayContainer" key={index}>
+              <div className="dateNumber">
+                <p className="dateText" onClick={() => handleDayClick(day)}>
+                  {day.split(' ')[1].substring(0, 3)}
                 </p>
               </div>
-            ))}
-          </div>
-        ) : (
-          <div className={'dateBox'}>
-            {daysOfWeek.map((day, index) => (
-              <div className={'dayContainer'} key={index}>
-                <div className={'dayOfWeek'}>
-                  {day.split(' ')[0].substring(0, 3).toUpperCase()}
-                </div>
-                <div className={'dateNumber'}>
-                  <p className={'dateText'} onClick={() => handleDayClick(day)}>
-                    {day.split(' ')[1].substring(0, 3)}
-                  </p>{' '}
-                </div>
+              <div
+                className={`dayOfWeek ${
+                  day === selectedDate.toLocaleDateString('en-US', options)
+                    ? 'selected-date'
+                    : ''
+                }`}
+              >
+                {day.split(' ')[0].substring(0, 3).toUpperCase()}
               </div>
-            ))}
-          </div>
-        )}
-      </div>
+            </div>
+          ))}
+        </div>
+      )}
     </Container>
   );
 };

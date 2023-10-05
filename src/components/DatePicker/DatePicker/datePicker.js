@@ -1,17 +1,22 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
-import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
+import { DateInfoComponent } from '../showDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DatePickerContainer } from './datePicker.styled';
-// import styles from './datepicker.module.css'
+
 const DatePicker = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [showDateInfo, setShowDateInfo] = useState(true);
+  const customInputRef = useRef(null);
+  const [selectedMonth] = useState('');
 
   const handleDateChange = date => {
     setSelectedDate(date);
     setShowDateInfo(true);
-    console.log(date);
+
+    if (customInputRef.current) {
+      customInputRef.current.classList.add('selected-date');
+    }
   };
 
   useEffect(() => {
@@ -22,12 +27,18 @@ const DatePicker = () => {
     const newDate = new Date(selectedDate);
     newDate.setDate(selectedDate.getDate() - 1);
     setSelectedDate(newDate);
+    if (customInputRef.current) {
+      customInputRef.current.classList.add('active');
+    }
   };
 
   const handleNextDay = () => {
     const newDate = new Date(selectedDate);
     newDate.setDate(selectedDate.getDate() + 1);
     setSelectedDate(newDate);
+    if (customInputRef.current) {
+      customInputRef.current.classList.add('active');
+    }
   };
 
   return (
@@ -37,12 +48,13 @@ const DatePicker = () => {
           <div className={'wrap'}>
             <ReactDatePicker
               selected={selectedDate}
-              onSelect={handleDateChange}
               onChange={handleDateChange}
               className={'myDatepicker'}
               calendarClassName={'myCalendar'}
               dateFormat="dd MMM yyyy"
+              customInput={<input ref={customInputRef} />}
             />
+
             <div className={'boxButton'}>
               <button className={'buttonLeft'} onClick={handlePrevDay}>
                 {'<'}
@@ -53,7 +65,13 @@ const DatePicker = () => {
             </div>
           </div>
 
-          {showDateInfo && <DateInfoComponent selectedDate={selectedDate} />}
+          {showDateInfo && (
+            <DateInfoComponent
+              selectedDate={selectedDate}
+              customInputRef={customInputRef}
+              selectedMonth={selectedMonth}
+            />
+          )}
         </div>
       </div>
     </DatePickerContainer>

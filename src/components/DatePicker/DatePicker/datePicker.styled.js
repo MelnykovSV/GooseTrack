@@ -6,7 +6,15 @@ export const DatePickerContainer = styled.div`
     background-color: #3e85f3;
     width: 125px;
     height: 34px;
-    padding: 8px 12px;
+    border-radius: 8px;
+    border: none;
+    text-align: center;
+  }
+  .myDatepicker {
+    color: white;
+    background-color: #3e85f3;
+    width: 125px;
+    height: 34px;
     border-radius: 8px;
     border: none;
     text-align: center;
@@ -20,6 +28,7 @@ export const DatePickerContainer = styled.div`
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
     border: 1px;
+    border-right: 1px solid rgba(220, 227, 229, 0.5);
   }
   .buttonLeft:focus {
     color: rgba(52, 52, 52, 1);
@@ -45,7 +54,6 @@ export const DatePickerContainer = styled.div`
 
   .boxButton {
     display: flex;
-    gap: 2px;
   }
   .wrapBox {
     display: flex;
