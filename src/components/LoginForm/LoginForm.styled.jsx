@@ -32,6 +32,7 @@ const Input = styled.input`
   display: block;
   padding: 14px;
   margin-bottom: 8px;
+  padding-right: 40px;
   width: 100%;
   height: 46px;
   border-radius: 8px;
@@ -41,10 +42,21 @@ const Input = styled.input`
   font-style: normal;
   font-weight: 400;
   line-height: 18px; /* 128.571% */
+  border: ${({ status }) => {
+		switch (status) {
+			case 'error':
+				return '1px solid #E74A3B';
+			case 'valid':
+				return '1px solid #3CBC81';
+			default:
+				return '1px solid rgba(220, 227, 229, 0.60);';
+		}
+	}};
+
 `;
 const Heading = styled.h1`
   margin: 0;
-  margin-bottom: 22px;
+  margin-bottom: 32px;
   color: #3e85f3;
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
     0px 47px 355px rgba(0, 0, 0, 0.07);
@@ -64,7 +76,16 @@ const InputHeader = styled.label`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  color: #111;
+  color:  ${({ status }) => {
+		switch (status) {
+			case 'error':
+				return ' #E74A3B';
+			case 'valid':
+				return ' #3CBC81';
+			default:
+				return ' #111';
+		}
+	}};
 `;
 
 const Button = styled.button`
@@ -107,23 +128,29 @@ const StyledLink = styled.a`
 `;
 
 const StyledSpan = styled.span`
-  /* position: absolute; */
   display: block;
   min-height: 12px;
-  left: 10%;
-  bottom: -30%;
   font-family: Inter;
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 14px; /* 116.667% */
-  color: #e74a3b;
-  margin-bottom: 5px;
-`;
-const WrapperInput = styled.div`
-  position: relative;
-`;
+  color:  ${({ status }) => {
+		switch (status) {
+			case 'error':
+				return ' #E74A3B';
+			case 'valid':
+				return ' #3CBC81';
+			default:
+				return ' #111';
+		}
+	}};
+  margin-bottom: 12px;
 
+`;
+const ParentWrapper = styled.div`
+  position: relative;
+`
 const Hyperlink = styled(Link)`
   color: #3e85f3;
   text-shadow: 0px 9.399999618530273px 57.6875px rgba(0, 0, 0, 0.04),
@@ -140,15 +167,23 @@ const Hyperlink = styled(Link)`
   }
 `;
 
+const ErrorSvg = styled.span`
+	position: absolute;
+	transform: translateY(-50%);
+	top:52%;
+	right: 10px;
+`
+
 export {
-  Container,
-  Form,
-  Input,
-  Heading,
-  InputHeader,
-  Button,
-  StyledLink,
-  StyledSpan,
-  WrapperInput,
-  Hyperlink,
+	Container,
+	Form,
+	Input,
+	Heading,
+	InputHeader,
+	Button,
+	StyledLink,
+	StyledSpan,
+	ParentWrapper,
+	Hyperlink,
+	ErrorSvg
 };
