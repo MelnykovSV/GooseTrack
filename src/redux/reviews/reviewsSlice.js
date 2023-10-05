@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isReviewsError, isReviewsPending } from '../statusCheckers';
 import { addReview, deleteReview, updateReview } from './operations';
+import { islogout } from 'redux/statusCheckers';
 
 // interface IReview {
 //     userName: string | null;
@@ -52,6 +53,12 @@ const reviewsSlice = createSlice({
         state.isLoading = false;
         state.status = 'rejected';
         state.error = action.payload || 'Something went wrong';
+      })
+      .addMatcher(islogout, state => {
+        state.reviews = [];
+        state.isLoading = false;
+        state.error = null;
+        state.status = 'fulfilled';
       });
   },
 });

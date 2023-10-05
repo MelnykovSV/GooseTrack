@@ -79,7 +79,7 @@ export const App = () => {
           <Route element={<PrivateRoute />}>
             <Route element={<SharedLayout />}>
               <Route path="account" element={<AccountPage />} />
-              <Route path="/calendar" element={<CalendarDatepickerPage />}>
+              <Route path="calendar" element={<CalendarDatepickerPage />}>
                 <Route path="month/:month" element={<CalendarPage />} />
                 <Route path="day/:day" element={<DayTasksListPage />} />
               </Route>

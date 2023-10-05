@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isTasksError, isTasksPending } from '../statusCheckers';
+import { isTasksError, isTasksPending, islogout } from '../statusCheckers';
 import { getTasksByMonth, getTasksByDay } from './operations';
 
 // interface ITask {
@@ -26,7 +26,7 @@ const tasksSlice = createSlice({
     builder
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
         state.tasks = action.payload.data;
-        state.month = action.payload.month
+        state.month = action.payload.month;
       })
       .addCase(getTasksByDay.fulfilled, (state, action) => {
         state.tasks = action.payload;
@@ -39,6 +39,12 @@ const tasksSlice = createSlice({
         state.isLoading = false;
         state.status = 'rejected';
         state.error = action.payload || 'Something went wrong';
+      })
+      .addMatcher(islogout, state => {
+        state.tasks = [];
+        state.isLoading = false;
+        state.error = null;
+        state.status = 'fulfilled';
       });
   },
 });
