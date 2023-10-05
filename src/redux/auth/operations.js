@@ -83,8 +83,6 @@ export const updateAvatar = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await privateApi.patch('/api/auth/avatar', formData);
-      Notify.success('User avatar updated successfully!');
-      console.log(response);
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -97,7 +95,6 @@ export const editData = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await privateApi.patch('/api/auth/user', credentials);
-      Notify.success('User data updated successfully!');
       return response.data.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
