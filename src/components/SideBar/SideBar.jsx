@@ -3,7 +3,7 @@ import { UserNav } from '../UserNav/UserNav';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import Button from '../Button/Button';
-import LogoImage from '../../images/SideBar/GOOSE_1.png';
+import LogoImage from '../../images/SideBar/GOOSE_1x4.jpg';
 import CloseIcon from '../../images/SideBar/x-close.svg';
 import {
   Container,

@@ -1,4 +1,17 @@
 import styled from '@emotion/styled';
+// import { BiMoon } from 'react-icons/bi';
+
+// export const MoonIcon = styled(BiMoon)`
+//   margin-right: 10px;
+//   height: 24px;
+//   width: 24px;
+//   background-color: ${props => props.theme.bgSecondary};
+//   @media (min-width: 768px) {
+//     height: 32px;
+//     width: 32px;
+//   }
+//   stroke: ${props => props.theme.accentPrimary};
+// `;
 
 export const HeaderWrapper = styled.div`
   display: flex;
@@ -17,10 +30,18 @@ export const HeaderWrapper = styled.div`
   }
 `;
 
+export const PageTitleActive = styled.h1`
+  margin: 0;
+  line-height: 32px;
+  font-size: 32px;
+  color: ${props => props.theme.textPrimary};
+`;
+
 export const BurgerBtn = styled.button`
   height: 24px;
   width: 24px;
   border: none;
+  cursor: pointer;
   background-color: ${props => props.theme.bgSecondary};
   @media (min-width: 768px) {
     height: 34px;
@@ -30,8 +51,6 @@ export const BurgerBtn = styled.button`
     display: none;
   }
 `;
-
-export const PageTitle = styled.div``;
 
 export const UserWrapper = styled.div`
   display: flex;
