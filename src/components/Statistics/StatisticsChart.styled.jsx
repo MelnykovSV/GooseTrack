@@ -6,13 +6,15 @@ export const device = {
 };
 
 export const Schedule = styled.div`
-  padding-right: 14px;
-  padding-left: 14px;
+  /* padding-right: 14px; */
+  /* padding-left: 14px; */
   margin-top: 40px;
-  padding-bottom: 135px;
+  /* padding-bottom: 135px; */
   width: 100%;
   height: auto;
-  @media ${device.tablet} {
+
+  /* background-color: red; */
+  /* @media ${device.tablet} {
     padding-bottom: 224px;
     padding-right: 32px;
     padding-left: 32px;
@@ -21,7 +23,7 @@ export const Schedule = styled.div`
     padding-bottom: 104px;
     padding-right: 114px;
     padding-left: 113px;
-  }
+  } */
 `;
 
 export const Container = styled.div`
@@ -30,6 +32,8 @@ export const Container = styled.div`
   padding-right: 14px;
   padding-left: 14px;
   padding-bottom: 40px;
+  /* background-color: red; */
+
   @media ${device.tablet} {
     padding-bottom: 32px;
     padding-right: 32px;
