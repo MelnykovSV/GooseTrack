@@ -62,6 +62,9 @@ export const Avatar = () => {
           <Letter>{letter || ''}</Letter>
         </DefaultAvatar>
       )}
+      {/* <DefaultAvatar>
+        <Letter>{letter || ''}</Letter>
+      </DefaultAvatar> */}
     </>
   );
 };
