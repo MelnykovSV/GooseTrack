@@ -28,7 +28,7 @@ export const MainWrap = styled.div`
 
   @media screen and (min-width: 1440px) {
     /* padding-left: 16px; */
-    padding-left: 0px;
+    padding-left: 290px;
     /* padding-right: 16px; */
     padding-right: 32px;
     max-width: 1440px;
