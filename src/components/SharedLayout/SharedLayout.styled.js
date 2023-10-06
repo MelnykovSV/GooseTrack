@@ -1,18 +1,14 @@
 import styled from '@emotion/styled';
 
 export const BodyContent = styled.div`
-  width: 100%;
-  padding: 120px 20px 40px 20px;
-
   background-color: ${props => props.theme.bgSecondary};
-
+  /* padding: 150px 20px 40px 20px; */
+  width: 100%;
   @media (min-width: 768px) {
     /* padding: 130px 32px 38px 32px; */
   }
-  
   @media (min-width: 1440px) {
     padding: 32px 32px 32px 32px;
-    max-width: 1440px;
   }
 `;
 

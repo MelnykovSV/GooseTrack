@@ -12,16 +12,32 @@ import { store } from './redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
 import { persistor } from './redux/store';
 import { injectStore } from './api';
+
 injectStore(store);
 
+const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+
+export default function ToggleColorMode() {
+  const [mode, setMode] = React.useState('light');
+  const colorMode = React.useMemo(
+    () => ({
+      toggleColorMode: () => {
+        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+      },
+    }),
+    []
+  );
+}
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/GooseTrack">
-          <ThemeProvider theme={lightTheme}>
-            <App />
-          </ThemeProvider>
+          {/* <ColorModeContext.Provider value={colorMode}> */}
+            <ThemeProvider theme={lightTheme}>
+              <App />
+            </ThemeProvider>
+          {/* </ColorModeContext.Provider> */}
         </BrowserRouter>
       </PersistGate>
     </Provider>

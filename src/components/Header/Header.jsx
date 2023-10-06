@@ -12,6 +12,7 @@ import {
   PageTitleActive,
   // MoonIcon,
 } from './Header.styled';
+import { ThemeSwitcher } from 'components/ThemeSwitcher/ThemeSwitcher';
 import useResize from 'utils/useResize';
 // import { CloseBtn } from 'components/SideBar/SideBar.styled';
 
@@ -60,6 +61,7 @@ export const Header = ({ onToggle }) => {
           {/* <button>
             <MoonIcon />
           </button> */}
+          <ThemeSwitcher />
           <UserInfo />
           <AddFeedbackModal open={open} onClose={handleClose} />
         </UserWrapper>
