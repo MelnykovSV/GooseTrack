@@ -8,7 +8,7 @@ export const UserInfo = () => {
 
   return (
     <UserInfoWrapper>
-      <UserName>{user.userName}ddddddd</UserName>
+      <UserName>{user.userName}</UserName>
       <AvatarWrapper>
         <Avatar />
       </AvatarWrapper>
