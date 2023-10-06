@@ -65,7 +65,7 @@ export const SharedLayout = () => {
         )}
         <HeaderWrap>
           <Header onToggle={handleToggleClick} />
-          <BodyContent>
+          <BodyContent className='page-inner-container'>
             <Suspense fallback={<div>Loading...</div>}>
               <Outlet />
             </Suspense>

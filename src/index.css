@@ -36,6 +36,25 @@ code {
   }
 }
 
+.page-inner-container {
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  margin: 0 auto;
+  max-width: 375px;
+
+  @media screen and (min-width: 768px) {
+    /* padding-left: 32px;
+    padding-right: 32px; */
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 1151px;
+  }
+}
+
 .visually-hidden {
   clip: rect(0 0 0 0);
   clip-path: inset(50%);
