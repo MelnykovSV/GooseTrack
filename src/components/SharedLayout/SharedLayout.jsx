@@ -7,6 +7,7 @@ import { getAccessToken, getRefreshToken } from 'redux/auth/authSlice';
 import { getUserData } from 'redux/auth/operations';
 import { SideBar } from 'components/SideBar/SideBar';
 import useResize from 'utils/useResize';
+import '../../../src/index.css';
 
 export const SharedLayout = () => {
   const dispatch = useDispatch();

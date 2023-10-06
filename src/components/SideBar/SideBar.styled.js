@@ -15,8 +15,9 @@ export const Container = styled.div`
     padding: 24px 32px 24px 32px;
   }
   @media (min-width: 1440px) {
-    position: relative;
-    z-index: 0;
+    /* position: relative; */
+    position: static;
+    /* z-index: 0; */
     padding: 32px 24px 24px 24px;
   }
 `;
