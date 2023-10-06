@@ -5,15 +5,9 @@ export const ReviewsSliderContainer = styled.div`
   flex-direction: column;
   margin-top: 0;
   margin-bottom: 100px;
-  //   margin-left: auto;
-  //   margin-right: auto;
   padding-left: 20px;
   padding-right: 20px;
-
-  @media (min-width: 768px) {
-    padding-left: 94px;
-    padding-right: 94px;
-  }
+  padding-bottom: 150px;
 `;
 
 export const Title = styled.h2`
@@ -25,7 +19,7 @@ export const Title = styled.h2`
   color: #3e85f3;
   text-transform: uppercase;
   margin-top: 8px;
-  margin-bottom: 0;
+  margin-bottom: 50px;
 
   @media (min-width: 768px) {
     line-height: 1.1;
@@ -34,8 +28,17 @@ export const Title = styled.h2`
 `;
 
 export const SliderCustom = styled.div`
+  @media screen and (max-width: 768px) {
+    margin-left: -10px;
+    margin-right: -10px;
+  }
+
   @media (min-width: 1440px) {
-    max-width: 1160px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+
+    max-width: 1208px;
   }
 `;
 
@@ -74,7 +77,6 @@ export const AvatarImage = styled.img`
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: ;
 `;
 
 export const UserName = styled.h3`
@@ -97,45 +99,69 @@ export const Comment = styled.p`
   }
 `;
 
-export const IconArrowLeft = styled.svg`
+export const IconArrowLeft = styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
   display: flex;
   height: 50px;
   width: 50px;
-  position: relative;
-  top: 323px;
+  position: absolute;
+  top: 275px;
+  left: calc(50% - 38px);
+  transform: translateX(-50%);
   margin-left: auto;
   margin-right: auto;
-  //   padding-right: 12.5px;
   z-index: 100;
-
+  svg {
+    fill: #111111;
+    transition: fill 0.3s linear;
+  }
+  &:hover {
+    svg {
+      fill: #3e85f3;
+    }
+  }
+  @media (min-width: 375px) {
+    top: 242px;
+  }
   @media (min-width: 768px) {
     height: 61px;
     width: 61px;
-    top: 320px;
-  }
-  // &.slick-disabled {
-  //   fill: #E5EDFA;
-  // }
+    top: 219px;
   }
 `;
 
-export const IconArrowRight = styled.svg`
+export const IconArrowRight = styled.button`
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
   display: flex;
   height: 50px;
   width: 50px;
-  position: relative;
-  top: 27px;
+  position: absolute;
+  top: 275px;
+  left: calc(50% + 42px);
+  transform: translateX(-50%);
   margin-left: auto;
   margin-right: auto;
-  padding-left: 30px;
+
+  svg {
+    fill: #111111;
+    transition: fill 0.3s linear;
+  }
+  &:hover {
+    svg {
+      fill: #3e85f3;
+    }
+  }
+  @media (min-width: 375px) {
+    top: 242px;
+  }
 
   @media (min-width: 768px) {
     height: 61px;
     width: 61px;
-    top: 37px;
-  }
-  &.slick-disabled {
-    fill: var(--review-btn-cancel-bg);
-  }
+    top: 219px;
   }
 `;
