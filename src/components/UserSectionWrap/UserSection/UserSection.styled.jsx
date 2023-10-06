@@ -3,7 +3,7 @@ import styled from '@emotion/styled';
 export const UserSectionWrap = styled.section`
   display: flex;
   flex-direction: column;
-  /* padding: 0 18px 40px 18px;  */ 
+  /* padding: 0 18px 40px 18px;  */
   padding-bottom: 40px;
   margin-bottom: 38px;
   background: #fff;
