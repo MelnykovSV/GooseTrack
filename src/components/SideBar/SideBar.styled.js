@@ -38,6 +38,10 @@ export const LogoImg = styled.img`
     width: 60px;
     height: 60px;
   }
+  @media (min-width: 1440px) {
+    width: 70px;
+    height: 70px;
+  }
 `;
 
 export const Logotext = styled.p`
@@ -61,6 +65,7 @@ export const CloseBtn = styled.button`
   width: 24px;
   margin-left: 25px;
   border: none;
+  cursor: pointer;
   background-color: ${props => props.theme.bgPrimary};
   @media (min-width: 768px) {
     margin-left: 30px;

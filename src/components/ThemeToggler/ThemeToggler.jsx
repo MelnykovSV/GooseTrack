@@ -1,5 +1,13 @@
-import { ThemeToggle } from './ThemeToggler.styled';
+import { MoonIcon, ThemeBtn } from './ThemeToggler.styled';
+
+// export const ThemeToggler = () => {
+//   return <ThemeToggle></ThemeToggle>;
+// };
 
 export const ThemeToggler = () => {
-  return <ThemeToggle>theme</ThemeToggle>;
+  return (
+    <ThemeBtn>
+      <MoonIcon />
+    </ThemeBtn>
+  );
 };

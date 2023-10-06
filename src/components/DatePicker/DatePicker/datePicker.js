@@ -4,11 +4,40 @@ import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DatePickerContainer } from './datePicker.styled';
 import { useNavigate } from 'react-router';
+import { parse } from 'date-fns';
+import { useParams } from 'react-router';
+
 // import styles from './datepicker.module.css'
 const DatePicker = () => {
   const navigate = useNavigate();
-  const [selectedDate, setSelectedDate] = useState(new Date());
-  const [pickerType, setPickerType] = useState('month');
+  const { day, month } = useParams();
+
+  function checkParams() {
+    if (day) {
+      return { date: day, pattern: 'yyyy-MM-dd' };
+    }
+    if (month) {
+      return { date: month, pattern: 'yyyy-MM' };
+    } else {
+      return null;
+    }
+  }
+  function checkPageType() {
+    if (day) {
+      return 'day';
+    }
+    if (month) {
+      return 'month';
+    } else {
+      return null;
+    }
+  }
+  const [selectedDate, setSelectedDate] = useState(
+    checkParams()
+      ? parse(checkParams().date, checkParams().pattern, new Date())
+      : new Date()
+  );
+  const [pickerType, setPickerType] = useState(checkPageType() || 'month');
   // const [showDateInfo, setShowDateInfo] = useState(true);
 
   const handleDateChange = date => {

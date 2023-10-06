@@ -1,3 +1,4 @@
+// import { TaskToolbar } from '..';
 import * as S from './TaskColumnCard.styled';
 
 export const TaskColumnCard = ({ priority }) => {
@@ -15,6 +16,7 @@ export const TaskColumnCard = ({ priority }) => {
           <S.TrashIcon />
         </S.ToolsWrapper>
       </S.Wraper>
+      {/* <TaskToolbar /> */}
     </S.CardWraper>
   );
 };

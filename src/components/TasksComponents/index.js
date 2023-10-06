@@ -6,7 +6,7 @@ import { TaskForm } from './TaskForm/TaskForm';
 import { TaskModal } from './TaskModal/TaskModal';
 import { TasksColumn } from './TasksColumn/TasksColumn';
 import { TasksColumnsList } from './TasksColumnsList/TasksColumnsList';
-import { TaskToolBar } from './TaskToolbar/TaskToolbar';
+import { TaskToolbar } from './TaskToolbar/TaskToolbar';
 
 export {
   AddTaskBtn,
@@ -17,5 +17,5 @@ export {
   TaskModal,
   TasksColumn,
   TasksColumnsList,
-  TaskToolBar,
+  TaskToolbar,
 };

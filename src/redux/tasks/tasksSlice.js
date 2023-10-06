@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isTasksError, isTasksPending } from '../statusCheckers';
+import { isTasksError, isTasksPending, islogout } from '../statusCheckers';
+import { getTasksByMonth, getTasksByDay } from './operations';
 
 // interface ITask {
 //     title: string;
@@ -12,6 +13,7 @@ import { isTasksError, isTasksPending } from '../statusCheckers';
 
 const initialState = {
   tasks: [],
+  month: null,
   isLoading: false,
   error: null,
 };
@@ -21,17 +23,33 @@ const tasksSlice = createSlice({
   initialState: initialState,
   reducers: {},
   extraReducers: builder => {
-    builder.addMatcher(isTasksPending, state => {
-      state.isLoading = true;
-      state.status = 'pending';
-    });
-    builder.addMatcher(isTasksError, (state, action) => {
-      state.isLoading = false;
-      state.status = 'rejected';
-      state.error = action.payload || 'Something went wrong';
-    });
+    builder
+      .addCase(getTasksByMonth.fulfilled, (state, action) => {
+        state.tasks = action.payload.data;
+        state.month = action.payload.month;
+      })
+      .addCase(getTasksByDay.fulfilled, (state, action) => {
+        state.tasks = action.payload;
+      })
+      .addMatcher(isTasksPending, state => {
+        state.isLoading = true;
+        state.status = 'pending';
+      })
+      .addMatcher(isTasksError, (state, action) => {
+        state.isLoading = false;
+        state.status = 'rejected';
+        state.error = action.payload || 'Something went wrong';
+      })
+      .addMatcher(islogout, state => {
+        state.tasks = [];
+        state.isLoading = false;
+        state.error = null;
+        state.status = 'fulfilled';
+      });
   },
 });
 
 export const tasksReducer = tasksSlice.reducer;
 export const getTasksError = state => state.tasks.error;
+export const getTasks = state => state.tasks.tasks;
+export const getMonth = state => state.tasks.month;
