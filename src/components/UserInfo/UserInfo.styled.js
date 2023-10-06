@@ -12,6 +12,15 @@ export const UserImg = styled.img`
   }
 `;
 
+export const AvatarWrapper = styled.div`
+  width: 32px;
+  height: 32px;
+  @media (min-width: 768px) {
+    width: 44px;
+    height: 44px;
+  }
+`;
+
 export const UserInfoWrapper = styled.div`
   display: flex;
   justify-content: center;
@@ -23,5 +32,9 @@ export const UserInfoWrapper = styled.div`
 `;
 
 export const UserName = styled.div`
+  margin-right: 8px;
+  @media (min-width: 768px) {
+    margin-right: 14px;
+  }
   color: ${props => props.theme.textPrimaryLight};
 `;

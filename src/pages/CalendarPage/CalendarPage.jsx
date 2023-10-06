@@ -1,12 +1,5 @@
 import { CalendarTable } from 'components/CalendarTable';
 
-const CalendarPage = () => {
-  return (
-    <>
-      <div>calendar</div>
-      <CalendarTable />
-    </>
-  );
-};
+const CalendarPage = () => <CalendarTable />;
 
 export default CalendarPage;

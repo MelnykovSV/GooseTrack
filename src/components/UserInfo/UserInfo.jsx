@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { getUser } from 'redux/auth/authSlice';
-import { UserImg, UserInfoWrapper, UserName } from './UserInfo.styled';
+import { AvatarWrapper, UserInfoWrapper, UserName } from './UserInfo.styled';
+import { Avatar } from 'components/Avatar/Avatar';
 
 export const UserInfo = () => {
   const user = useSelector(getUser);
@@ -8,7 +9,9 @@ export const UserInfo = () => {
   return (
     <UserInfoWrapper>
       <UserName>{user.userName}</UserName>
-      <UserImg src={user.avatarUrl} alt="user" />
+      <AvatarWrapper>
+        <Avatar />
+      </AvatarWrapper>
     </UserInfoWrapper>
   );
 };

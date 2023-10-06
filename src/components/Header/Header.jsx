@@ -6,9 +6,11 @@ import { UserInfo } from '../UserInfo/UserInfo';
 import BurgerIcon from '../../images/SideBar/menu-01.svg';
 import {
   HeaderWrapper,
-  PageTitle,
+  // PageTitle,
   UserWrapper,
   BurgerBtn,
+  PageTitleActive,
+  // MoonIcon,
 } from './Header.styled';
 import useResize from 'utils/useResize';
 // import { CloseBtn } from 'components/SideBar/SideBar.styled';
@@ -43,18 +45,21 @@ export const Header = ({ onToggle }) => {
   return (
     <>
       <HeaderWrapper>
-        <PageTitle>
+        <div>
           {size[0] < 1440 ? (
             <BurgerBtn onClick={onToggle}>
               <img src={BurgerIcon} alt="close" />
             </BurgerBtn>
           ) : (
-            <p>{activePage}</p>
+            <PageTitleActive>{activePage}</PageTitleActive>
           )}
-        </PageTitle>
+        </div>
         <UserWrapper>
           <AddFeedbackBtn onFeedbackBtn={handleOpen} />
           <ThemeToggler />
+          {/* <button>
+            <MoonIcon />
+          </button> */}
           <UserInfo />
           <AddFeedbackModal open={open} onClose={handleClose} />
         </UserWrapper>

@@ -14,7 +14,7 @@ const DateInfoComponent = ({ selectedDate, pickerType }) => {
   for (let i = 0; i < 7; i++) {
     const date = new Date(startOfWeek);
     date.setDate(startOfWeek.getDate() + i);
-    console.log(date);
+    // console.log(date);
     const formattedDate = date.toLocaleDateString('en-US', options);
     const navigationDate = `${date.getFullYear()}-${(date.getMonth() + 1)
       .toString()
@@ -22,7 +22,7 @@ const DateInfoComponent = ({ selectedDate, pickerType }) => {
     daysOfWeek.push({ formattedDate, navigationDate });
   }
 
-  console.log(daysOfWeek);
+  // console.log(daysOfWeek);
 
   // const months = [
   //   'January',
