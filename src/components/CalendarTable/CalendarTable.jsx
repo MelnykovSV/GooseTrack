@@ -60,9 +60,9 @@ export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
           '& .MuiList-root': { padding: 0 },
         }}
       >
-        {tasks.map(({ id, title, priority }) => (
+        {tasks.map(({ _id, title, priority }) => (
           <S.MiniCard
-            key={id}
+            key={_id}
             type="button"
             $priority={priority}
             onClick={onOpenTaskModal}
@@ -189,7 +189,7 @@ export const CalendarTable = () => {
                       {tasks.slice(0, numberOfDisplayedTasks).map(task => (
                         <S.MiniCard
                           type="button"
-                          key={task.id}
+                          key={task._id}
                           $priority={task.priority}
                           onClick={handleOpenTaskModal(task)}
                         >

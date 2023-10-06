@@ -26,6 +26,37 @@ export const TaskForm = ({ task = null, onCloseTaskModal }) => {
           <S.Input placeholder="14:00" />
         </label>
       </S.InputContainer>
+
+      <S.RadioBtnContainer>
+        <S.RadioBtnLabel $priority="low">
+          <S.IndicatorBorder className="active">
+            <S.Indicator $priority="low" />
+          </S.IndicatorBorder>
+          <S.RadioBtnLabelText>Low</S.RadioBtnLabelText>
+        </S.RadioBtnLabel>
+
+        <S.RadioBtnLabel $priority="medium">
+          <S.IndicatorBorder className="active">
+            <S.Indicator $priority="medium" />
+          </S.IndicatorBorder>
+          <S.RadioBtnLabelText>Medium</S.RadioBtnLabelText>
+        </S.RadioBtnLabel>
+
+        <S.RadioBtnLabel $priority="high">
+          <S.IndicatorBorder className="active">
+            <S.Indicator $priority="high" />
+          </S.IndicatorBorder>
+          <S.RadioBtnLabelText>High</S.RadioBtnLabelText>
+        </S.RadioBtnLabel>
+      </S.RadioBtnContainer>
+
+      <S.ButtonContainer>
+        <S.SubmitButton type="submit">
+          <S.EditIcon />
+          Edit
+        </S.SubmitButton>
+        <S.CancelButton type="button">Cancel</S.CancelButton>
+      </S.ButtonContainer>
     </S.Form>
   );
 };
