@@ -25,6 +25,7 @@ const tasksSlice = createSlice({
     builder
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
         state.tasks = action.payload;
+        state.isLoading = false;
       })
       .addCase(updateTask.fulfilled, (state, action) => {
         state.tasks = state.tasks.map(task =>
@@ -32,6 +33,7 @@ const tasksSlice = createSlice({
             ? { ...task, ...action.payload }
             : task
         );
+        state.isLoading = false;
       })
       .addMatcher(isTasksPending, state => {
         state.isLoading = true;

@@ -3,6 +3,7 @@ import { CgClose } from 'react-icons/cg';
 import { ReactComponent as PencilIcon } from '../../../images/TaskIcons/pencil-01.svg';
 
 export const Form = styled.form`
+  position: relative;
   padding: 48px 18px 40px;
   width: 303px;
 

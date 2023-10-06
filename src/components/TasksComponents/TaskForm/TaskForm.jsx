@@ -2,8 +2,10 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as S from './TaskForm.styled';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { updateTask } from 'redux/tasks/operations';
+import CircularProgress from '@mui/material/CircularProgress';
+import { selectIsLoadingTask } from 'redux/selectors';
 
 //  title: Joi.string().max(250),
 //   priority: Joi.string().valid("low", "medium", "high"),
@@ -55,6 +57,7 @@ export const TaskForm = ({ task = null, onCloseTaskModal }) => {
   });
 
   const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoadingTask);
 
   const onSubmit = data => {
     dispatch(updateTask({ id: task._id, data }));
@@ -62,6 +65,13 @@ export const TaskForm = ({ task = null, onCloseTaskModal }) => {
 
   return (
     <S.Form onSubmit={handleSubmit(onSubmit)}>
+      {isLoading && (
+        <CircularProgress
+          size={20}
+          style={{ position: 'absolute', top: 14, left: 14 }}
+        />
+      )}
+
       <S.CloseButton onClick={onCloseTaskModal}>
         <S.CloseIcon />
       </S.CloseButton>
