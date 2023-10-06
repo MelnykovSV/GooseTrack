@@ -15,28 +15,28 @@ import { injectStore } from './api';
 
 injectStore(store);
 
-const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
+// const ColorModeContext = React.createContext({ toggleColorMode: () => {} });
 
-export default function ToggleColorMode() {
-  const [mode, setMode] = React.useState('light');
-  const colorMode = React.useMemo(
-    () => ({
-      toggleColorMode: () => {
-        setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
-      },
-    }),
-    []
-  );
-}
+// export default function ToggleColorMode() {
+//   const [mode, setMode] = React.useState('light');
+//   const colorMode = React.useMemo(
+//     () => ({
+//       toggleColorMode: () => {
+//         setMode(prevMode => (prevMode === 'light' ? 'dark' : 'light'));
+//       },
+//     }),
+//     []
+//   );
+// }
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter basename="/GooseTrack">
           {/* <ColorModeContext.Provider value={colorMode}> */}
-            <ThemeProvider theme={lightTheme}>
-              <App />
-            </ThemeProvider>
+          <ThemeProvider theme={lightTheme}>
+            <App />
+          </ThemeProvider>
           {/* </ColorModeContext.Provider> */}
         </BrowserRouter>
       </PersistGate>
