@@ -5,7 +5,9 @@ export const Container = styled.div`
   width: 100%;
   max-width: 225px;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   padding: 24px 20px 24px 20px;
   z-index: 99999;
   height: 100vh;
@@ -16,7 +18,9 @@ export const Container = styled.div`
   }
   @media (min-width: 1440px) {
     /* position: relative; */
-    position: static;
+    /* position: static; */
+    /* position: fixed; */
+
     /* z-index: 0; */
     padding: 32px 24px 24px 24px;
   }
