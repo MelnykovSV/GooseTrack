@@ -19,6 +19,7 @@ export const lightTheme = createTheme({
   bgSecondaryBtn: '#E5EDFA',
   borderTextarea: '#F6F6F6',
   borderStatistics: 'rgba(220, 227, 229, 0.50)',
+  borderChart: '#E3F3FF',
   toggleStroke: 'rgba(62, 133, 243, 0.20)',
   accentPrimary: '#3E85F3',
   accentPrimaryHover: '#2B78EF',
@@ -42,6 +43,8 @@ export const lightTheme = createTheme({
   error: '#E74A3B',
   success: '#3CBC81',
   shadowColor: 'rgba(17, 17, 17, 0.05)',
+  calendarInactive: 'rgba(255, 255, 255, 0.2)',
+  calendarWeekday: 'rgba(255, 255, 255, 0.5)',
 
   gradients: {
     red: 'linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%)',
@@ -81,6 +84,7 @@ export const darkTheme = createTheme({
   bgSecondaryBtn: '#21222C',
   borderTextarea: 'rgba(255, 255, 255, 0.15)',
   borderStatistics: 'rgba(255, 255, 255, 0.15)',
+  borderChart: 'rgba(227, 243, 255, 0.15)',
   toggleStroke: 'rgba(62, 133, 243, 0.20)',
   accentPrimary: '#3E85F3',
   accentPrimaryHover: '#2B78EF',
@@ -103,6 +107,8 @@ export const darkTheme = createTheme({
   error: '#E74A3B',
   success: '#3CBC81',
   shadowColor: 'rgba(17, 17, 17, 0.05)',
+  calendarInactive: 'rgba(255, 255, 255, 0.2)',
+  calendarWeekday: 'rgba(255, 255, 255, 0.5)',
 
   gradients: {
     red: 'linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%)',

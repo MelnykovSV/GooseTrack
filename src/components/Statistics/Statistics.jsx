@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { format, parseISO, startOfToday, parse } from 'date-fns';
 import Calendar from './Calendar/Calendar';
 import Chart from './StatisticsChart';
+
 import {
   General,
   Option,

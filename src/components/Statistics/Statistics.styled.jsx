@@ -12,35 +12,40 @@ export const General = styled.div`
   margin: 0 auto;
   padding: 28px 14px 135px;
 
+  width: 335px;
   max-width: 100%;
-  height: 100%;
 
   border-radius: 16px;
+
   background-color: ${({ theme }) => theme.bgStatistics};
-  /* background-color: #ffffff; */
+
+  @media ${device.tablet} {
+    width: 704px;
+    padding: 132px 32px 224px;
+  }
+
+  @media ${device.desktop} {
+    width: 1087px;
+    padding: 134px 114px 104px;
+  }
 `;
 
 export const Option = styled.div`
-  /* display: flex;
-  justify-content: space-between;
-  align-items: center; */
-  /* padding-top: 28px;
-  padding-right: 14px;
-  padding-left: 14px;
+  margin-bottom: 40px;
 
   @media ${device.tablet} {
-    padding-top: 132px;
-    padding-right: 64px;
-    padding-left: 64px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+    margin-right: 32px;
+    margin-left: 32px;
   }
+
   @media ${device.desktop} {
-    padding-top: 134px;
-    padding-right: 154px;
-    padding-left: 153px; */
-  /* } */
+    margin-right: 40px;
+    margin-left: 40px;
+  }
 `;
 
 export const Buttons = styled.div`
@@ -50,6 +55,7 @@ export const Buttons = styled.div`
 
   @media ${device.tablet} {
     justify-content: flex-start;
+    gap: 8px;
   }
 `;
 
@@ -62,9 +68,11 @@ export const ButtonData = styled(Button)`
   text-transform: uppercase;
 
   @media ${device.tablet} {
-    /* width: 190px;
-    height: 34px; */
-    margin-right: 8px;
+    padding-top: 8px;
+    padding-bottom: 8px;
+
+    font-size: 16px;
+    line-height: 1.12;
   }
 `;
 
@@ -80,27 +88,25 @@ export const Arrow = styled.button`
 
   padding: 7px 10px;
 
-  /* border: 1px solid rgba(220, 227, 229, 0.5); */
   border: 1px solid ${({ theme }) => theme.borderStatistics};
   border-radius: ${props => (props.next ? '0 8px 8px 0' : '8px 0 0 8px;')};
 
-  /* color: #343434; */
   color: ${({ theme }) => theme.textPrimaryLight};
-  /* background-color: #ffffff; */
   background-color: ${({ theme }) => theme.bgStatistics};
 
   cursor: pointer;
 
+  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   &:hover > svg {
     transform: scale(1.2);
-    /* color: #3e85f3; */
     color: ${({ theme }) => theme.accentPrimary};
   }
 
-  /* @media ${device.tablet} {
-    width: 38px;
-    height: 34px;
-  } */
+  @media ${device.tablet} {
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
 `;
 
 export const IconPrev = styled(FaChevronLeft)`
@@ -108,7 +114,7 @@ export const IconPrev = styled(FaChevronLeft)`
   height: 16px;
 
   fill: currentColor;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const IconNext = styled(FaChevronRight)`
@@ -116,21 +122,24 @@ export const IconNext = styled(FaChevronRight)`
   height: 16px;
 
   fill: currentColor;
-  transition: fill 250ms cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const List = styled.ul`
   display: flex;
   align-items: center;
   gap: 14px;
-  margin-top: 20px;
-  margin-bottom: 40px;
+
+  margin: 0;
   padding: 0;
+  margin-top: 20px;
+
   list-style-type: none;
 
-  /* @media ${device.tablet} {
+  @media ${device.tablet} {
     margin-top: 0px;
-  } */
+    gap: 20px;
+  }
 `;
 
 export const Item = styled.li`
@@ -140,21 +149,14 @@ export const Item = styled.li`
 
   font-family: Poppins;
   font-weight: 400;
+  line-height: 1.28;
 
-  /* color: #343434; */
   color: ${({ theme }) => theme.textPrimaryLight};
-
-  /* &:not(:last-child) {
-    margin-right: 15px;
-  }
 
   @media ${device.tablet} {
     font-size: 16px;
-
-    &:not(:last-child) {
-      margin-right: 20px;
-    }
-  } */
+    line-height: 1.12;
+  }
 `;
 
 export const Icon = styled.div`
