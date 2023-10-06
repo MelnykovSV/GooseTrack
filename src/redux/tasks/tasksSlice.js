@@ -27,6 +27,7 @@ const tasksSlice = createSlice({
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
         state.tasks = action.payload.data;
         state.month = action.payload.month;
+        state.isLoading = false;
       })
       .addCase(getTasksByDay.fulfilled, (state, action) => {
         state.tasks = action.payload;
