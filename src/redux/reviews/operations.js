@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { privateApi } from 'api';
 
+
 export const getAllReview = createAsyncThunk(
   'reviews/getReview',
   async (_, thunkAPI) => {

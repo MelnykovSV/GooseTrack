@@ -5,7 +5,9 @@ export const Container = styled.div`
   width: 100%;
   max-width: 225px;
   flex-direction: column;
-  position: absolute;
+  position: fixed;
+  top: 0;
+  left: 0;
   padding: 24px 20px 24px 20px;
   z-index: 99999;
   height: 100vh;
@@ -15,8 +17,11 @@ export const Container = styled.div`
     padding: 24px 32px 24px 32px;
   }
   @media (min-width: 1440px) {
-    position: relative;
-    z-index: 0;
+    /* position: relative; */
+    /* position: static; */
+    /* position: fixed; */
+
+    /* z-index: 0; */
     padding: 32px 24px 24px 24px;
   }
 `;
@@ -37,6 +42,10 @@ export const LogoImg = styled.img`
   @media (min-width: 768px) {
     width: 60px;
     height: 60px;
+  }
+  @media (min-width: 1440px) {
+    width: 70px;
+    height: 70px;
   }
 `;
 
@@ -61,6 +70,7 @@ export const CloseBtn = styled.button`
   width: 24px;
   margin-left: 25px;
   border: none;
+  cursor: pointer;
   background-color: ${props => props.theme.bgPrimary};
   @media (min-width: 768px) {
     margin-left: 30px;

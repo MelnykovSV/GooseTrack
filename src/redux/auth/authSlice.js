@@ -1,7 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { isAuthError, isAuthPending } from '../statusCheckers';
 
-import { signUp, signIn, logOut, getUserData, editData, updateAvatar } from './operations';
+import {
+  signUp,
+  signIn,
+  logOut,
+  getUserData,
+  editData,
+  updateAvatar,
+} from './operations';
 
 const initialState = {
   user: {
@@ -74,13 +81,14 @@ const authSlice = createSlice({
     //   state.status = 'fulfilled';
     // });
     builder.addCase(editData.fulfilled, (state, action) => {
-      state.user = { ...state.user, ...action.payload.user };
+      state.user = { ...state.user, ...action.payload };
       state.isLoading = false;
       state.isLoggedIn = true;
       state.isRefreshing = false;
     });
     builder.addCase(updateAvatar.fulfilled, (state, action) => {
-      state.user = { ...state.user, ...action.payload.user };
+      console.log(action.payload);
+      state.user = { ...state.user, ...action.payload };
       state.isLoading = false;
       state.isLoggedIn = true;
       state.isRefreshing = false;
@@ -107,3 +115,4 @@ export const getRefreshToken = state => state.auth.refreshToken;
 export const getUser = state => state.auth.user;
 export const getAuthError = state => state.auth.error;
 
+export const getIsLoading = state => state.auth.isLoading;

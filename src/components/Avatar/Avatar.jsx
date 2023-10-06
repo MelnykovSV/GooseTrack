@@ -1,12 +1,36 @@
+// import { useDropzone } from 'react-dropzone';
+// import { useCallback } from 'react';
+// import { useDispatch } from 'react-redux';
+// import { updateAvatar } from 'redux/auth/operations';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { CircularAvatar, DefaultAvatar, Letter } from './Avatar.styled';
 
 export const Avatar = () => {
+  // const dispatch = useDispatch();
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  // const onDrop = useCallback(acceptedFiles => {
+  //   const file = acceptedFiles[0];
+  //   console.log(URL.createObjectURL(file));
+
+  //   const formData = new FormData();
+  //   formData.append('avatar', file);
+
+  //   dispatch(updateAvatar(formData));
+  // });
+
+  // const { acceptedFiles, getRootProps } = useDropzone({
+  //   onDrop,
+  // });
+
+  // console.log(acceptedFiles);
+  // console.log(getRootProps);
   const { avatarUrl, userName } = useSelector(selectUser);
 
   const [letter, setLetter] = useState(null);
+
 
   useEffect(() => {
     if (userName) {
@@ -18,11 +42,9 @@ export const Avatar = () => {
 
   useEffect(() => {
     setFile(avatarUrl);
-    console.log(file);
-  }, [avatarUrl, file]);
+  }, [avatarUrl]);
 
-  // console.log(acceptedFiles)
-  // console.log(getRootProps)
+
 
   return (
     <>
@@ -30,7 +52,7 @@ export const Avatar = () => {
         <CircularAvatar
           src={
             typeof avatarUrl === 'string'
-              ? avatarUrl
+              ? file
               : URL.createObjectURL(avatarUrl)
           }
           alt="avatarUrl"
@@ -40,6 +62,9 @@ export const Avatar = () => {
           <Letter>{letter || ''}</Letter>
         </DefaultAvatar>
       )}
+      {/* <DefaultAvatar>
+        <Letter>{letter || ''}</Letter>
+      </DefaultAvatar> */}
     </>
   );
 };

@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import { getRandomHexColor } from "./getRandomHexColor";
+import styled from 'styled-components';
+import { getRandomHexColor } from './getRandomHexColor';
 
 export const CircularAvatar = styled.img`
   width: 100%;
@@ -16,10 +16,12 @@ export const DefaultAvatar = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  align-self: center;
+
   background-color: ${getRandomHexColor()};
 `;
 
-export const Letter = styled.p`
+export const Letter = styled.span`
   color: #fff;
   font-size: 40px;
 

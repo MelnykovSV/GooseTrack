@@ -7,6 +7,7 @@ export const Container = styled.div`
   flex-shrink: 0;
   padding: 18px;
   width: calc(100vw - 40px);
+  width: 100%;
   min-height: 155px;
   max-height: 432px;
 

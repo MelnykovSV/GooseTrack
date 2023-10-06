@@ -23,7 +23,6 @@ const Statistics = () => {
   const [currentDayMonth, setCurrentDayMonth] = useState(
     parseISO(format(today, 'yyyy-MM-dd'))
   );
-
   const [showCalendar, setShowCalendar] = useState(false);
 
   const handleDateChange = newDate => {

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { format } from 'date-fns';
@@ -14,71 +13,103 @@ import {
 } from 'recharts';
 
 import { Schedule, Container, Title } from './StatisticsChart.styled';
+import { getTasksByMonth } from 'redux/tasks/operations';
+import { useDispatch } from 'react-redux';
+import { getTasks, getMonth } from 'redux/tasks/tasksSlice';
 
-const Chart = ({ CurrentDayMonth, _ }) => {
-  const [data, setData] = useState(null);
+const Chart = ({ currentDayMonth, _ }) => {
+  console.log(currentDayMonth);
+  const tasks = useSelector(getTasks);
+  const month = useSelector(getMonth);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
-  const token = useSelector(state => state.auth.token);
+  const dispatch = useDispatch();
 
+  const currentMonth = format(currentDayMonth, 'yyyy-MM');
+  const currentDay = format(currentDayMonth, 'yyyy-MM-dd');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${process.env.DB_HOST}/statistics?data=${format(CurrentDayMonth, 'yyyy-MM-dd')}`,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
-        setData(response.data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, [CurrentDayMonth, token]);
+  const [chartData, setChartData] = useState([]);
 
-  if (!data) {
-    return null;
+  function processTaskData(currentDay) {
+    const totalMonthTasksNumber = tasks.length;
+
+    const todoMonthTasksNumber = tasks.filter(
+      task => task.status === 'todo'
+    ).length;
+    const inProgressMonthTasksNumber = tasks.filter(
+      task => task.status === 'inProgress'
+    ).length;
+    const doneMonthTasksNumber = tasks.filter(
+      task => task.status === 'done'
+    ).length;
+
+    const totalDayTasks = tasks.filter(task => task.date === currentDay);
+
+    const totalDayTasksNumber = totalDayTasks.length || 0;
+    const todoDayTasksNumber = totalDayTasks.filter(
+      task => task.status === 'todo'
+    ).length;
+    const inProgressDayTasksNumber = totalDayTasks.filter(
+      task => task.status === 'inProgress'
+    ).length;
+    const doneDayTasksNumber = totalDayTasks.filter(
+      task => task.status === 'done'
+    ).length;
+
+    const chartData = [
+      {
+        name: 'Todo',
+        day: todoDayTasksNumber,
+        dayPercentage: Number(
+          ((todoDayTasksNumber / totalDayTasksNumber) * 100).toFixed(0)
+        ),
+        month: todoMonthTasksNumber,
+        monthPercentage: Number(
+          ((todoMonthTasksNumber / totalMonthTasksNumber) * 100).toFixed(0)
+        ),
+      },
+      {
+        name: 'In Progress',
+        day: inProgressDayTasksNumber,
+        dayPercentage: Number(
+          ((inProgressDayTasksNumber / totalDayTasksNumber) * 100).toFixed(0)
+        ),
+        month: inProgressMonthTasksNumber,
+        monthPercentage: Number(
+          ((inProgressMonthTasksNumber / totalMonthTasksNumber) * 100).toFixed(
+            0
+          )
+        ),
+      },
+      {
+        name: 'Done',
+        day: doneDayTasksNumber,
+        dayPercentage: Number(
+          ((doneDayTasksNumber / totalDayTasksNumber) * 100).toFixed(0)
+        ),
+        month: doneMonthTasksNumber,
+        monthPercentage: Number(
+          ((doneMonthTasksNumber / totalMonthTasksNumber) * 100).toFixed(0)
+        ),
+      },
+    ];
+
+    return chartData;
   }
 
-    const { todo, inProgres, done } = data;
+  useEffect(() => {
+    if (currentMonth !== month) {
+      dispatch(getTasksByMonth(currentMonth));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [currentDayMonth]);
 
-const totalTasks = Math.max(
-  todo.forDay.quantity,
-  todo.forMonth.quantity,
-  inProgres.forDay.quantity,
-  inProgres.forMonth.quantity,
-  done.forDay.quantity,
-  done.forMonth.quantity
-);
-
-  const chartData = [
-    {
-      name: 'Todo',
-      day: todo.forDay.quantity,
-      dayPercentage: todo.forDay.percents,
-      month: todo.forMonth.quantity,
-      monthPercentage: todo.forMonth.percents,
-    },
-    {
-      name: 'In Progress',
-      day: inProgres.forDay.quantity,
-      dayPercentage: inProgres.forDay.percents,
-      month: inProgres.forMonth.quantity,
-      monthPercentage: inProgres.forMonth.percents,
-    },
-    {
-      name: 'Done',
-      day: done.forDay.quantity,
-      dayPercentage: done.forDay.percents,
-      month: done.forMonth.quantity,
-      monthPercentage: done.forMonth.percents,
-    },
-  ];
+  useEffect(() => {
+    if (tasks.length) {
+      setChartData(processTaskData(currentDay));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [tasks, currentDay]);
 
   const Meaning = ({ x, y, width, value }) => (
     <g transform={`translate(${x + width / 2},${y + 4})`}>
@@ -86,8 +117,8 @@ const totalTasks = Math.max(
         x={2}
         y={3}
         dy={0}
-        textAnchor='middle'
-        fill='#343434'
+        textAnchor="middle"
+        fill="#343434"
         fontSize={isMobile ? 12 : 16}
         fontWeight={400}
       >
@@ -97,9 +128,9 @@ const totalTasks = Math.max(
   );
 
   const generateLinearGradient = (id, color, opacity) => (
-    <linearGradient id={id} x1='0' y1='0' x2='0' y2='1'>
-      <stop offset='0%' stopColor={color} stopOpacity={opacity} />
-      <stop offset='100%' stopColor={color} stopOpacity={1} />
+    <linearGradient id={id} x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stopColor={color} stopOpacity={opacity} />
+      <stop offset="100%" stopColor={color} stopOpacity={1} />
     </linearGradient>
   );
 
@@ -107,20 +138,20 @@ const totalTasks = Math.max(
     <Schedule>
       <Container>
         <Title>Tasks</Title>
-        <ResponsiveContainer width='100%' height={266}>
+        <ResponsiveContainer width="100%" height={266}>
           <BarChart
             data={chartData}
             barGap={isMobile ? 8 : 14}
             barSize={isMobile ? 22 : 27}
           >
             <CartesianGrid
-              stroke='#e3f3ff'
+              stroke="#e3f3ff"
               strokeWidth={1}
-              strokeDasharray='none'
+              strokeDasharray="none"
               vertical={false}
             />
             <XAxis
-              dataKey='name'
+              dataKey="name"
               tick={{ fontSize: isMobile ? 12 : 16, fill: '#343434' }}
               tickLine={false}
               tickMargin={10}
@@ -132,33 +163,33 @@ const totalTasks = Math.max(
               allowDataOverflow={true}
               scale="linear"
               axisLine={false}
-              tickCount={totalTasks}
+              // tickCount={totalTasks}
               tickLine={false}
               tickMargin={30}
               tick={{ fill: '#343434' }}
             />
             <Bar
-              dataKey='day'
-              fill='url(#schedule-day)'
+              dataKey="day"
+              fill="url(#schedule-day)"
               radius={[0, 0, 10, 10]}
             >
               <LabelList
-                dataKey='dayPercentage'
-                position='top'
+                dataKey="dayPercentage"
+                position="top"
                 content={<Meaning />}
-                fill='#343434'
+                fill="#343434"
               />
             </Bar>
             <Bar
-              dataKey='month'
-              fill='url(#schedule-month)'
+              dataKey="month"
+              fill="url(#schedule-month)"
               radius={[0, 0, 10, 10]}
             >
               <LabelList
-                dataKey='monthPercentage'
-                position='top'
+                dataKey="monthPercentage"
+                position="top"
                 content={<Meaning />}
-                fill='#343434'
+                fill="#343434"
               />
             </Bar>
             <defs>

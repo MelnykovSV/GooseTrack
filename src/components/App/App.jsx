@@ -3,10 +3,10 @@ import Container from './App.styled';
 import { ModernNormalize } from 'emotion-modern-normalize';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { getUserData } from 'redux/auth/operations';
+import { useSelector } from 'react-redux';
+// import { getUserData } from 'redux/auth/operations';
 import { useEffect } from 'react';
-import { getRefreshToken, getAccessToken } from 'redux/auth/authSlice';
+// import { getRefreshToken, getAccessToken } from 'redux/auth/authSlice';
 import { getAuthError } from 'redux/auth/authSlice';
 import { getTasksError } from 'redux/tasks/tasksSlice';
 import { getReviewsError } from 'redux/reviews/reviewsSlice';
@@ -30,20 +30,20 @@ const Statistics = lazy(() =>
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
-  const dispatch = useDispatch();
-  const accessToken = useSelector(getAccessToken);
-  const refreshToken = useSelector(getRefreshToken);
+  // const dispatch = useDispatch();
+  // const accessToken = useSelector(getAccessToken);
+  // const refreshToken = useSelector(getRefreshToken);
   const authError = useSelector(getAuthError);
   const tasksError = useSelector(getTasksError);
   const reviewsError = useSelector(getReviewsError);
 
-  useEffect(() => {
-    if (!accessToken && !refreshToken) {
-      return;
-    }
-    dispatch(getUserData());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // useEffect(() => {
+  //   if (!accessToken && !refreshToken) {
+  //     return;
+  //   }
+  //   dispatch(getUserData());
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   useEffect(() => {
     if (authError) {
@@ -79,7 +79,7 @@ export const App = () => {
           <Route element={<PrivateRoute />}>
             <Route element={<SharedLayout />}>
               <Route path="account" element={<AccountPage />} />
-              <Route path="/calendar" element={<CalendarDatepickerPage />}>
+              <Route path="calendar" element={<CalendarDatepickerPage />}>
                 <Route path="month/:month" element={<CalendarPage />} />
                 <Route path="day/:day" element={<DayTasksListPage />} />
               </Route>
