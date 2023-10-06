@@ -9,7 +9,23 @@ export const getTasksByMonth = createAsyncThunk(
 
       return data.data;
     } catch (error) {
-      return rejectWithValue({ message: 'error' });
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const updateTask = createAsyncThunk(
+  'tasks/updateTask',
+  async ({ id, data }, { rejectWithValue }) => {
+    try {
+      const { data: updatedData } = await privateApi.patch(
+        `/api/tasks/${id}`,
+        data
+      );
+
+      return updatedData.data;
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );

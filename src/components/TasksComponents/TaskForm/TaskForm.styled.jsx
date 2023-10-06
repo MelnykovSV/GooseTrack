@@ -3,8 +3,6 @@ import { CgClose } from 'react-icons/cg';
 import { ReactComponent as PencilIcon } from '../../../images/TaskIcons/pencil-01.svg';
 
 export const Form = styled.form`
-  position: relative;
-
   padding: 48px 18px 40px;
   width: 303px;
 
@@ -132,6 +130,23 @@ export const RadioBtnLabel = styled.label`
       }
     }};
   }
+
+  & .active {
+    border-color: ${({ theme, $priority, $selected }) => {
+      if ($selected) {
+        switch ($priority) {
+          case 'low':
+            return 'rgba(114, 194, 248, 0.5)';
+          case 'medium':
+            return '#fce7b8';
+          case 'high':
+            return theme.accentRedLight;
+          default:
+            throw new Error('Invalid status');
+        }
+      }
+    }};
+  }
 `;
 
 export const RadioBtnLabelText = styled.span`
@@ -139,6 +154,19 @@ export const RadioBtnLabelText = styled.span`
   font-size: 12px;
   font-weight: 600;
   line-height: 1.16;
+`;
+
+export const RadioBtn = styled.input`
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  border: 0;
+  padding: 0;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  margin: -1px;
 `;
 
 export const Indicator = styled.span`
@@ -230,4 +258,14 @@ export const EditIcon = styled(PencilIcon)`
   height: 16px;
 
   stroke: currentColor;
+`;
+
+export const ErrorText = styled.span`
+  margin-top: 4px;
+  padding-left: 8px;
+  min-height: 12px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14px;
+  color: #e74a3b;
 `;
