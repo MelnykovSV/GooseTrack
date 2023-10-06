@@ -14,7 +14,6 @@ export const SaveBtn = styled.button`
   align-items: center;
   padding: 14px 50px;
   margin: 0 auto;
-  margin-top: 40px;
   isolation: isolate;
   min-width: 195px;
   background-color: ${({ disabled }) => {
@@ -27,7 +26,7 @@ export const SaveBtn = styled.button`
   cursor: ${({ disabled }) => {
     return disabled ? 'not-allowed' : 'pointer';
   }};
-  
+
   transition: box-shadow linear 350ms;
 
   :hover,
@@ -35,8 +34,6 @@ export const SaveBtn = styled.button`
     background-color: ${({ disabled }) => {
       return disabled ? '#d3d3d3' : '#2b78ef';
     }};
-    
-  
   }
 
   @media screen and (min-width: 767px) {
@@ -44,7 +41,8 @@ export const SaveBtn = styled.button`
     padding: 15px 84px;
   }
 
-  @media screen and (min-width: 1440px) {
-    margin-top: 55px;
+  @media screen and (min-width: 1200px) {
+    margin-top: 0px;
+    margin-bottom: 0px;
   }
 `;

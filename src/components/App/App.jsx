@@ -13,7 +13,6 @@ import { getReviewsError } from 'redux/reviews/reviewsSlice';
 import { ToastContainer, toast } from 'react-toastify';
 import { CalendarDatepickerPage } from 'pages/CalendarDatepicerPage/CalendarDatepickerPage';
 import { DayTasksListPage } from 'pages/DayTasksListPage/DayTasksListPage';
-import '../../../src/index.css';
 
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')

@@ -1,23 +1,15 @@
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { ReactComponent as IconDown } from '../../icons/chevron-down.svg';
+import { ReactComponent as IconDown } from '../../../icons/chevron-down.svg';
 import {
-  AvatarContainer,
-  AvatarUploadBtn,
-  AvatarUploadContainer,
   Feedback,
   FormInput,
   InvalidFeedback,
   InvalidInputIcon,
   Label,
   LabelText,
-  UpdateIcon,
-  UserAvatar,
   UserFormWrap,
-  UserName,
-  UserRole,
-  UserSection,
   ValidFeedback,
   ValidInputIcon,
   ValidationIcon,
@@ -31,9 +23,7 @@ import './custom-datepicker.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { format } from 'date-fns';
-import { editData, updateAvatar } from 'redux/auth/operations';
-import { Notify } from 'notiflix';
-import { Avatar } from 'components/Avatar/Avatar';
+import { editData } from 'redux/auth/operations';
 import { getIsLoading } from 'redux/auth/authSlice';
 
 export const UserForm = () => {
@@ -69,7 +59,7 @@ export const UserForm = () => {
   };
 
   return (
-    <UserSection>
+    <div>
       {isLoading ? null : (
         <Formik
           initialValues={initialValues}
@@ -79,51 +69,6 @@ export const UserForm = () => {
           {({ setFieldValue, errors, touched, values, dirty, setTouched }) => {
             return (
               <Form autoComplete="off">
-                <AvatarContainer>
-                  <UserAvatar>
-                    <Avatar />
-                    <AvatarUploadContainer>
-                      <Field
-                        id="avatarUrl"
-                        name="avatarUrl"
-                        type="file"
-                        accept="image/*,.png,.jpg,.gif"
-                        onChange={e => {
-                          const file = e.target.files[0];
-
-                          if (file) {
-                            const maxSizeInBytes = 600 * 1024;
-                            if (file.size > maxSizeInBytes) {
-                              Notify.failure(
-                                'The uploaded file is too large. The maximum size is 600 KB.'
-                              );
-                              e.target.value = null;
-                              return;
-                            }
-                          }
-
-                          const formData = new FormData();
-                          formData.append('avatar', file);
-
-                          try {
-                            dispatch(updateAvatar(formData));
-                          } catch (error) {
-                            setIsFormChanged(false);
-                          }
-                        }}
-                        style={{ display: 'none' }}
-                      />
-
-                      <AvatarUploadBtn htmlFor="avatarUrl">
-                        <UpdateIcon />
-                      </AvatarUploadBtn>
-                    </AvatarUploadContainer>
-                  </UserAvatar>
-
-                  <UserName>{userInfo.userName}</UserName>
-                  <UserRole>User</UserRole>
-                </AvatarContainer>
-
                 <UserFormWrap>
                   <Label htmlFor="userName">
                     <LabelText
@@ -353,6 +298,6 @@ export const UserForm = () => {
           }}
         </Formik>
       )}
-    </UserSection>
+    </div>
   );
 };
