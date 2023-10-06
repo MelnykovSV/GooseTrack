@@ -2,7 +2,7 @@ import { UserSection } from 'components/UserSectionWrap/UserSection/UserSection'
 
 const AccountPage = () => {
   return (
-    <main className="container" >
+    <main >
       <UserSection/>
     </main>
   );

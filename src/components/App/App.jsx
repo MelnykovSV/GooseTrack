@@ -67,7 +67,7 @@ export const App = () => {
   }, [reviewsError]);
 
   return (
-    <Container className='container'>
+    <Container>
       <ModernNormalize />
       <Suspense fallback={<div>Loading...</div>}>
         <Routes>
