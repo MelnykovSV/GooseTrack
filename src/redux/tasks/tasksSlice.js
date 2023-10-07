@@ -4,6 +4,7 @@ import {
   updateTask,
   getTasksByDay,
   createTask,
+  deleteTask,
 } from './operations';
 import { isTasksError, isTasksPending, islogout } from '../statusCheckers';
 
@@ -52,6 +53,10 @@ const tasksSlice = createSlice({
             ? { ...task, ...action.payload }
             : task
         );
+        state.isLoading = false;
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.tasks = state.tasks.filter(({ _id }) => _id !== action.payload);
         state.isLoading = false;
       })
       .addMatcher(isTasksPending, state => {

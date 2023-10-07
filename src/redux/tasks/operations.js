@@ -55,3 +55,16 @@ export const updateTask = createAsyncThunk(
     }
   }
 );
+
+export const deleteTask = createAsyncThunk(
+  'tasks/deleteTask',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await privateApi.delete(`/api/tasks/${id}`);
+
+      return data.data._id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);

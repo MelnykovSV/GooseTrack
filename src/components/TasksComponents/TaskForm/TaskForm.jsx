@@ -72,7 +72,7 @@ export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
         />
       )}
 
-      <S.CloseButton onClick={onCloseTaskModal}>
+      <S.CloseButton type="button" onClick={onCloseTaskModal}>
         <S.CloseIcon />
       </S.CloseButton>
 
