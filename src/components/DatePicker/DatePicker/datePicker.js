@@ -36,13 +36,14 @@ const DatePicker = () => {
 
   const handleDateChange = date => {
     console.log('handleDateChange');
+    console.log(pickerType);
     setSelectedDate(date);
     if (pickerType === 'month') {
       navigate(`month/${format(date, 'yyyy-MM')}`);
     }
 
     if (pickerType === 'day') {
-      navigate(`month/${format(date, 'yyyy-MM-dd')}`);
+      navigate(`day/${format(date, 'yyyy-MM-dd')}`);
     }
   };
 
