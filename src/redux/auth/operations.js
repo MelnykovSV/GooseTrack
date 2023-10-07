@@ -54,7 +54,6 @@ export const getUserData = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await privateApi.get('/api/auth/current');
-      console.log(response);
 
       return response.data.data;
     } catch (error) {

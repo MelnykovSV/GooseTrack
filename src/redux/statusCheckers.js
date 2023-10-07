@@ -5,7 +5,6 @@ export function isAuthError(action) {
 }
 
 export function isAuthPending(action) {
-  console.log(action.type);
   return (
     action.type.endsWith('pending') && action.type.split('/')[0] === 'auth'
   );
@@ -36,6 +35,5 @@ export function isTasksPending(action) {
 }
 
 export function islogout(action) {
-  console.log(action.type.includes('logOut'));
   return action.type.includes('logOut');
 }
