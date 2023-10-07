@@ -5,9 +5,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
-import { CircularAvatar, DefaultAvatar, Letter } from './Avatar.styled';
+import { CircularAvatar } from './Avatar.styled';
 
-export const Avatar = () => {
+export const Avatar = ({ isForm }) => {
   // const dispatch = useDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -31,7 +31,6 @@ export const Avatar = () => {
 
   const [letter, setLetter] = useState(null);
 
-
   useEffect(() => {
     if (userName) {
       setLetter(userName.slice(0, 1));
@@ -43,8 +42,6 @@ export const Avatar = () => {
   useEffect(() => {
     setFile(avatarUrl);
   }, [avatarUrl]);
-
-
 
   return (
     <>
@@ -58,13 +55,10 @@ export const Avatar = () => {
           alt="avatarUrl"
         />
       ) : (
-        <DefaultAvatar>
-          <Letter>{letter || ''}</Letter>
-        </DefaultAvatar>
+        <CircularAvatar style={isForm && { fontSize: 'calc(24px + 3vw)' }}>
+          {letter || ''}
+        </CircularAvatar>
       )}
-      {/* <DefaultAvatar>
-        <Letter>{letter || ''}</Letter>
-      </DefaultAvatar> */}
     </>
   );
 };

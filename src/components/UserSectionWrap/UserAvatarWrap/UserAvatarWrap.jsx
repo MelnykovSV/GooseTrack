@@ -20,7 +20,7 @@ export const UserAvatarWrap = () => {
   return (
     <AvatarContainer>
       <UserAvatar>
-        <Avatar />
+        <Avatar isForm />
         <AvatarUploadContainer>
           <input
             id="avatarUrl"

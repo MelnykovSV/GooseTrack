@@ -10,8 +10,8 @@ export const AvatarContainer = styled.div`
   @media screen and (max-width: 767px) {
     position: absolute;
     top: -30px;
-    // left: 110px;
-    left: 38%;
+    left: 50%;
+    transform: translateX(-50%);
   }
 `;
 
@@ -21,8 +21,6 @@ export const UserAvatar = styled.div`
   height: 72px;
   border: 2px solid ${p => p.theme.accentBlue};
   border-radius: 50%;
-  // -o-object-fit: cover;
-  // object-fit: cover;
   margin-bottom: 14px;
 
   @media screen and (min-width: 767px) {
