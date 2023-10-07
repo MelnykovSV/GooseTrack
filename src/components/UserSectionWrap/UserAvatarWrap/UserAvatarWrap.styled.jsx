@@ -10,7 +10,8 @@ export const AvatarContainer = styled.div`
   @media screen and (max-width: 767px) {
     position: absolute;
     top: -30px;
-    right: 150px;
+    // left: 110px;
+    left: 38%;
   }
 `;
 
@@ -18,10 +19,10 @@ export const UserAvatar = styled.div`
   position: relative;
   width: 72px;
   height: 72px;
-  border: 2px solid #3e85f3;
+  border: 2px solid ${p => p.theme.accentBlue};
   border-radius: 50%;
-  //   -o-object-fit: cover;
-  //   object-fit: cover;
+  // -o-object-fit: cover;
+  // object-fit: cover;
   margin-bottom: 14px;
 
   @media screen and (min-width: 767px) {
@@ -30,9 +31,6 @@ export const UserAvatar = styled.div`
     margin-bottom: 20px;
   }
 
-  @media screen and (min-width: 1200px) {
-    margin-top: 0px;
-  }
 `;
 
 export const AvatarUploadContainer = styled.div`
@@ -56,7 +54,7 @@ export const AvatarUploadBtn = styled.label`
 
 export const UpdateIcon = styled(UpdateAvatarIcon)`
   position: absolute;
-  fill: #3e85f3;
+  fill: ${p => p.theme.accentPrimary};
   width: 14px;
   height: 14px;
   bottom: 13px;
@@ -65,7 +63,7 @@ export const UpdateIcon = styled(UpdateAvatarIcon)`
   z-index: 1;
 
   :hover {
-    fill: #2b78ef;
+    fill: ${p => p.theme.accentPrimaryHover};
   }
 
   @media screen and (min-width: 767px) {
@@ -86,7 +84,7 @@ export const UserName = styled.h3`
   font-weight: 700;
   font-size: 18px;
   line-height: 18px;
-  color: #343434;
+  color: ${({theme}) => theme.textPrimaryLight};
   margin-top: 0px;
   margin-bottom: 2px;
 
@@ -104,7 +102,7 @@ export const UserRole = styled.p`
   font-weight: 600;
   font-size: 14px;
   line-height: 14px;
-  color: #343434;
+  color: ${({theme}) => theme.textUser};
   flex: none;
   order: 1;
   flex-grow: 0;

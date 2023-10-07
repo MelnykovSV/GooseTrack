@@ -1,7 +1,6 @@
 import { Form, Formik } from 'formik';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
-import { ReactComponent as IconDown } from '../../../icons/chevron-down.svg';
 import {
   Feedback,
   FormInput,
@@ -14,6 +13,7 @@ import {
   ValidInputIcon,
   ValidationIcon,
   DataIconWrap,
+  ChevronDownIcon,
 } from './UserForm.styled';
 import { userFormValidation } from './constants/userFormValidation';
 import { useEffect, useState } from 'react';
@@ -166,7 +166,7 @@ export const UserForm = () => {
                       type="text"
                       name="birthday"
                       style={
-                        touched.birthday && { border: '1px solid #3CBC81' }
+                        touched.birthday && { border: '1px solid #3cbc81' }
                       }
                       onChange={e => {
                         setFieldValue('birthday', e);
@@ -194,7 +194,7 @@ export const UserForm = () => {
                       </ValidationIcon>
                     ) : (
                       <DataIconWrap>
-                        <IconDown />
+                        <ChevronDownIcon />
                       </DataIconWrap>
                     )}
                     <Feedback>
