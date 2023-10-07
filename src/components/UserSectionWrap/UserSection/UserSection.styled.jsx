@@ -15,6 +15,7 @@ export const UserSectionWrap = styled.section`
     padding: 40px 175px 40px 175px;
     margin-top: 64px;
   }
+  
   @media screen and (min-width: 1440px) {
     padding: 60px 165px 60px 165px;
     margin-top: 0px;

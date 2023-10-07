@@ -63,7 +63,7 @@ export const SharedLayout = () => {
         ) : (
           <SideBar onClose={handleCloseClick}>sideMenu</SideBar>
         )}
-        <HeaderWrap>
+        <HeaderWrap >
           <Header onToggle={handleToggleClick} />
           <BodyContent className='page-inner-container'>
             <Suspense fallback={<div>Loading...</div>}>
