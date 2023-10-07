@@ -46,6 +46,14 @@ const DatePicker = () => {
     console.log(date);
   };
 
+  // useEffect(() => {
+  //   if (checkParams()) {
+  //     setSelectedDate(
+  //       parse(checkParams().date, checkParams().pattern, new Date())
+  //     );
+  //   }
+  // }, [day, month]);
+
   useEffect(() => {
     if (pickerType === 'month') {
       const selectedMonth = `${selectedDate.getFullYear()}-${
