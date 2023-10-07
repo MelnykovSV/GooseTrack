@@ -27,9 +27,13 @@ export const TasksColumnsList = ({ readinessTasks }) => {
 
   return (
     <S.Container>
-      <TasksColumn tasks={tasksTodo} title="To do" />
-      <TasksColumn tasks={tasksInProgress} title="In progress" />
-      <TasksColumn tasks={tasksDone} title="Done" />
+      <TasksColumn tasks={tasksTodo} status="todo" title="To do" />
+      <TasksColumn
+        tasks={tasksInProgress}
+        status="inProgress"
+        title="In progress"
+      />
+      <TasksColumn tasks={tasksDone} status="done" title="Done" />
     </S.Container>
   );
 };

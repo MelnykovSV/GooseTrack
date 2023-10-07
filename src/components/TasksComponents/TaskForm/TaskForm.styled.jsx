@@ -1,6 +1,7 @@
 import styled from '@emotion/styled';
 import { CgClose } from 'react-icons/cg';
 import { ReactComponent as PencilIcon } from '../../../images/TaskIcons/pencil-01.svg';
+import { HiPlus } from 'react-icons/hi';
 
 export const Form = styled.form`
   position: relative;
@@ -257,6 +258,13 @@ export const CancelButton = styled(Button)`
 export const EditIcon = styled(PencilIcon)`
   width: 16px;
   height: 16px;
+
+  stroke: currentColor;
+`;
+
+export const AddIcon = styled(HiPlus)`
+  width: 18px;
+  height: 18px;
 
   stroke: currentColor;
 `;

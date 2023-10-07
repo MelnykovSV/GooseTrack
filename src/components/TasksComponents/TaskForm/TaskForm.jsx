@@ -3,16 +3,10 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as S from './TaskForm.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { updateTask } from 'redux/tasks/operations';
+import { createTask, updateTask } from 'redux/tasks/operations';
 import CircularProgress from '@mui/material/CircularProgress';
 import { selectIsLoadingTask } from 'redux/selectors';
-
-//  title: Joi.string().max(250),
-//   priority: Joi.string().valid("low", "medium", "high"),
-//   status: Joi.string().valid("todo", "inProgress", "done"),
-//   date: Joi.string().pattern(dateRegexp, "YYYY-MM-DD"),
-//   start: Joi.string().pattern(timeRegexp, "hh:mm"),
-//   end: Joi.string().pattern(timeRegexp, "hh:mm"),
+import { useParams } from 'react-router-dom';
 
 const timeRegexp = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
@@ -36,7 +30,8 @@ const priorities = [
   { value: 'high', label: 'High' },
 ];
 
-export const TaskForm = ({ task = null, onCloseTaskModal }) => {
+export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
+  const isCreate = !task;
   const defaultTaskValues = task
     ? {
         title: task.title,
@@ -45,6 +40,7 @@ export const TaskForm = ({ task = null, onCloseTaskModal }) => {
         end: task.end,
       }
     : defaultValues;
+  const date = useParams().day;
 
   const {
     register,
@@ -60,7 +56,11 @@ export const TaskForm = ({ task = null, onCloseTaskModal }) => {
   const isLoading = useSelector(selectIsLoadingTask);
 
   const onSubmit = data => {
-    dispatch(updateTask({ id: task._id, data }));
+    if (isCreate) {
+      dispatch(createTask({ ...data, date, status }));
+    } else {
+      dispatch(updateTask({ id: task._id, data }));
+    }
   };
 
   return (
@@ -120,8 +120,17 @@ export const TaskForm = ({ task = null, onCloseTaskModal }) => {
 
       <S.ButtonContainer>
         <S.SubmitButton type="submit">
-          <S.EditIcon />
-          Edit
+          {isCreate ? (
+            <>
+              <S.AddIcon />
+              Add
+            </>
+          ) : (
+            <>
+              <S.EditIcon />
+              Edit
+            </>
+          )}
         </S.SubmitButton>
         <S.CancelButton onClick={onCloseTaskModal} type="button">
           Cancel

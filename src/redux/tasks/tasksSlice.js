@@ -1,5 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTasksByMonth, updateTask, getTasksByDay } from './operations';
+import {
+  getTasksByMonth,
+  updateTask,
+  getTasksByDay,
+  createTask,
+} from './operations';
 import { isTasksError, isTasksPending, islogout } from '../statusCheckers';
 
 // interface ITask {
@@ -35,6 +40,10 @@ const tasksSlice = createSlice({
       })
       .addCase(getTasksByDay.fulfilled, (state, action) => {
         state.tasks = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(createTask.fulfilled, (state, action) => {
+        state.tasks.push(action.payload);
         state.isLoading = false;
       })
       .addCase(updateTask.fulfilled, (state, action) => {

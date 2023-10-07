@@ -27,6 +27,19 @@ export const getTasksByDay = createAsyncThunk(
   }
 );
 
+export const createTask = createAsyncThunk(
+  'tasks/createTask',
+  async (data, { rejectWithValue }) => {
+    try {
+      const { data: newData } = await privateApi.post(`/api/tasks`, data);
+
+      return newData.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async ({ id, data }, { rejectWithValue }) => {

@@ -9,7 +9,7 @@ import {
 
 import * as S from './TasksColumn.styled';
 
-export const TasksColumn = ({ title, tasks }) => {
+export const TasksColumn = ({ title, tasks, status }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
 
   const handleCloseModal = () => setIsOpenModal(false);
@@ -22,7 +22,11 @@ export const TasksColumn = ({ title, tasks }) => {
       {/* <TaskColumnCard /> */}
       <ColumnsTasksList tasks={tasks} />
       <AddTaskBtn onOpenTaskModal={handleOpenModal} />
-      <TaskModal isOpenModal={isOpenModal} onCloseModal={handleCloseModal} />
+      <TaskModal
+        isOpenModal={isOpenModal}
+        onCloseModal={handleCloseModal}
+        status={status}
+      />
     </S.Container>
   );
 };
