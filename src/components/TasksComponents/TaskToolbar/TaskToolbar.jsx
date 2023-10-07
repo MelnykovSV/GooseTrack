@@ -1,210 +1,54 @@
-// import { Dropdown } from '@mui/base/Dropdown';
-// import { MenuButton } from '@mui/base/MenuButton';
-// import { Menu } from '@mui/base/Menu';
-// import { MenuItem } from '@mui/base/MenuItem';
+import { Menu } from '@mui/material';
+import * as S from './TaskToolbar.styled';
+import { useResizeScreen } from 'hooks';
 
-// <Dropdown>
-//   <TriggerButton>Dashboard</TriggerButton>
-//   <Menu slots={{ listbox: StyledListbox }}>
-//     <StyledMenuItem onClick={createHandleMenuClick('Profile')}>
-//       Profile
-//     </StyledMenuItem>
-//     <StyledMenuItem onClick={createHandleMenuClick('My account')}>
-//       My account
-//     </StyledMenuItem>
-//     <StyledMenuItem onClick={createHandleMenuClick('Log out')}>
-//       Log out
-//     </StyledMenuItem>
-//   </Menu>
-// </Dropdown>;
-// import * as S from './TaskToolbar.styled';
-// import { Title, ArrowIcon } from '../ColumnHeadBar/ColumnHeadBar.styled';
+const statusLabels = {
+  todo: 'To do',
+  inProgress: 'In progress',
+  done: 'Done',
+};
 
-// export const TaskToolbar = () => {
-// return (
-// <S.Container>
-// {
-//   /* <S.ToolBarItem> */
-// }
-// {
-//   /* <Title /> */
-// }
-// {
-//   /* <ArrowIcon /> */
-// }
-// {
-//   /* </S.ToolBarItem> */
-// }
-// {
-//   /* <S.ToolBarItem> */
-// }
-// {
-//   /* <Title /> */
-// }
-// {
-//   /* <ArrowIcon /> */
-// }
-// {
-//   /* </S.ToolBarItem> */
-// }
-// {
-//   /* </S.Container> */
-// }
-// );
-// };
+export const TaskToolbar = ({
+  anchorEl,
+  isOpen,
+  onClose,
+  statuses,
+  onChangeStatus,
+}) => {
+  const { isMobile } = useResizeScreen();
 
-// // import Icons from 'images/sprite.svg';
-// import * as S from //   BtnArrow, // {
-// //   BtnStyled,
-// //   ChouseCat,
-// //   InputStyled,
-// //   LabelStyled,
-// //   ToolBarItem,
-// //   Wraper,
-// // }
-// './TaskToolbar.styled';
-// // import { TaskModal } from '..';
+  const menuStyle = (() => {
+    if (isMobile) {
+      return { padding: '14px', minWidth: '115px' };
+    } else {
+      return { padding: '20px 24px', minWidth: '147px' };
+    }
+  })();
 
-// import { deleteTask, fetchDayTasks, patchTask } from 'redux/tasks/operations';
-// import { useDispatch, useSelector } from 'react-redux';
-// // import { selectTasks } from 'redux/tasks/selectors';
-// import { useEffect, useRef, useState } from 'react';
-// import { useParams } from 'react-router-dom';
-// // import Cookies from 'js-cookie';
-
-// export const TaskToolBar = ({ id, addCategory }) => {
-//   const dispatch = useDispatch();
-//   // const tasks = useSelector(selectTasks);
-//   // let editTask = tasks.find(task => task._id === id);
-
-//   // const currentLanguageCode = Cookies.get('i18next');
-
-//   const category = [
-//     { name: 'to-do', en: 'To do', ua: 'Зробити' },
-//     { name: 'in-progress', en: 'In progress', ua: 'В процесі' },
-//     { name: 'done', en: 'Done', ua: 'Зроблено' },
-//   ];
-
-//   // const [showEditBtn, setShowEditBtn] = useState(false);
-//   const [isOpened, setIsOpened] = useState(false);
-//   const [isClicked, setIsClicked] = useState(false);
-//   const [selectedOption, setSelectedOption] = useState('');
-//   const handleClick = () => {
-//     setIsClicked(prevState => !prevState);
-//   };
-
-//   const handleToggleModal = () => {
-//     setIsOpened(!isOpened);
-//   };
-
-//   // function handleOptionChange(event) {
-//   //   setSelectedOption(event.target.value);
-//   //   // editTask = { ...editTask, category: event.target.value };
-
-//   //   // dispatch(patchTask({ id: id, task: { category: editTask.category } }));
-//   // }
-//   // let { currentDay } = useParams();
-//   // const onDeleteHendler = async () => {
-//   //   await dispatch(deleteTask(id));
-
-//   //   const date = new Date(currentDay);
-//   //   const day = date.getDate();
-//   //   const month = date.getMonth() + 1;
-//   //   const year = date.getFullYear();
-//   //   const reqObj = {
-//   //     month,
-//   //     day,
-//   //     year,
-//   //     page: 1,
-//   //     limit: 100,
-//   //   };
-//   //   await dispatch(fetchDayTasks(reqObj));
-//   // };
-
-//   const chouseCatRef = useRef(null);
-//   useEffect(() => {
-//     const handleChouseCatClickOutside = e => {
-//       if (chouseCatRef.current && !chouseCatRef.current.contains(e.target)) {
-//         setIsClicked(false);
-//       }
-//     };
-
-//     document.addEventListener('mousedown', handleChouseCatClickOutside);
-
-//     return () => {
-//       document.removeEventListener('mousedown', handleChouseCatClickOutside);
-//     };
-//   }, []);
-
-//   return (
-//     <S.Wraper>
-//       <S.BtnArrow>
-//         <S.BtnStyled
-//           type="button"
-//           onClick={() => {
-//             handleClick();
-//           }}
-//         >
-//           <S.ToolBarItem>
-//             {/* <use href={`${Icons}#task-move-sf`}></use> */}
-//           </S.ToolBarItem>
-//         </S.BtnStyled>
-
-//         <S.ChouseCat
-//           ref={chouseCatRef}
-//           style={isClicked ? { display: 'flex' } : { display: 'none' }}
-//         >
-//           {/* {category.map(item => {
-//             return (
-//               item.name !== editTask.category && (
-//                 <div key={Math.random()}>
-//                   <S.LabelStyled>
-//                     {currentLanguageCode === 'en' ? item.en : item.ua}
-//                     <S.ToolBarItem>
-//                       <use href={`${Icons}#task-move-sf`}></use>
-//                     </S.ToolBarItem>
-//                     <S.InputStyled
-//                       type="radio"
-//                       value={item.name}
-//                       checked={selectedOption === item.name}
-//                       onChange={handleOptionChange}
-//                     />
-//                   </S.LabelStyled>
-//                 </div>
-//               )
-//             );
-//           })} */}
-//         </S.ChouseCat>
-//       </S.BtnArrow>
-
-//       <S.BtnStyled
-//         type="button"
-//         onClick={() => {
-//           handleToggleModal();
-//           setShowEditBtn(true);
-//         }}
-//       >
-//         <S.ToolBarItem>
-//           {/* <use href={`${Icons}#task-edit-sf`}></use> */}
-//         </S.ToolBarItem>
-//       </S.BtnStyled>
-
-//       <S.BtnStyled type="button" onClick={onDeleteHendler}>
-//         <S.ToolBarItem>
-//           {/* <use href={`${Icons}#task-trash-sf`}></use> */}
-//         </S.ToolBarItem>
-//       </S.BtnStyled>
-
-//       {/* {isOpened && (
-//         <TaskModal
-//           onCloseModal={handleToggleModal}
-//           showEditBtn={showEditBtn}
-//           id={id}
-//           editTask={editTask}
-//           addCategory={addCategory}
-//           isOpened={isOpened}
-//         />
-//       )} */}
-//     </S.Wraper>
-//   );
-// };
+  return (
+    <Menu
+      id="more-menu"
+      anchorEl={anchorEl}
+      open={isOpen}
+      onClose={onClose}
+      MenuListProps={{
+        'aria-labelledby': 'more-button',
+      }}
+      sx={{
+        '.MuiPaper-root': {
+          ...menuStyle,
+          boxShadow: ' 0px 4px 16px 0px rgba(17, 17, 17, 0.10)',
+          borderRadius: '8px',
+        },
+        '& .MuiList-root': { padding: 0 },
+      }}
+    >
+      {statuses.map(status => (
+        <S.StatusButton key={status} onClick={() => onChangeStatus(status)}>
+          <S.Status>{statusLabels[status]}</S.Status>
+          <S.ArrowIcon />
+        </S.StatusButton>
+      ))}
+    </Menu>
+  );
+};

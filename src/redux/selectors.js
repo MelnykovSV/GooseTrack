@@ -1,5 +1,4 @@
 import { createSelector } from '@reduxjs/toolkit';
-// "todo", "inProgress", "done"
 
 export const selectToken = state => state.auth.accessToken;
 

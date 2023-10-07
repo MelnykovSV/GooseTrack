@@ -49,13 +49,23 @@ export const TaskText = styled.p`
   text-overflow: ellipsis;
 `;
 
-export const Avatar = styled.img`
+export const AvatarThumb = styled.div`
   width: 32px;
   height: 32px;
   border-radius: 50%;
   border: 1.8px solid ${({ theme }) => theme.accentPrimary};
 
+  overflow: hidden;
   background: url(<path-to-image>), lightgray 50% / cover no-repeat;
+`;
+
+export const Avatar = styled.img`
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+  object-position: center;
 `;
 export const PriorityWraper = styled.div`
   display: flex;

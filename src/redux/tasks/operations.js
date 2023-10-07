@@ -68,3 +68,18 @@ export const deleteTask = createAsyncThunk(
     }
   }
 );
+
+export const changeTaskStatus = createAsyncThunk(
+  'tasks/changeTaskStatus',
+  async ({ id, status }, { rejectWithValue }) => {
+    try {
+      const { data: updatedData } = await privateApi.patch(`/api/tasks/${id}`, {
+        status,
+      });
+
+      return updatedData.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
