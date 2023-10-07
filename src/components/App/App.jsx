@@ -37,10 +37,6 @@ export const App = () => {
   const { theme } = useThemeContext();
 
   useEffect(() => {
-    console.log(theme);
-  }, [theme]);
-
-  useEffect(() => {
     if (authError) {
       console.log(authError);
       toast.error(authError.message);

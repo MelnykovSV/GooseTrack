@@ -39,8 +39,15 @@ ol {
   padding-right: 20px;
   margin: 0 auto;
   max-width: 375px;
+}
 
-  @media screen and (min-width: 768px) {
+.page-inner-container {
+  padding-left: 20px;
+  padding-right: 20px;
+  margin: 0 auto;
+  max-width: 375px;
+}
+/* @media screen and (min-width: 768px) {
     padding-left: 32px;
     padding-right: 32px;
     max-width: 768px;
@@ -50,18 +57,43 @@ ol {
     padding-left: 16px;
     padding-right: 16px;
     max-width: 1440px;
+  } */
+
+@media screen and (min-width: 768px) {
+  .container {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 768px;
+  }
+  .page-inner-container {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 768px;
   }
 }
 
-.page-inner-container {
-  /* padding-left: 20px;
-  padding-right: 20px; */
+@media screen and (min-width: 1440px) {
+  .container {
+    padding-left: 16px;
+    padding-right: 16px;
+    max-width: 1440px;
+  }
+  .page-inner-container {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 1151px;
+  }
+}
+
+/* .page-inner-container {
+  padding-left: 20px;
+  padding-right: 20px;
   margin: 0 auto;
   max-width: 375px;
 
   @media screen and (min-width: 768px) {
-    /* padding-left: 32px;
-    padding-right: 32px; */
+    padding-left: 32px;
+    padding-right: 32px;
     max-width: 768px;
   }
 
@@ -70,7 +102,7 @@ ol {
     padding-right: 32px;
     max-width: 1151px;
   }
-}
+} */
 
 .visually-hidden {
   clip: rect(0 0 0 0);
