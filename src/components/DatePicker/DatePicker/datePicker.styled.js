@@ -93,8 +93,4 @@ export const DatePickerContainer = styled.div`
     display: flex;
     justify-content: end;
   }
-
-  a.active {
-    color: green;
-  }
 `;

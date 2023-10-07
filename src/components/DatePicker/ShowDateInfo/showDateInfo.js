@@ -27,9 +27,7 @@ const DateInfoComponent = () => {
     const date = new Date(startOfWeek);
     date.setDate(startOfWeek.getDate() + i);
     const formattedDate = date.toLocaleDateString('en-US', options);
-    const navigationDate = `${date.getFullYear()}-${(date.getMonth() + 1)
-      .toString()
-      .padStart(2, '0')}-${date.getDate().toString().padStart(2, '0')}`;
+    const navigationDate = `${format(date, 'yyyy-MM-dd')}`;
     daysOfWeek.push({ formattedDate, navigationDate });
   }
 
@@ -55,12 +53,13 @@ const DateInfoComponent = () => {
         ) : (
           <div className={'dateBox'}>
             {daysOfWeek.map((day, index) => (
-              <div className={'dayContainer'} key={index}>
+              <div
+                className={'dayContainer'}
+                onClick={() => handleDayClick(day.navigationDate)}
+                key={index}
+              >
                 <div className={'dateNumber'}>
-                  <p
-                    className={'dateText'}
-                    onClick={() => handleDayClick(day.navigationDate)}
-                  >
+                  <p className={'dateText'}>
                     {day.formattedDate.split(' ')[1].substring(0, 3)}
                   </p>{' '}
                 </div>
