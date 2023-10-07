@@ -6,18 +6,18 @@ import LoginContainer from 'components/LoginContainer/LoginContainer';
 import { Hyperlink } from './LoginPage.styled';
 
 const LoginPage = () => {
-  const dispatch = useDispatch();
-  const loginHandler = data => {
-    dispatch(signIn(data));
-  };
+	const dispatch = useDispatch();
+	const loginHandler = data => {
+		dispatch(signIn(data));
+	};
 
-  return (
-    <>
-      <LoginContainer>
-        <LoginForm loginHandler={loginHandler}></LoginForm>
-        <Hyperlink to="/register">Sign up</Hyperlink>
-      </LoginContainer>
-    </>
-  );
+	return (
+		<>
+			<LoginContainer page='login'>
+				<LoginForm loginHandler={loginHandler}></LoginForm>
+				<Hyperlink to="/register">Sign up</Hyperlink>
+			</LoginContainer>
+		</>
+	);
 };
 export default LoginPage;
