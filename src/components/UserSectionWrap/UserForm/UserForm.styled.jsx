@@ -4,7 +4,7 @@ import { ReactComponent as ErrorIcon } from '../../../icons/error.svg';
 import { ReactComponent as ValidIcon } from '../../../icons/valid.svg';
 
 export const UserFormWrap = styled.div`
-  margin-top: 40px;
+  margin-top: 135px;
   display: flex;
   flex-direction: column;
   gap: 18px;
@@ -13,6 +13,7 @@ export const UserFormWrap = styled.div`
 
   @media screen and (min-width: 767px) {
     gap: 26px;
+    margin-top: 40px;
   }
 
   @media screen and (min-width: 1440px) {
@@ -45,6 +46,7 @@ export const LabelText = styled.p`
 
 export const Label = styled.label`
   position: relative;
+  width: 100%;
   font-weight: 400;
   font-size: 14px;
   line-height: 1.25;
@@ -55,16 +57,16 @@ export const Label = styled.label`
     font-size: 14px;
     line-height: 1.2;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: 1440px) {
     position: relative;
-    width: 350px;
+    // width: 350px;
   }
 `;
 
 export const FormInput = styled(Field)`
   box-sizing: border-box;
-  min-width: 300px;
-  // width: 100%;
+  // min-width: 300px;
+  width: 100%;
   height: 42px;
   margin: 0px;
   padding: 14px 18px 14px 18px;
@@ -91,7 +93,7 @@ export const FormInput = styled(Field)`
   }
 
   @media screen and (min-width: 768px) {
-    min-width: 350px;
+    // min-width: 350px;
   }
 
 `;
