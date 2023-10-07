@@ -1,13 +1,20 @@
 // import { TaskToolbar } from '..';
+// import { useSelector } from 'react-redux';
+// import { getUser } from 'redux/auth/authSlice';
+// import { useSelector } from 'react-redux';
+// import { getTasks } from 'redux/tasks/tasksSlice';
+
 import * as S from './TaskColumnCard.styled';
 
-export const TaskColumnCard = ({ priority }) => {
+export const TaskColumnCard = () => {
+  // const user = useSelector(getUser);
+  // const tasks = useSelector(getTasks);
   return (
     <S.CardWraper>
       <S.TaskText>Brainstorm ideas for new content or prod</S.TaskText>
       <S.Wraper>
         <S.PriorityWraper>
-          <S.Avatar />
+          <S.Avatar>{/* {user.avatarUrl} */}</S.Avatar>
           <S.Priority>Low</S.Priority>
         </S.PriorityWraper>
         <S.ToolsWrapper>

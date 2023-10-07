@@ -8,7 +8,8 @@ export const CardWraper = styled.li`
   height: 108px;
   padding: 14px 12px 18px 15px;
   border-radius: 8px;
-  border: 1px solid rgba(220, 227, 229, 0.8);
+  border: 1px solid ${({ theme }) => theme.strokeTransparant};
+
   background-color: ${({ theme }) => theme.bgSecondary};
 
   list-style: none;
@@ -67,22 +68,27 @@ export const Priority = styled.div`
   margin-top: 12px;
   padding: 4px 12px;
   border-radius: 4px;
-  /* overflow: hidden; */
   color: ${({ theme }) => theme.bgSecondary};
 
-  background: #72c2f8;
+  background: ${({ theme }) => theme.priorityLowBg};
   text-align: center;
   font-family: Inter;
   font-size: 10px;
   font-weight: 600;
-  line-height: 12px; /* 120% */
-  /* -o-text-overflow: ellipsis; */
-  text-overflow: ellipsis;
+  line-height: 12px;
 `;
 
 export const ArrowIcon = styled(Arrow)`
   height: 14px;
   width: 14px;
+  cursor: pointer;
+  stroke: ${({ theme }) => theme.textPrimary};
+
+  transition: stroke
+    ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
+  &:hover {
+    stroke: ${({ theme }) => theme.accentPrimary};
+  }
 
   @media screen and (min-width: 768px) {
     height: 16px;
@@ -93,6 +99,14 @@ export const ArrowIcon = styled(Arrow)`
 export const PencilIcon = styled(Pencil)`
   height: 14px;
   width: 14px;
+  cursor: pointer;
+  stroke: ${({ theme }) => theme.textPrimary};
+
+  transition: stroke
+    ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
+  &:hover {
+    stroke: ${({ theme }) => theme.accentPrimary};
+  }
 
   @media screen and (min-width: 768px) {
     height: 16px;
@@ -103,6 +117,14 @@ export const PencilIcon = styled(Pencil)`
 export const TrashIcon = styled(Trash)`
   height: 14px;
   width: 14px;
+  cursor: pointer;
+  stroke: ${({ theme }) => theme.textPrimary};
+
+  transition: stroke
+    ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
+  &:hover {
+    stroke: ${({ theme }) => theme.accentPrimary};
+  }
 
   @media screen and (min-width: 768px) {
     height: 16px;

@@ -22,11 +22,12 @@ export const Button = styled.button`
    /* 1px dashed */ ${({ theme }) => theme.accentPrimary};
   border-radius: 8px;
 
-  transition: background-color 350ms ease-in-out, color 350ms ease-in-out;
+  transition: background-color
+    ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
   &:hover,
   &:focus {
-    background-color: ${props => (props.disabled ? '#cccccc' : '#2b78ef')};
-    color: ${props => (props.disabled ? '#111111' : '#ffffff')};
+    background-color: ${({ theme }) => theme.accentPrimary};
+    color: ${({ theme }) => theme.bgPrimary};
   }
 
   @media screen and (min-width: 768px) {

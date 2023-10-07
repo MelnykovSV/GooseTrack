@@ -1,6 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
 export const lightTheme = createTheme({
+  priorityLowBg: '#72c2f8',
+  scrollbarTrack: '#F2F2F2',
+  scrollbarThumb: '#e7e5e5',
   textPrimary: '#111111',
   textPrimaryTransparent: 'rgba(17, 17, 17, 0.15)',
   textPrimaryLight: '#343434',
@@ -61,6 +64,9 @@ export const lightTheme = createTheme({
 });
 
 export const darkTheme = createTheme({
+  priorityLowBg: '#72c2f8',
+  scrollbarTrack: '#2D3037',
+  scrollbarThumb: '#171820',
   textPrimary: '#ffffff',
   textPrimaryTransparent: 'rgba(255, 255, 255, 0.15)',
   textPrimaryLight: '#ffffff',

@@ -31,7 +31,8 @@ export const Button = styled(LuPlusCircle)`
   cursor: pointer;
   stroke: ${({ theme }) => theme.textPrimary};
 
-  transition: stroke 250ms linear;
+  transition: stroke
+    ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
   &:hover {
     stroke: ${({ theme }) => theme.accentPrimary};
   }
