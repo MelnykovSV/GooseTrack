@@ -6,6 +6,12 @@ export const AvatarContainer = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: center;
+
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    top: -30px;
+    right: 150px;
+  }
 `;
 
 export const UserAvatar = styled.div`
@@ -16,12 +22,12 @@ export const UserAvatar = styled.div`
   border-radius: 50%;
   //   -o-object-fit: cover;
   //   object-fit: cover;
-  margin-bottom: 20px;
-  margin-top: 20px;
+  margin-bottom: 14px;
 
   @media screen and (min-width: 767px) {
     width: 124px;
     height: 124px;
+    margin-bottom: 20px;
   }
 
   @media screen and (min-width: 1200px) {
@@ -82,7 +88,11 @@ export const UserName = styled.h3`
   line-height: 18px;
   color: #343434;
   margin-top: 0px;
-  margin-bottom: 8px;
+  margin-bottom: 2px;
+
+  @media screen and (min-width: 767px) {
+    margin-bottom: 8px;
+  }
 `;
 
 export const UserRole = styled.p`
