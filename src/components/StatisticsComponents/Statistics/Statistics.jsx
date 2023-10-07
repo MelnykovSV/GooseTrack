@@ -1,7 +1,5 @@
 import { useState } from 'react';
 import { format, parseISO, startOfToday, parse } from 'date-fns';
-import Calendar from './Calendar/Calendar';
-import Chart from './StatisticsChart';
 
 import {
   General,
@@ -16,6 +14,7 @@ import {
   Arrows,
   IconPrev,
 } from './Statistics.styled';
+import { CustomCalendar, StatisticsChart } from '../index';
 
 const Statistics = () => {
   const today = startOfToday();
@@ -74,11 +73,12 @@ const Statistics = () => {
         </List>
       </Option>
 
-      <Chart
+      <StatisticsChart
         currentDayMonth={currentDayMonth}
         setCurrentDayMonth={setCurrentDayMonth}
       />
-      {showCalendar && <Calendar onDateChange={handleDateChange} />}
+
+      {showCalendar && <CustomCalendar onDateChange={handleDateChange} />}
     </General>
   );
 };

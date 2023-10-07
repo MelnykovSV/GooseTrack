@@ -17,7 +17,7 @@ import { getTasksByMonth } from 'redux/tasks/operations';
 import { useDispatch } from 'react-redux';
 import { getTasks, getMonth } from 'redux/tasks/tasksSlice';
 
-const Chart = ({ currentDayMonth, _ }) => {
+const StatisticsChart = ({ currentDayMonth, _ }) => {
   const theme = useTheme();
   const tasks = useSelector(getTasks);
   const month = useSelector(getMonth);
@@ -209,4 +209,4 @@ const Chart = ({ currentDayMonth, _ }) => {
   );
 };
 
-export default Chart;
+export default StatisticsChart;

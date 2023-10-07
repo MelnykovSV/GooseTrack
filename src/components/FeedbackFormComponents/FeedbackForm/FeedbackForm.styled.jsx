@@ -74,7 +74,7 @@ export const Textarea = styled.textarea`
 
   outline: none;
   border-radius: 8px;
-  border-color: ${({ theme }) => theme.bgTextarea};
+  border-color: ${({ theme }) => theme.borderTextarea};
   background-color: ${({ theme }) => theme.bgTextarea};
 
   color: ${({ theme }) => theme.textPrimaryLight};
@@ -108,6 +108,7 @@ export const StyledButton = styled(Button)`
     width: 198px;
   }
 `;
+
 export const Error = styled.p`
   margin: 0;
   font-size: 10px;
