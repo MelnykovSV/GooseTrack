@@ -2,7 +2,7 @@ import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns';
 import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Calendar from 'react-calendar';
-import { MiniCalendar } from './Calendar.styled';
+import { MiniCalendar } from './CustomCalendar.styled';
 import { format } from 'date-fns';
 import { useState } from 'react';
 
@@ -29,7 +29,7 @@ const CustomCalendar = ({ onDateChange }) => {
           prevLabel={<FaChevronLeft />}
           nextLabel={<FaChevronRight />}
           formatShortWeekday={formatDayOfWeek}
-          view="days"
+          view="month"
         />
       </MiniCalendar>
     </LocalizationProvider>
