@@ -17,6 +17,23 @@ code {
     monospace;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
 .container {
   padding-left: 20px;
   padding-right: 20px;
@@ -33,6 +50,25 @@ code {
     padding-left: 16px;
     padding-right: 16px;
     max-width: 1440px;
+  }
+}
+
+.page-inner-container {
+  /* padding-left: 20px;
+  padding-right: 20px; */
+  margin: 0 auto;
+  max-width: 375px;
+
+  @media screen and (min-width: 768px) {
+    /* padding-left: 32px;
+    padding-right: 32px; */
+    max-width: 768px;
+  }
+
+  @media screen and (min-width: 1440px) {
+    padding-left: 32px;
+    padding-right: 32px;
+    max-width: 1151px;
   }
 }
 

@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet, useLocation } from 'react-router-dom';
 import { Header } from '../Header/Header';
 import { Suspense, useCallback, useEffect, useState } from 'react';
 import { BodyContent, MainWrap, HeaderWrap } from './SharedLayout.styled';
@@ -16,6 +16,7 @@ export const SharedLayout = () => {
 
   const [isOpen, setOpen] = useState(false);
   const size = useResize();
+  const location = useLocation();
 
   // const handleOpenClick = useCallback(e => {
   //   e.preventDefault();
@@ -55,6 +56,10 @@ export const SharedLayout = () => {
     };
   }, []);
 
+  useEffect(() => {
+    setOpen(false);
+  }, [location.pathname]);
+
   return (
     <main>
       <MainWrap>
@@ -63,9 +68,9 @@ export const SharedLayout = () => {
         ) : (
           <SideBar onClose={handleCloseClick}>sideMenu</SideBar>
         )}
-        <HeaderWrap>
+        <HeaderWrap >
           <Header onToggle={handleToggleClick} />
-          <BodyContent>
+          <BodyContent className="page-inner-container">
             <Suspense fallback={<div>Loading...</div>}>
               <Outlet />
             </Suspense>

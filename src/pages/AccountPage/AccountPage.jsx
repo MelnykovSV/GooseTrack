@@ -1,9 +1,9 @@
-import { UserForm } from "components/UserForm/UserForm";
+import { UserSection } from 'components/UserSectionWrap/UserSection/UserSection';
 
 const AccountPage = () => {
   return (
-    <main>
-      <UserForm/>
+    <main >
+      <UserSection/>
     </main>
   );
 };

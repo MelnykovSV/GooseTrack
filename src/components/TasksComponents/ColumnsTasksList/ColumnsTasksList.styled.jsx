@@ -25,7 +25,7 @@ export const TaskslistWraper = styled.div`
 
   ::-webkit-scrollbar-thumb {
     border-radius: 12px;
-    background-color: #e7e5e5;
+    background-color: ${({ theme }) => theme.scrollbarThumb};
   }
 
   ::-webkit-scrollbar-track:hover {

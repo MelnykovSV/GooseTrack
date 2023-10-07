@@ -1,19 +1,20 @@
 import { useEffect, useState } from 'react';
 import { AddFeedbackBtn } from '../AddFeedbackBtn/AddFeedbackBth';
 import { AddFeedbackModal } from '../AddFeedbackModal/AddFeedbackModal';
-import { ThemeToggler } from '../ThemeToggler/ThemeToggler';
 import { UserInfo } from '../UserInfo/UserInfo';
-import BurgerIcon from '../../images/SideBar/menu-01.svg';
 import {
   HeaderWrapper,
   // PageTitle,
   UserWrapper,
   BurgerBtn,
   PageTitleActive,
+  BurgerIcon,
   // MoonIcon,
 } from './Header.styled';
+import { ThemeSwitcher } from 'components/ThemeSwitcher/ThemeSwitcher';
 import useResize from 'utils/useResize';
 // import { CloseBtn } from 'components/SideBar/SideBar.styled';
+import icons from '../../assets/images/icons.svg';
 
 export const Header = ({ onToggle }) => {
   const [open, setOpen] = useState(false);
@@ -48,7 +49,10 @@ export const Header = ({ onToggle }) => {
         <div>
           {size[0] < 1440 ? (
             <BurgerBtn onClick={onToggle}>
-              <img src={BurgerIcon} alt="close" />
+              {/* <img src={BurgerIcon} alt="close" /> */}
+              <BurgerIcon>
+                <use href={`${icons}#icon-menu`} />
+              </BurgerIcon>
             </BurgerBtn>
           ) : (
             <PageTitleActive>{activePage}</PageTitleActive>
@@ -56,10 +60,8 @@ export const Header = ({ onToggle }) => {
         </div>
         <UserWrapper>
           <AddFeedbackBtn onFeedbackBtn={handleOpen} />
-          <ThemeToggler />
-          {/* <button>
-            <MoonIcon />
-          </button> */}
+
+          <ThemeSwitcher />
           <UserInfo />
           <AddFeedbackModal open={open} onClose={handleClose} />
         </UserWrapper>

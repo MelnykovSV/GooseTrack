@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getTasksByMonth, updateTask, getTasksByDay } from './operations';
 import { isTasksError, isTasksPending, islogout } from '../statusCheckers';
-import { getTasksByMonth, getTasksByDay } from './operations';
 
 // interface ITask {
 //     title: string;
@@ -27,9 +27,19 @@ const tasksSlice = createSlice({
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
         state.tasks = action.payload.data;
         state.month = action.payload.month;
+        state.isLoading = false;
       })
       .addCase(getTasksByDay.fulfilled, (state, action) => {
         state.tasks = action.payload;
+        state.isLoading = false;
+      })
+      .addCase(updateTask.fulfilled, (state, action) => {
+        state.tasks = state.tasks.map(task =>
+          task._id === action.payload._id
+            ? { ...task, ...action.payload }
+            : task
+        );
+        state.isLoading = false;
       })
       .addMatcher(isTasksPending, state => {
         state.isLoading = true;

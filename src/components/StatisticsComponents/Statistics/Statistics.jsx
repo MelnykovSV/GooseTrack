@@ -1,22 +1,20 @@
 import { useState } from 'react';
 import { format, parseISO, startOfToday, parse } from 'date-fns';
-import Icons from '../../images/Statistics/Icons/icon-Ellipse.svg';
-import Calendar from './Calendar/Calendar';
-import Chart from './StatisticsChart';
+
 import {
   General,
   Option,
   Buttons,
   ButtonData,
-  ButtonsIcon,
-  ButtonLast,
-  IconLast,
-  ButtonNext,
   IconNext,
   List,
   Item,
   Icon,
+  Arrow,
+  Arrows,
+  IconPrev,
 } from './Statistics.styled';
+import { CustomCalendar, StatisticsChart } from '../index';
 
 const Statistics = () => {
   const today = startOfToday();
@@ -54,35 +52,33 @@ const Statistics = () => {
           <ButtonData type="button" onClick={miniCalendar}>
             {format(currentDayMonth, 'dd MMMM yyyy')}
           </ButtonData>
-          <ButtonsIcon>
-            <ButtonLast type="button" onClick={handleLastDay}>
-              <IconLast fill="#ffffff" />
-            </ButtonLast>
-            <ButtonNext type="button" onClick={handleNextDay}>
-              <IconNext fill="#ffffff" />
-            </ButtonNext>
-          </ButtonsIcon>
+          <Arrows>
+            <Arrow prev type="button" onClick={handleLastDay}>
+              <IconPrev />
+            </Arrow>
+            <Arrow next type="button" onClick={handleNextDay}>
+              <IconNext />
+            </Arrow>
+          </Arrows>
         </Buttons>
         <List>
           <Item>
-            <Icon>
-              <use href={`${Icons}#icon-Ellipse-3`}></use>
-            </Icon>
+            <Icon showFor="day" />
             By Day
           </Item>
           <Item>
-            <Icon>
-              <use href={`${Icons}#icon-Ellipse-4`}></use>
-            </Icon>
+            <Icon showFor="month" />
             By Month
           </Item>
         </List>
       </Option>
-      <Chart
+
+      <StatisticsChart
         currentDayMonth={currentDayMonth}
         setCurrentDayMonth={setCurrentDayMonth}
       />
-      {showCalendar && <Calendar onDateChange={handleDateChange} />}
+
+      {showCalendar && <CustomCalendar onDateChange={handleDateChange} />}
     </General>
   );
 };
