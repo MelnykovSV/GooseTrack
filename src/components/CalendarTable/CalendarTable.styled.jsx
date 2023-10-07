@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 
 export const Table = styled.div`
-  border: 1px solid ${({ theme }) => theme.stroke};
+  border: 1px solid ${({ theme }) => theme.strokeTransparant};
   border-radius: 8px;
 
   overflow: hidden;
@@ -16,10 +16,10 @@ export const TableRow = styled.div`
   grid-template-columns: repeat(7, 1fr);
   min-height: 94px;
 
-  background-color: ${({ theme }) => theme.bgPrimary};
+  background-color: ${({ theme }) => theme.tableBg};
 
   &:not(:last-child) {
-    border-bottom-color: ${({ theme }) => theme.stroke};
+    border-bottom-color: ${({ theme }) => theme.strokeTransparant};
     border-bottom-width: 1px;
     border-bottom-style: solid;
   }
@@ -45,12 +45,14 @@ export const TableCell = styled.div`
   padding-top: 48px;
   padding-bottom: 2px;
 
+  background-color: ${({ theme }) => theme.tableBg};
+
   overflow: hidden;
 
   cursor: ${({ $isEmpty }) => ($isEmpty ? 'default' : 'pointer')};
 
   &:not(:first-of-type) {
-    border-left-color: ${({ theme }) => theme.stroke};
+    border-left-color: ${({ theme }) => theme.strokeTransparant};
     border-left-width: 1px;
     border-left-style: solid;
   }
@@ -60,7 +62,7 @@ export const TableCell = styled.div`
       background-color: ${({ theme }) => theme.accentBlueLight};
 
       & .value {
-        color: ${({ theme }) => theme.textPrimaryLight};
+        color: ${({ theme }) => theme.tableIcon};
       }
     }
   }
@@ -71,8 +73,8 @@ export const TableCell = styled.div`
     padding-top: 58px;
     padding-bottom: 4px;
 
-    &:not(:last-child) {
-      border-bottom-color: ${({ theme }) => theme.strokeTransparant};
+    &:not(:first-of-type) {
+      border-left-color: ${({ theme }) => theme.strokeTransparant};
     }
   }
 
@@ -173,6 +175,10 @@ const Button = styled.button`
 `;
 
 export const MiniCard = styled(Button)`
+  &.b-mb:not(:last-child) {
+    margin-bottom: 4px;
+  }
+
   color: ${({ theme, $priority }) => {
     switch ($priority) {
       case 'low':
