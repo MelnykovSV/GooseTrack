@@ -6,11 +6,14 @@ import { DatePickerContainer } from './datePicker.styled';
 import { useNavigate } from 'react-router';
 import { parse } from 'date-fns';
 import { useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
+// import { format, getMonth, getYear, parse } from 'date-fns';
 
 // import styles from './datepicker.module.css'
 const DatePicker = () => {
   const navigate = useNavigate();
   const { day, month } = useParams();
+  console.log(day, month);
 
   function checkParams() {
     if (day) {
@@ -32,11 +35,20 @@ const DatePicker = () => {
       return null;
     }
   }
+  console.log(checkPageType());
   const [selectedDate, setSelectedDate] = useState(
     checkParams()
       ? parse(checkParams().date, checkParams().pattern, new Date())
       : new Date()
   );
+
+  // useEffect(() => {
+  //   console.log(checkParams().date);
+  //   console.log(checkParams().pattern);
+  //   setSelectedDate(
+  //     parse(checkParams().date, checkParams().pattern, new Date())
+  //   );
+  // }, []);
   const [pickerType, setPickerType] = useState(checkPageType() || 'month');
   // const [showDateInfo, setShowDateInfo] = useState(true);
 
@@ -103,7 +115,7 @@ const DatePicker = () => {
               className={'myDatepicker'}
               calendarClassName={'myCalendar'}
               dateFormat={pickerType === 'month' ? 'MMMM yyyy' : 'dd MMM yyyy'}
-              showMonthYearPicker={pickerType === 'month'}
+              showMonthYearPicker={pickerType === 'month' ? true : false}
             />
             <div className={'boxButton'}>
               <button className={'buttonLeft'} onClick={handlePrevDay}>
@@ -132,6 +144,33 @@ const DatePicker = () => {
               Days
             </button>
           </div>
+          <nav>
+            <NavLink
+              to={`month/${selectedDate.getFullYear()}-${
+                selectedDate.getMonth() + 1
+              }`}
+              // onClick={() => {
+              //   setPickerType('month');
+              // }}
+            >
+              Month
+            </NavLink>
+            <NavLink
+              to={`day/${selectedDate.getFullYear()}-${(
+                selectedDate.getMonth() + 1
+              )
+                .toString()
+                .padStart(2, '0')}-${selectedDate
+                .getDate()
+                .toString()
+                .padStart(2, '0')}`}
+              // onClick={() => {
+              //   setPickerType('day');
+              // }}
+            >
+              Day
+            </NavLink>
+          </nav>
 
           <DateInfoComponent
             selectedDate={selectedDate}

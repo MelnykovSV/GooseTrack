@@ -45,6 +45,7 @@ const DateInfoComponent = ({ selectedDate, pickerType }) => {
 
   const handleDayClick = day => {
     // console.log(day);
+    
 
     navigate(`day/${day}`);
   };
