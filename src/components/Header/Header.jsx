@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { AddFeedbackBtn } from '../AddFeedbackBtn/AddFeedbackBth';
 import { AddFeedbackModal } from '../AddFeedbackModal/AddFeedbackModal';
-import { ThemeToggler } from '../ThemeToggler/ThemeToggler';
 import { UserInfo } from '../UserInfo/UserInfo';
 import BurgerIcon from '../../images/SideBar/menu-01.svg';
 import {
@@ -57,10 +56,7 @@ export const Header = ({ onToggle }) => {
         </div>
         <UserWrapper>
           <AddFeedbackBtn onFeedbackBtn={handleOpen} />
-          <ThemeToggler />
-          {/* <button>
-            <MoonIcon />
-          </button> */}
+
           <ThemeSwitcher />
           <UserInfo />
           <AddFeedbackModal open={open} onClose={handleClose} />

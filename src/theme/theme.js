@@ -129,3 +129,5 @@ export const darkTheme = createTheme({
     },
   },
 });
+
+export const themes = { light: lightTheme, dark: darkTheme };
