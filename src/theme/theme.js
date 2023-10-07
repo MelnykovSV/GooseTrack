@@ -1,6 +1,9 @@
 import { createTheme } from '@mui/material/styles';
 
 export const lightTheme = createTheme({
+  borderDropDownMenu: '#ffffff',
+  tableIcon: '#343434',
+  tableBg: '#FFFFFF',
   priorityLowBg: '#72c2f8',
   scrollbarTrack: '#F2F2F2',
   scrollbarThumb: '#e7e5e5',
@@ -76,6 +79,9 @@ export const lightTheme = createTheme({
 });
 
 export const darkTheme = createTheme({
+  borderDropDownMenu: 'rgba(255, 255, 255, 0.15)',
+  tableIcon: '#343434',
+  tableBg: '#22232D',
   priorityLowBg: '#72c2f8',
   scrollbarTrack: '#2D3037',
   scrollbarThumb: '#171820',

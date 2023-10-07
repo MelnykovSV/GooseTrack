@@ -12,19 +12,19 @@ import { TaskModal } from 'components/TasksComponents';
 
 import * as S from './CalendarTable.styled';
 import { clearTasks } from 'redux/tasks/tasksSlice';
+import { useTheme } from '@mui/material';
 
 export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
-  const { isMobile, isTablet } = useResizeScreen();
+  const { isMobile } = useResizeScreen();
+  const theme = useTheme();
 
   const menuStyles = (() => {
     if (isMobile) {
-      return { maxWidth: 84, paddingX: '2px', paddingY: '4px' };
-    } else if (isTablet) {
-      return { maxWidth: 112, paddingX: '4px', paddingY: '8px' };
+      return { maxWidth: 115, padding: '7px' };
     } else {
-      return { maxWidth: 160, paddingX: '4px', paddingY: '8px' };
+      return { maxWidth: 147, padding: '11px 15px' };
     }
   })();
 
@@ -57,13 +57,19 @@ export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
           'aria-labelledby': 'more-button',
         }}
         sx={{
-          '.MuiPaper-root': { ...menuStyles, borderRadius: '8px' },
+          '.MuiPaper-root': {
+            ...menuStyles,
+            borderRadius: '8px',
+            backgroundColor: theme.bgPrimary,
+            border: `1px solid ${theme.borderDropDownMenu}`,
+          },
           '& .MuiList-root': { padding: 0 },
         }}
       >
         {tasks.map(task => (
           <S.MiniCard
             key={task._id}
+            className="b-mb"
             type="button"
             $priority={task.priority}
             onClick={onOpenTaskModal(task)}
@@ -206,7 +212,7 @@ export const CalendarTable = () => {
                       (tasks.length > 3 && isTablet) ||
                       (tasks.length > 2 && isDesktop)) && (
                       <DropDownTaskList
-                        tasks={tasks}
+                        tasks={tasks.slice(numberOfDisplayedTasks)}
                         onOpenTaskModal={handleOpenTaskModal}
                       />
                     )}
