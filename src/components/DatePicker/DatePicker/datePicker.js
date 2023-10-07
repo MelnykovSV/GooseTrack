@@ -4,74 +4,70 @@ import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DatePickerContainer } from './datePicker.styled';
 import { useNavigate } from 'react-router';
-import { parse } from 'date-fns';
+import { parse, format } from 'date-fns';
 import { useParams } from 'react-router';
+import { NavLink } from 'react-router-dom';
+import { checkParams, checkPageType } from './dateParamsHelpers';
 
-// import styles from './datepicker.module.css'
 const DatePicker = () => {
   const navigate = useNavigate();
   const { day, month } = useParams();
 
-  function checkParams() {
-    if (day) {
-      return { date: day, pattern: 'yyyy-MM-dd' };
+  useEffect(() => {
+    if (!day && !month) {
+      navigate(`month/${format(new Date(), 'yyyy-MM')}`);
     }
-    if (month) {
-      return { date: month, pattern: 'yyyy-MM' };
-    } else {
-      return null;
-    }
-  }
-  function checkPageType() {
-    if (day) {
-      return 'day';
-    }
-    if (month) {
-      return 'month';
-    } else {
-      return null;
-    }
-  }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log(checkParams(day, month));
+
   const [selectedDate, setSelectedDate] = useState(
-    checkParams()
-      ? parse(checkParams().date, checkParams().pattern, new Date())
+    checkParams(day, month)
+      ? parse(
+          checkParams(day, month).date,
+          checkParams(day, month).pattern,
+          new Date()
+        )
       : new Date()
   );
+
   const [pickerType, setPickerType] = useState(checkPageType() || 'month');
-  // const [showDateInfo, setShowDateInfo] = useState(true);
 
   const handleDateChange = date => {
+    console.log('handleDateChange');
     setSelectedDate(date);
-    // setShowDateInfo(true);
-    console.log(date);
+    if (pickerType === 'month') {
+      navigate(`month/${format(date, 'yyyy-MM')}`);
+    }
+
+    if (pickerType === 'day') {
+      navigate(`month/${format(date, 'yyyy-MM-dd')}`);
+    }
   };
 
   useEffect(() => {
-    if (pickerType === 'month') {
-      const selectedMonth = `${selectedDate.getFullYear()}-${
-        selectedDate.getMonth() + 1
-      }`;
-      navigate(`month/${selectedMonth}`);
-    } else {
-      const selectedDay = `${selectedDate.getFullYear()}-${(
-        selectedDate.getMonth() + 1
-      )
-        .toString()
-        .padStart(2, '0')}-${selectedDate
-        .getDate()
-        .toString()
-        .padStart(2, '0')}`;
-      navigate(`day/${selectedDay}`);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedDate, pickerType]);
+    checkParams(day, month)
+      ? setSelectedDate(
+          parse(
+            checkParams(day, month).date,
+            checkParams(day, month).pattern,
+            new Date()
+          )
+        )
+      : new Date();
+
+    setPickerType(checkPageType(day, month) || 'month');
+  }, [day, month]);
 
   const handlePrevDay = () => {
     const newDate = new Date(selectedDate);
     if (pickerType === 'month') {
       newDate.setMonth(selectedDate.getMonth() - 1);
+      navigate(`month/${format(newDate, 'yyyy-MM')}`);
     } else {
       newDate.setDate(selectedDate.getDate() - 1);
+      navigate(`day/${format(newDate, 'yyyy-MM-dd')}`);
     }
 
     setSelectedDate(newDate);
@@ -81,8 +77,10 @@ const DatePicker = () => {
     const newDate = new Date(selectedDate);
     if (pickerType === 'month') {
       newDate.setMonth(selectedDate.getMonth() + 1);
+      navigate(`month/${format(newDate, 'yyyy-MM')}`);
     } else {
       newDate.setDate(selectedDate.getDate() + 1);
+      navigate(`day/${format(newDate, 'yyyy-MM-dd')}`);
     }
     setSelectedDate(newDate);
   };
@@ -103,7 +101,7 @@ const DatePicker = () => {
               className={'myDatepicker'}
               calendarClassName={'myCalendar'}
               dateFormat={pickerType === 'month' ? 'MMMM yyyy' : 'dd MMM yyyy'}
-              showMonthYearPicker={pickerType === 'month'}
+              showMonthYearPicker={pickerType === 'month' ? true : false}
             />
             <div className={'boxButton'}>
               <button className={'buttonLeft'} onClick={handlePrevDay}>
@@ -114,29 +112,28 @@ const DatePicker = () => {
               </button>
             </div>
           </div>
-          <div className={'boxButtonDayMonth'}>
-            <button
-              // className={'showMonths'}
-              className={
-                pickerType === 'month' ? 'showMonths active' : 'showMonths'
-              }
-              onClick={() => handleTypeChange('month')}
+          <nav className={'boxButtonDayMonth'}>
+            <NavLink
+              className={'showMonths'}
+              to={`month/${format(selectedDate, 'yyyy-MM')}`}
+              onClick={() => {
+                handleTypeChange('month');
+              }}
             >
-              Months
-            </button>
-            <button
-              // className={'showDay'}
-              className={pickerType === 'month' ? 'showDay' : 'showDay active'}
-              onClick={() => handleTypeChange('day')}
+              Month
+            </NavLink>
+            <NavLink
+              className={'showDay'}
+              to={`day/${format(selectedDate, 'yyyy-MM-dd')}`}
+              onClick={() => {
+                handleTypeChange('day');
+              }}
             >
-              Days
-            </button>
-          </div>
+              Day
+            </NavLink>
+          </nav>
 
-          <DateInfoComponent
-            selectedDate={selectedDate}
-            pickerType={pickerType}
-          />
+          <DateInfoComponent />
         </div>
       </div>
     </DatePickerContainer>
