@@ -7,7 +7,7 @@ export const UserSectionWrap = styled.section`
   padding: 0px 18px 40px 18px;
   margin-bottom: 38px;
   margin-top: 95px;
-  background: #fff;
+  background: ${p => p.theme.bgUserform};
   border-radius: 16px;
 
   @media screen and (min-width: 767px) {

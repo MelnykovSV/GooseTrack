@@ -7,7 +7,7 @@ export const SaveBtn = styled.button`
   line-height: 18px;
   text-align: center;
   border: none;
-  color: #ffffff;
+  color: ${({ theme }) => theme.white};
   display: grid;
   grid-row: 5;
   justify-self: center;
@@ -16,8 +16,8 @@ export const SaveBtn = styled.button`
   margin: 0 auto;
   isolation: isolate;
   min-width: 195px;
-  background-color: ${({ disabled }) => {
-    return disabled ? '#d3d3d3' : '#3e85f3';
+  background-color: ${({ disabled, theme }) => {
+    return disabled ? `${theme.disabled}` : `${theme.accentPrimary}`;
   }};
 
   border-radius: 16px;
@@ -31,8 +31,8 @@ export const SaveBtn = styled.button`
 
   :hover,
   :focus {
-    background-color: ${({ disabled }) => {
-      return disabled ? '#d3d3d3' : '#2b78ef';
+    background-color: ${({ disabled, theme }) => {
+      return disabled ? `${theme.disabled}` : `${theme.accentPrimaryHover}`;
     }};
   }
 
