@@ -19,15 +19,13 @@ export const TaskslistWraper = styled.div`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #f2f2f2;
-
+    background-color: ${({ theme }) => theme.scrollbarTrack};
     border-radius: 12px;
   }
 
   ::-webkit-scrollbar-thumb {
     border-radius: 12px;
-
-    background-color: #e7e5e5;
+    background-color: ${({ theme }) => theme.scrollbarThumb};
   }
 
   ::-webkit-scrollbar-track:hover {

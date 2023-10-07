@@ -27,6 +27,19 @@ export const getTasksByDay = createAsyncThunk(
   }
 );
 
+export const createTask = createAsyncThunk(
+  'tasks/createTask',
+  async (data, { rejectWithValue }) => {
+    try {
+      const { data: newData } = await privateApi.post(`/api/tasks`, data);
+
+      return newData.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
 export const updateTask = createAsyncThunk(
   'tasks/updateTask',
   async ({ id, data }, { rejectWithValue }) => {
@@ -35,6 +48,34 @@ export const updateTask = createAsyncThunk(
         `/api/tasks/${id}`,
         data
       );
+
+      return updatedData.data;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const deleteTask = createAsyncThunk(
+  'tasks/deleteTask',
+  async (id, { rejectWithValue }) => {
+    try {
+      const { data } = await privateApi.delete(`/api/tasks/${id}`);
+
+      return data.data._id;
+    } catch (error) {
+      return rejectWithValue(error);
+    }
+  }
+);
+
+export const changeTaskStatus = createAsyncThunk(
+  'tasks/changeTaskStatus',
+  async ({ id, status }, { rejectWithValue }) => {
+    try {
+      const { data: updatedData } = await privateApi.patch(`/api/tasks/${id}`, {
+        status,
+      });
 
       return updatedData.data;
     } catch (error) {

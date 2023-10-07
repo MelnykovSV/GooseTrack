@@ -1,5 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getTasksByMonth, updateTask, getTasksByDay } from './operations';
+import {
+  getTasksByMonth,
+  updateTask,
+  getTasksByDay,
+  createTask,
+  deleteTask,
+  changeTaskStatus,
+} from './operations';
 import { isTasksError, isTasksPending, islogout } from '../statusCheckers';
 
 // interface ITask {
@@ -21,7 +28,11 @@ const initialState = {
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearTasks(state) {
+      state.tasks = [];
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
@@ -33,12 +44,28 @@ const tasksSlice = createSlice({
         state.tasks = action.payload;
         state.isLoading = false;
       })
+      .addCase(createTask.fulfilled, (state, action) => {
+        state.tasks.push(action.payload);
+        state.isLoading = false;
+      })
       .addCase(updateTask.fulfilled, (state, action) => {
         state.tasks = state.tasks.map(task =>
           task._id === action.payload._id
             ? { ...task, ...action.payload }
             : task
         );
+        state.isLoading = false;
+      })
+      .addCase(changeTaskStatus.fulfilled, (state, action) => {
+        state.tasks = state.tasks.map(task =>
+          task._id === action.payload._id
+            ? { ...task, ...action.payload }
+            : task
+        );
+        state.isLoading = false;
+      })
+      .addCase(deleteTask.fulfilled, (state, action) => {
+        state.tasks = state.tasks.filter(({ _id }) => _id !== action.payload);
         state.isLoading = false;
       })
       .addMatcher(isTasksPending, state => {
@@ -58,6 +85,8 @@ const tasksSlice = createSlice({
       });
   },
 });
+
+export const { clearTasks } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;
 export const getTasksError = state => state.tasks.error;

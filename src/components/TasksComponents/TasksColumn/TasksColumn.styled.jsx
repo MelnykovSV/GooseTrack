@@ -7,7 +7,6 @@ export const Container = styled.div`
   flex-shrink: 0;
   padding: 18px;
   width: calc(100vw - 40px);
-  width: 100%;
   min-height: 155px;
   max-height: 432px;
 
@@ -16,14 +15,14 @@ export const Container = styled.div`
   background-color: ${({ theme }) => theme.bgPrimary};
 
   @media screen and (min-width: 375px) {
-    max-width: 335px;
+    width: 335px;
   }
 
   @media screen and (min-width: 768px) {
     padding: 20px;
     min-height: 165px;
     max-height: 568px;
-    width: calc((100vw - 54px) / 3);
-    min-width: 344px;
+    /* width: calc((100vw - 54px) / 3); */
+    width: 344px;
   }
 `;
