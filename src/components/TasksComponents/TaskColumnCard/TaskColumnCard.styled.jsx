@@ -70,7 +70,18 @@ export const Priority = styled.div`
   border-radius: 4px;
   color: ${({ theme }) => theme.bgSecondary};
 
-  background: ${({ theme }) => theme.priorityLowBg};
+  background: ${({ theme, $priority }) => {
+    switch ($priority) {
+      case 'low':
+        return theme.priorityLowBg;
+      case 'medium':
+        return theme.accentYellow;
+      case 'high':
+        return theme.accentRed;
+      default:
+        throw new Error('Invalid status');
+    }
+  }};
   text-align: center;
   font-family: Inter;
   font-size: 10px;

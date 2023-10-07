@@ -11,6 +11,7 @@ import { useResizeScreen } from 'hooks';
 import { TaskModal } from 'components/TasksComponents';
 
 import * as S from './CalendarTable.styled';
+import { clearTasks } from 'redux/tasks/tasksSlice';
 
 export const DropDownTaskList = ({ tasks, onOpenTaskModal }) => {
   const [anchorEl, setAnchorEl] = useState(null);
@@ -91,6 +92,10 @@ export const CalendarTable = () => {
   useEffect(() => {
     setDate(new Date(month));
     dispatch(getTasksByMonth(month));
+
+    return () => {
+      dispatch(clearTasks());
+    };
   }, [month, dispatch]);
 
   const tableData = useMemo(() => {

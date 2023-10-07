@@ -21,7 +21,11 @@ const initialState = {
 const tasksSlice = createSlice({
   name: 'tasks',
   initialState: initialState,
-  reducers: {},
+  reducers: {
+    clearTasks(state) {
+      state.tasks = [];
+    },
+  },
   extraReducers: builder => {
     builder
       .addCase(getTasksByMonth.fulfilled, (state, action) => {
@@ -58,6 +62,8 @@ const tasksSlice = createSlice({
       });
   },
 });
+
+export const { clearTasks } = tasksSlice.actions;
 
 export const tasksReducer = tasksSlice.reducer;
 export const getTasksError = state => state.tasks.error;
