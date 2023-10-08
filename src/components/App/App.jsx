@@ -47,21 +47,21 @@ export const App = () => {
   }, []);
 
   useEffect(() => {
-    if (authError) {
+    if (authError && authError.code) {
       console.log(authError);
       toast.error(authError.message);
     }
   }, [authError]);
 
   useEffect(() => {
-    if (tasksError) {
+    if (tasksError && tasksError.code) {
       console.log(tasksError);
       toast.error(tasksError.message);
     }
   }, [tasksError]);
 
   useEffect(() => {
-    if (reviewsError) {
+    if (reviewsError && reviewsError.code) {
       console.log(reviewsError);
       toast.error(reviewsError.message);
     }

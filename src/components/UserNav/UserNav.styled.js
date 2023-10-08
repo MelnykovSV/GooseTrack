@@ -34,6 +34,7 @@ export const StyledNavLink = styled(NavLink)`
   &.active {
     color: ${props => props.theme.accentPrimary};
     background-color: ${props => props.theme.bgToggleUnactive};
+    pointer-events: none;
   }
 
   &:hover {
