@@ -38,7 +38,13 @@ export const TaskColumnCard = ({ task }) => {
       <S.Wraper>
         <S.PriorityWraper>
           <S.AvatarThumb>
-            {avatarUrl && <S.Avatar src={avatarUrl} alt="User avatar" />}
+            {avatarUrl ? (
+              <S.Avatar src={avatarUrl} alt="User avatar" />
+            ) : (
+              <S.NoAvatar>
+                <S.NoAvatarIcon />
+              </S.NoAvatar>
+            )}
           </S.AvatarThumb>
           <S.Priority $priority={task.priority}>
             {task.priority[0].toUpperCase() + task.priority.slice(1)}
@@ -71,3 +77,13 @@ export const TaskColumnCard = ({ task }) => {
     </S.CardWraper>
   );
 };
+
+//  {
+//    avatarUrl ? (
+//      <S.Avatar src={avatarUrl} alt="User avatar" />
+//    ) : (
+//  <S.NoAvatar>
+//    <S.NoAvatarIcon />
+//  </S.NoAvatar>
+//    );
+//  }

@@ -1,7 +1,11 @@
 import { createTheme } from '@mui/material/styles';
 
 export const lightTheme = createTheme({
+  taskFormCancelButton: '#111111',
   borderDropDownMenu: '#ffffff',
+  bgDropDownMenu: '#ffffff',
+  borderInputTaskForm: 'transparent',
+  labelTaskForm: 'rgba(52, 52, 52, 0.8)',
   tableIcon: '#343434',
   tableBg: '#FFFFFF',
   priorityLowBg: '#72c2f8',
@@ -13,7 +17,6 @@ export const lightTheme = createTheme({
   textPrimaryLightTransparent: 'rgba(52, 52, 52, 0.5)',
   textModalTransparent: 'rgba(52, 52, 52, 0.8)',
   textSecondary: '#171820',
-  textUser: '#343434',
   textLabel: '#111111',
   textLogo: '#3E85F3',
   textNav: '#3E85F3',
@@ -83,7 +86,11 @@ export const lightTheme = createTheme({
 });
 
 export const darkTheme = createTheme({
+  taskFormCancelButton: '#111111',
   borderDropDownMenu: 'rgba(255, 255, 255, 0.15)',
+  borderInputTaskForm: 'rgba(255, 255, 255, 0.15)',
+  bgDropDownMenu: '#171820',
+  labelTaskForm: 'rgba(250, 250, 250, 0.30)',
   tableIcon: '#343434',
   tableBg: '#22232D',
   priorityLowBg: '#72c2f8',

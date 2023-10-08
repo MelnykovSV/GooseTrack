@@ -6,7 +6,7 @@ export const TaskslistWraper = styled.div`
   overflow: auto;
 
   gap: 14px;
-
+  /* background-color: ${({ theme }) => theme.bgSecondary}; */
   @media screen and (min-width: 768px) {
     margin-bottom: 32px;
   }
@@ -20,15 +20,16 @@ export const TaskslistWraper = styled.div`
 
   ::-webkit-scrollbar-track {
     background-color: ${({ theme }) => theme.scrollbarTrack};
-    border-radius: 12px;
+    border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb {
-    border-radius: 12px;
     background-color: ${({ theme }) => theme.scrollbarThumb};
+    border: 4px solid ${({ theme }) => theme.scrollbarTrack};
+    border-radius: 12px;
   }
 
   ::-webkit-scrollbar-track:hover {
-    box-shadow: inset 0 0 1px rgba(0, 0, 0, 0.1);
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
   }
 `;

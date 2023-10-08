@@ -19,13 +19,17 @@ export const Container = styled.ul`
   }
 
   ::-webkit-scrollbar-track {
-    background-color: #f2f2f2;
-
-    border-radius: 12px;
+    background-color: ${({ theme }) => theme.scrollbarTrack};
+    border-radius: 5px;
   }
 
   ::-webkit-scrollbar-thumb {
+    background-color: ${({ theme }) => theme.scrollbarThumb};
+    border: 4px solid ${({ theme }) => theme.scrollbarTrack};
     border-radius: 12px;
-    background-color: #e7e5e5;
+  }
+
+  ::-webkit-scrollbar-track:hover {
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.1);
   }
 `;

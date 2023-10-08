@@ -64,7 +64,8 @@ export const LabelText = styled.span`
   display: block;
   margin-bottom: 8px;
 
-  color: rgba(52, 52, 52, 0.8);
+  color: ${({ theme }) => theme.labelTaskForm};
+
   font-size: 12px;
   line-height: 1.16;
 `;
@@ -78,9 +79,9 @@ export const Input = styled.input`
   font-weight: 600;
   line-height: 1.28;
 
-  border: none;
+  border-color: ${({ theme }) => theme.borderInputTaskForm};
   border-radius: 8px;
-  background: #f6f6f6;
+  background: ${({ theme }) => theme.bgTextarea};
 
   &::placeholder {
     color: ${({ theme }) => theme.textPrimaryLight};
@@ -246,7 +247,7 @@ export const SubmitButton = styled(Button)`
 export const CancelButton = styled(Button)`
   max-width: 118px;
 
-  color: ${({ theme }) => theme.textPrimary};
+  color: ${({ theme }) => theme.taskFormCancelButton};
 
   background-color: #efefef;
 

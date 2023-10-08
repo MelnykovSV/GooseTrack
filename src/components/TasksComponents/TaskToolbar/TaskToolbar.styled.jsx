@@ -6,15 +6,17 @@ export const StatusButton = styled.li`
   justify-content: space-between;
   align-items: center;
   padding: 0;
-
   cursor: pointer;
 
   color: ${({ theme }) => theme.textPrimaryLight};
   border: none;
-  background-color: transparent;
+  background-color: ${({ theme }) => theme.bgPrimary};
 
   transition: color
     ${({ theme }) => `${theme.transitions.time} ${theme.transitions.cubic}`};
+  &:hover {
+    color: ${({ theme }) => theme.accentPrimary};
+  }
 
   &:not(:last-child) {
     margin-bottom: 14px;
@@ -26,6 +28,7 @@ export const Status = styled.p`
   font-size: 12px;
   font-weight: 500;
   line-height: 1.16;
+  color: currentColor;
 
   @media screen and (min-width: 768px) {
     font-size: 14px;
