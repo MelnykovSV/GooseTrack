@@ -10,7 +10,7 @@ export const BodyContent = styled.div`
   }
 
   @media (min-width: 1440px) {
-    padding: 32px 32px 32px 32px;
+    padding: 0px 32px 32px 32px;
   }
 `;
 
