@@ -13,8 +13,8 @@ const timeRegexp = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 const validationSchema = yup.object({
   title: yup.string().trim().max(250).required(),
   priority: yup.string().oneOf(['low', 'medium', 'high']),
-  start: yup.string().matches(timeRegexp, 'hh:mm').required(),
-  end: yup.string().matches(timeRegexp, 'hh:mm').required(),
+  start: yup.string().matches(timeRegexp, 'Invalid time, hh:mm').required(),
+  end: yup.string().matches(timeRegexp, 'Invalid time, hh:mm').required(),
 });
 
 const defaultValues = {
@@ -55,11 +55,19 @@ export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingTask);
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
+    let requestStatus = null;
+
     if (isCreate) {
-      dispatch(createTask({ ...data, date, status }));
+      const { meta } = await dispatch(createTask({ ...data, date, status }));
+      requestStatus = meta.requestStatus;
     } else {
-      dispatch(updateTask({ id: task._id, data }));
+      const { meta } = await dispatch(updateTask({ id: task._id, data }));
+      requestStatus = meta.requestStatus;
+    }
+
+    if (requestStatus !== 'rejected') {
+      onCloseTaskModal();
     }
   };
 
