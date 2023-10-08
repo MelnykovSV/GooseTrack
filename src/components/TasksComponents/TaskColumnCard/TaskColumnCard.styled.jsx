@@ -2,6 +2,7 @@ import styled from '@emotion/styled';
 import { ReactComponent as Arrow } from '../../../images/TaskIcons/arrow-circle-broken-right.svg';
 import { ReactComponent as Pencil } from '../../../images/TaskIcons/pencil-01.svg';
 import { ReactComponent as Trash } from '../../../images/TaskIcons/trash-04.svg';
+import { ReactComponent as DefAvatar } from '../../../images/TaskIcons/Default_Avatar.svg';
 
 export const CardWraper = styled.li`
   width: 299px;
@@ -10,7 +11,7 @@ export const CardWraper = styled.li`
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.strokeTransparant};
 
-  background-color: ${({ theme }) => theme.bgSecondary};
+  background-color: ${({ theme }) => theme.bgMain};
 
   list-style: none;
   width: 100%;
@@ -67,6 +68,24 @@ export const Avatar = styled.img`
   object-fit: cover;
   object-position: center;
 `;
+export const NoAvatar = styled.div`
+  display: flex;
+  /* width: 100%;
+  height: 100%; */
+  justify-content: center;
+  align-items: center;
+
+  /* object-fit: cover;
+  object-position: center; */
+`;
+
+export const NoAvatarIcon = styled(DefAvatar)`
+  width: 24px;
+  height: 26px;
+
+  fill: ${({ theme }) => theme.taskFormCancelButton};
+`;
+
 export const PriorityWraper = styled.div`
   display: flex;
   gap: 8px;

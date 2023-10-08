@@ -9,10 +9,12 @@ export const Container = styled.div`
   width: calc(100vw - 40px);
   min-height: 155px;
   max-height: 432px;
+  /* overflow-y: auto; */
 
   border-radius: 8px;
   border: 1px solid ${({ theme }) => theme.stroke};
-  background-color: ${({ theme }) => theme.bgPrimary};
+  /* background-color: #21222c; */
+  background-color: ${({ theme }) => theme.bgUserform};
 
   @media screen and (min-width: 375px) {
     width: 335px;

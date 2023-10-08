@@ -1,6 +1,7 @@
 import { Menu } from '@mui/material';
 import * as S from './TaskToolbar.styled';
 import { useResizeScreen } from 'hooks';
+import { useTheme } from '@mui/material';
 
 const statusLabels = {
   todo: 'To do',
@@ -15,6 +16,7 @@ export const TaskToolbar = ({
   statuses,
   onChangeStatus,
 }) => {
+  const theme = useTheme();
   const { isMobile } = useResizeScreen();
 
   const menuStyle = (() => {
@@ -37,8 +39,12 @@ export const TaskToolbar = ({
       sx={{
         '.MuiPaper-root': {
           ...menuStyle,
+          border: ' 1px solid ',
           boxShadow: ' 0px 4px 16px 0px rgba(17, 17, 17, 0.10)',
           borderRadius: '8px',
+
+          borderColor: theme.borderInputTaskForm,
+          backgroundColor: theme.bgPrimary,
         },
         '& .MuiList-root': { padding: 0 },
       }}
