@@ -3,7 +3,7 @@ import Container from './App.styled';
 import { ModernNormalize } from 'emotion-modern-normalize';
 import { Suspense, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getAuthError } from 'redux/auth/authSlice';
 import { getTasksError } from 'redux/tasks/tasksSlice';
@@ -13,6 +13,8 @@ import { CalendarDatepickerPage } from 'pages/CalendarDatepicerPage/CalendarDate
 import { DayTasksListPage } from 'pages/DayTasksListPage/DayTasksListPage';
 import { ThemeProvider } from '@mui/material/styles';
 import { useThemeContext } from 'theme/ThemeContextProvider';
+import { getIsRefreshing } from 'redux/auth/authSlice';
+import { refresh } from 'redux/auth/operations';
 
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
@@ -30,11 +32,18 @@ const Statistics = lazy(() =>
 const MainPage = lazy(() => import('../../pages/MainPage/MainPage'));
 
 export const App = () => {
+  const dispatch = useDispatch();
+  const isRefreshing = useSelector(getIsRefreshing);
   const authError = useSelector(getAuthError);
   const tasksError = useSelector(getTasksError);
   const reviewsError = useSelector(getReviewsError);
 
   const { theme } = useThemeContext();
+
+  useEffect(() => {
+    dispatch(refresh());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (authError) {
@@ -62,25 +71,29 @@ export const App = () => {
       <Container>
         <ModernNormalize />
         <Suspense fallback={<div>Loading...</div>}>
-          <Routes>
-            <Route element={<PublicRoute />}>
-              <Route path="/" element={<MainPage />} />
-              <Route path="login" element={<LoginPage />} />
-              <Route path="register" element={<RegistrationPage />} />
-            </Route>
-            <Route element={<PrivateRoute />}>
-              <Route element={<SharedLayout />}>
-                <Route path="account" element={<AccountPage />} />
-                <Route path="calendar" element={<CalendarDatepickerPage />}>
-                  <Route path="month/:month" element={<CalendarPage />} />
-                  <Route path="day/:day" element={<DayTasksListPage />} />
-                </Route>
-                <Route path="statistics" element={<Statistics />} />
+          {!isRefreshing ? (
+            <Routes>
+              <Route element={<PublicRoute />}>
+                <Route path="/" element={<MainPage />} />
+                <Route path="login" element={<LoginPage />} />
+                <Route path="register" element={<RegistrationPage />} />
               </Route>
-            </Route>
+              <Route element={<PrivateRoute />}>
+                <Route element={<SharedLayout />}>
+                  <Route path="account" element={<AccountPage />} />
+                  <Route path="calendar" element={<CalendarDatepickerPage />}>
+                    <Route path="month/:month" element={<CalendarPage />} />
+                    <Route path="day/:day" element={<DayTasksListPage />} />
+                  </Route>
+                  <Route path="statistics" element={<Statistics />} />
+                </Route>
+              </Route>
 
-            <Route path="*" element={<div>not found</div>} />
-          </Routes>
+              <Route path="*" element={<div>not found</div>} />
+            </Routes>
+          ) : (
+            <div>Loader</div>
+          )}
         </Suspense>
         <ToastContainer />
       </Container>

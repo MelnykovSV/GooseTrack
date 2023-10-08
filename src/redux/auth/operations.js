@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { publicApi, privateApi } from 'api';
+import { publicApi, privateApi, refreshApi } from 'api';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -65,16 +65,17 @@ export const getUserData = createAsyncThunk(
   }
 );
 
-// export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
-//   try {
-//     const response = await refreshApi.post('/api/auth/refresh');
-//     console.log('refresh', response);
-//     return response.data.data;
-//   } catch (error) {
-//     console.log(thunkAPI.rejectWithValue(error.message));
-//     return thunkAPI.rejectWithValue(error.message);
-//   }
-// });
+export const refresh = createAsyncThunk('auth/refresh', async (_, thunkAPI) => {
+  try {
+    console.log('refresh started');
+    const response = await refreshApi.post('/api/auth/refresh');
+    console.log('refresh', response);
+    return response.data.data;
+  } catch (error) {
+    console.log(thunkAPI.rejectWithValue(error.message));
+    return thunkAPI.rejectWithValue(error.message);
+  }
+});
 
 export const updateAvatar = createAsyncThunk(
   'auth/avatar',

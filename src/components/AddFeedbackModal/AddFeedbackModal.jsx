@@ -3,9 +3,9 @@ import { CustomModal } from 'components/CustomModal/CustomModal';
 import { useEffect, useState } from 'react';
 import { privateApi } from 'api';
 
-function timeout(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
+// function timeout(ms) {
+//   return new Promise(resolve => setTimeout(resolve, ms));
+// }
 
 export const AddFeedbackModal = ({ open, onClose }) => {
   const [ratingInModal, setRatingInModal] = useState(0);
@@ -16,7 +16,7 @@ export const AddFeedbackModal = ({ open, onClose }) => {
   useEffect(() => {
     const getReview = async () => {
       try {
-        await timeout(500);
+        // await timeout(500);
         const response = await privateApi.get('/api/reviews/own');
         if (
           response &&

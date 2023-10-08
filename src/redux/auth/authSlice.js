@@ -8,6 +8,7 @@ import {
   getUserData,
   editData,
   updateAvatar,
+  refresh,
 } from './operations';
 
 const initialState = {
@@ -22,6 +23,7 @@ const initialState = {
   accessToken: null,
   refreshToken: null,
   isLoggedIn: false,
+  isRefreshing: false,
   isLoading: false,
   error: null,
 };
@@ -48,6 +50,7 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.user = { ...state.user, ...action.payload.user };
+      state.isLoggedIn = true;
       state.isLoading = false;
       state.status = 'fulfilled';
       state.error = null;
@@ -56,6 +59,7 @@ const authSlice = createSlice({
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
       state.user = { ...state.user, ...action.payload.user };
+      state.isLoggedIn = true;
       state.isLoading = false;
       state.status = 'fulfilled';
       state.error = null;
@@ -64,6 +68,7 @@ const authSlice = createSlice({
       state.accessToken = null;
       state.refreshToken = null;
       state.user = { ...initialState.user };
+      state.isLoggedIn = false;
       state.isLoading = false;
       state.status = 'fulfilled';
       state.error = null;
@@ -74,23 +79,31 @@ const authSlice = createSlice({
       state.status = 'fulfilled';
       state.error = null;
     });
-    // builder.addCase(refresh.fulfilled, (state, action) => {
-    //   state.accessToken = action.payload.accessToken;
-    //   state.refreshToken = action.payload.refreshToken;
-    //   state.isLoading = false;
-    //   state.status = 'fulfilled';
-    // });
+    builder.addCase(refresh.fulfilled, (state, action) => {
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
+      state.isLoading = false;
+      state.isRefreshing = false;
+      state.isLoggedIn = true;
+      state.status = 'fulfilled';
+    });
     builder.addCase(editData.fulfilled, (state, action) => {
       state.user = { ...state.user, ...action.payload };
       state.isLoading = false;
-      state.isLoggedIn = true;
+      // state.isLoggedIn = true;
       state.isRefreshing = false;
     });
     builder.addCase(updateAvatar.fulfilled, (state, action) => {
       console.log(action.payload);
       state.user = { ...state.user, ...action.payload };
       state.isLoading = false;
-      state.isLoggedIn = true;
+      // state.isLoggedIn = true;
+      state.isRefreshing = false;
+    });
+    builder.addCase(refresh.pending, state => {
+      state.isRefreshing = true;
+    });
+    builder.addCase(refresh.rejected, state => {
       state.isRefreshing = false;
     });
     builder.addMatcher(isAuthPending, state => {
@@ -116,3 +129,6 @@ export const getUser = state => state.auth.user;
 export const getAuthError = state => state.auth.error;
 
 export const getIsLoading = state => state.auth.isLoading;
+
+export const getIsLoggedIn = state => state.auth.isLoggedIn;
+export const getIsRefreshing = state => state.auth.isRefreshing;
