@@ -17,6 +17,7 @@ export const HeaderWrapper = styled.div`
   display: flex;
   width: 100%;
   padding-top: 24px;
+  margin-bottom: 64px;
   /* padding: 24px 20px 0px 20px; */
   /* position: fixed; */
   /* z-index: 1; */
@@ -24,11 +25,13 @@ export const HeaderWrapper = styled.div`
 
   @media (min-width: 768px) {
     /* padding: 24px 32px 0px 32px; */
+    margin-bottom: 65px;
   }
 
   @media (min-width: 1440px) {
     padding-left: 32px;
     padding-right: 32px;
+    margin-bottom: 33px;
     /* padding: 40px 32px 38px 32px; */
     /* position: relative;
     z-index: 0; */
