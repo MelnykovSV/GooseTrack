@@ -1,17 +1,17 @@
-// import { LogoutBtn } from '../LogoutBtn/LogoutBtn';
 import { UserNav } from '../UserNav/UserNav';
 import { useDispatch } from 'react-redux';
 import { logOut } from 'redux/auth/operations';
 import Button from '../Button/Button';
-import LogoImage from '../../images/SideBar/GOOSE_1x4.jpg';
-import CloseIcon from '../../images/SideBar/x-close.svg';
+import LogoImage from '../../images/SideBar/Goose.png';
+import icons from '../../assets/images/icons.svg';
 import {
   Container,
   LogoContainer,
   LogoImg,
-  Logotext,
-  // LogOutBtn,
   CloseBtn,
+  LogoText,
+  LogoPiece,
+  CloseIcon,
 } from './SideBar.styled';
 import { ReactComponent as LogoutBtnIcon } from '../../icons/SideBarIcons/log-out-01.svg';
 
@@ -26,9 +26,13 @@ export const SideBar = ({ onClose }) => {
     <Container>
       <LogoContainer>
         <LogoImg src={LogoImage} alt="logo" />
-        <Logotext>GooseTrack</Logotext>
+        <LogoText>
+          G<LogoPiece>oo</LogoPiece>seTrack
+        </LogoText>
         <CloseBtn onClick={onClose}>
-          <img src={CloseIcon} alt="close" />
+          <CloseIcon>
+            <use href={`${icons}#icon-close`}></use>
+          </CloseIcon>
         </CloseBtn>
       </LogoContainer>
       <UserNav />
