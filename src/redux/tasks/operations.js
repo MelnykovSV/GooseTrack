@@ -5,6 +5,7 @@ export const getTasksByMonth = createAsyncThunk(
   'tasks/getTasksByMonth',
   async (month, { rejectWithValue }) => {
     try {
+      console.log('getTasksByMonth');
       const { data } = await privateApi.get(`/api/tasks/getByMonth/${month}`);
 
       return { data: data.data, month };

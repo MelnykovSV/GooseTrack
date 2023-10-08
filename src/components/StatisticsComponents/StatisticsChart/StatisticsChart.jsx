@@ -15,12 +15,13 @@ import {
 import { Container, Title } from './StatisticsChart.styled';
 import { getTasksByMonth } from 'redux/tasks/operations';
 import { useDispatch } from 'react-redux';
-import { getTasks, getMonth } from 'redux/tasks/tasksSlice';
+// import { getTasks, getMonth } from 'redux/tasks/tasksSlice';
+import { getTasks } from 'redux/tasks/tasksSlice';
 
 const StatisticsChart = ({ currentDayMonth, _ }) => {
   const theme = useTheme();
   const tasks = useSelector(getTasks);
-  const month = useSelector(getMonth);
+  // const month = useSelector(getMonth);
   const isMobile = useMediaQuery('(max-width: 768px)');
 
   const dispatch = useDispatch();
@@ -96,9 +97,11 @@ const StatisticsChart = ({ currentDayMonth, _ }) => {
   }
 
   useEffect(() => {
-    if (currentMonth !== month) {
-      dispatch(getTasksByMonth(currentMonth));
-    }
+    // if (currentMonth !== month) {
+    //   dispatch(getTasksByMonth(currentMonth));
+    // }
+
+    dispatch(getTasksByMonth(currentMonth));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentDayMonth]);
 
