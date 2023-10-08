@@ -28,14 +28,14 @@ export const StyledNavLink = styled(NavLink)`
 
   &.active {
     color: ${({ theme }) => theme.textNav};
-    background-color: ${({ theme }) => theme.bgToggleUnactive};
+    background-color: ${({ theme }) => theme.bgToggleActive};
 
     pointer-events: none;
   }
 
   &:hover {
     color: ${({ theme }) => theme.textNav};
-    background-color: ${({ theme }) => theme.bgToggleUnactive};
+    background-color: ${({ theme }) => theme.bgToggleActive};
   }
 
   @media (min-width: 768px) {
