@@ -20,7 +20,7 @@ export const UserAvatarWrap = () => {
   return (
     <AvatarContainer>
       <UserAvatar>
-        <Avatar isForm />
+        <Avatar fontSize='calc(24px + 3vw)' />
         <AvatarUploadContainer>
           <input
             id="avatarUrl"

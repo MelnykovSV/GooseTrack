@@ -1,4 +1,4 @@
-import { useForm } from 'react-hook-form';
+import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import * as S from './TaskForm.styled';
@@ -7,14 +7,15 @@ import { createTask, updateTask } from 'redux/tasks/operations';
 import CircularProgress from '@mui/material/CircularProgress';
 import { selectIsLoadingTask } from 'redux/selectors';
 import { useParams } from 'react-router-dom';
+import { PatternFormat } from 'react-number-format';
 
 const timeRegexp = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
 const validationSchema = yup.object({
   title: yup.string().trim().max(250).required(),
   priority: yup.string().oneOf(['low', 'medium', 'high']),
-  start: yup.string().matches(timeRegexp, 'hh:mm').required(),
-  end: yup.string().matches(timeRegexp, 'hh:mm').required(),
+  start: yup.string().matches(timeRegexp, 'Invalid time, hh:mm').required(),
+  end: yup.string().matches(timeRegexp, 'Invalid time, hh:mm').required(),
 });
 
 const defaultValues = {
@@ -46,6 +47,7 @@ export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
     register,
     watch,
     handleSubmit,
+    control,
     formState: { errors },
   } = useForm({
     defaultValues: defaultTaskValues,
@@ -55,11 +57,19 @@ export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoadingTask);
 
-  const onSubmit = data => {
+  const onSubmit = async data => {
+    let requestStatus = null;
+
     if (isCreate) {
-      dispatch(createTask({ ...data, date, status }));
+      const { meta } = await dispatch(createTask({ ...data, date, status }));
+      requestStatus = meta.requestStatus;
     } else {
-      dispatch(updateTask({ id: task._id, data }));
+      const { meta } = await dispatch(updateTask({ id: task._id, data }));
+      requestStatus = meta.requestStatus;
+    }
+
+    if (requestStatus !== 'rejected') {
+      onCloseTaskModal();
     }
   };
 
@@ -88,7 +98,20 @@ export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
         <label style={{ position: 'relative' }}>
           <S.LabelText>Start</S.LabelText>
 
-          <S.Input placeholder="9:00" {...register('start')} />
+          <Controller
+            name="start"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <PatternFormat
+                value={value}
+                onChange={onChange}
+                format="##:##"
+                mask="_"
+                placeholder="9:00"
+                customInput={S.Input}
+              />
+            )}
+          />
 
           {errors?.start && <S.ErrorText>{errors.start?.message}</S.ErrorText>}
         </label>
@@ -96,7 +119,20 @@ export const TaskForm = ({ task = null, onCloseTaskModal, status = null }) => {
         <label style={{ position: 'relative' }}>
           <S.LabelText>End</S.LabelText>
 
-          <S.Input placeholder="14:00" {...register('end')} />
+          <Controller
+            name="end"
+            control={control}
+            render={({ field: { value, onChange } }) => (
+              <PatternFormat
+                value={value}
+                onChange={onChange}
+                format="##:##"
+                mask="_"
+                placeholder="14:00"
+                customInput={S.Input}
+              />
+            )}
+          />
 
           {errors?.end && <S.ErrorText>{errors.end?.message}</S.ErrorText>}
         </label>
