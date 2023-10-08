@@ -28,6 +28,107 @@ export const General = styled.div`
     width: 1087px;
     padding: 134px 114px 104px;
   }
+
+  .react-datepicker__triangle {
+    display: none;
+  }
+
+  .react-datepicker-wrapper {
+    display: block;
+  }
+  .react-datepicker__day {
+    color: #fff;
+  }
+
+  .react-datepicker__day:hover {
+    background-color: #fff;
+    color: #3e85f3;
+    border-radius: 100%;
+  }
+
+  .react-datepicker__day--weekend {
+    color: rgba(255, 255, 255, 0.3);
+  }
+
+  .react-datepicker__day--selected {
+    color: #3e85f3;
+    background-color: #fff;
+    border-radius: 100%;
+  }
+
+  .react-datepicker {
+    background-color: #3e85f3;
+  }
+
+  .react-datepicker__header {
+    background-color: #3e85f3;
+    color: #fff;
+    border: none;
+  }
+
+  .react-datepicker__current-month {
+    color: #fff;
+  }
+
+  .react-datepicker__navigation {
+    color: #fff;
+  }
+
+  .react-datepicker__day-name {
+    color: #fff;
+  }
+
+  .react-datepicker {
+    border-radius: 10px;
+  }
+
+  /* .react-datepicker__day--weekend {
+  color: rgba(255, 255, 255, 0.3);
+} */
+
+  .react-datepicker__day--outside-month {
+    color: transparent;
+  }
+  .react-datepicker__navigation--previous {
+    left: 3px;
+    top: 8px;
+  }
+  .react-datepicker__navigation--next {
+    right: 3px;
+    top: 8px;
+  }
+
+  .react-datepicker__header {
+    height: 83px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    color: white;
+
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: none;
+    position: relative;
+  }
+  .react-datepicker__day-names {
+    /* border-bottom: 1px solid ${({ theme }) => theme.calendarInactive}; */
+    :after {
+      content: '';
+      position: absolute;
+      width: 90%;
+      height: 1px;
+      left: 50%;
+      bottom: 0;
+      transform: translateX(-50%);
+      background-color: ${({ theme }) => theme.calendarInactive};
+    }
+  }
+
+  .react-datepicker__day-name {
+    color: #ffff;
+    font-family: inherit;
+    font-size: 16px;
+  }
 `;
 
 export const Option = styled.div`
@@ -54,13 +155,12 @@ export const Buttons = styled.div`
   justify-content: space-between;
 
   @media ${device.tablet} {
-    justify-content: flex-start;
-    gap: 8px;
+    width: 259px;
   }
 `;
 
 export const ButtonData = styled(Button)`
-  max-width: 190px;
+  width: 175px;
   padding: 6px 12px;
 
   font-weight: 700;
