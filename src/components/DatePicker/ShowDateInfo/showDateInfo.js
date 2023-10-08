@@ -3,7 +3,7 @@ import { Container } from './showDateInfo.styled';
 import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { parse, format } from 'date-fns';
-import { checkParams, checkPageType } from '../DatePicker/dateParamsHelpers';
+import { checkParams, checkPageType } from '../datePicker/dateParamsHelpers';
 
 const DateInfoComponent = () => {
   const { day, month } = useParams();
@@ -17,7 +17,7 @@ const DateInfoComponent = () => {
 
   const pickerType = checkPageType(day, month);
   const navigate = useNavigate();
-  const options = { weekday: 'long', day: 'numeric' };
+  // const options = { weekday: 'long', day: 'numeric' };
   const startOfWeek = new Date(selectedDate);
   startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
 
@@ -26,9 +26,11 @@ const DateInfoComponent = () => {
   for (let i = 0; i < 7; i++) {
     const date = new Date(startOfWeek);
     date.setDate(startOfWeek.getDate() + i);
-    const formattedDate = date.toLocaleDateString('en-US', options);
+    const formattedDate = date.toLocaleDateString('en-US', {
+      day: 'numeric',
+    });
     const navigationDate = `${format(date, 'yyyy-MM-dd')}`;
-    daysOfWeek.push({ formattedDate, navigationDate });
+    daysOfWeek.push({ formattedDate, navigationDate, date });
   }
 
   const handleDayClick = day => {
@@ -36,45 +38,55 @@ const DateInfoComponent = () => {
   };
 
   return (
-    <Container>
-      <div className={'container'}>
-        {pickerType === 'month' ? (
-          <div className={'dateBox'}>
-            {daysOfWeek.map((day, index) => (
-              <div className={'dayContainer'} key={index}>
-                <div className={'dateNumber'}>
-                  <p className={'dateText'}>
-                    {day.formattedDate.split(' ')[1].substring(0, 3)}
-                  </p>{' '}
+    <div className="containerMain" style={{ width: '100%' }}>
+      <Container>
+        <div className={'dateBoxMain'}>
+          {pickerType === 'month' ? (
+            <div className={'date'}>
+              {daysOfWeek.map((day, index) => (
+                <div className={'dayContainerBox'} key={index}>
+                  <div className={'dateNumberBox'}>
+                    <p className="dayOfWeek">
+                      {day.date.toLocaleDateString('en-US', {
+                        weekday: 'long',
+                      })}
+                    </p>
+                  </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div className={'dateBox'}>
-            {daysOfWeek.map((day, index) => (
-              <div
-                className={'dayContainer'}
-                onClick={() => handleDayClick(day.navigationDate)}
-                key={index}
-              >
-                <div className={'dateNumber'}>
-                  <p className={'dateText'}>
-                    {day.formattedDate.split(' ')[1].substring(0, 3)}
-                  </p>{' '}
+              ))}
+            </div>
+          ) : (
+            <div className={'date'}>
+              {daysOfWeek.map((day, index) => (
+                <div
+                  className={'dayContainer'}
+                  onClick={() => handleDayClick(day.navigationDate)}
+                  key={index}
+                >
+                  <div className={'dateNumberBox'}>
+                    <p
+                      className={`dayOfWeek ${
+                        day.navigationDate ===
+                        format(selectedDate, 'yyyy-MM-dd')
+                          ? 'selected-date'
+                          : ''
+                      }`}
+                    >
+                      {day.formattedDate}
+                    </p>
+                    <p className="dayOfWeek">
+                      {day.date.toLocaleDateString('en-US', {
+                        weekday: 'short',
+                      })}
+                    </p>
+                  </div>
                 </div>
-                <div className={'dayOfWeek'}>
-                  {day.formattedDate
-                    .split(' ')[0]
-                    .substring(0, 3)
-                    .toUpperCase()}
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-    </Container>
+              ))}
+            </div>
+          )}
+        </div>
+      </Container>
+    </div>
   );
 };
 

@@ -2,62 +2,117 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
 
-
-  .dateBox {
-    width: 704px;
-    height: 68px;
-    border: 1px solid rgba(220, 227, 229, 0.8);
+.dateNumberBox{
     display: flex;
-    border-radius: 8px;
-    align-items: center;
-    margin-top: 10px;
-  }
-
-  .dayOfWeek {
+    flex-direction: column-reverse;
     text-align: center;
-  }
-
-  .dateNumber {
-    text-align: center;
-  }
-
-  .dayContainer {
-    display: flex;
-    flex-direction: column;
-    width: 20px;
-  }
-
-  .dayContainer {
-    width: 704px;
-    height: 68px;
-    border: 1px;
-    border-color: rgba(220, 227, 229, 0.8);
     align-items: center;
-    justify-content: center;
-    display: flex;
-  }
+}
+ .date {
 
-  .containerMonth {
-    width: 704px;
-    height: 68px;
-    border: 1px;
-    border-color: rgba(220, 227, 229, 0.8);
-    display: flex;
-    justify-content: center;
+    background-color: ${({ theme }) => theme.bgToggleActive};
+ height: 50px;
+ margin-bottom: 14px;
+width: 100%;
+display: flex;
+justify-content: space-around;
+align-items: center;
+   border-radius: 8px;
+   border:1px solid ${({ theme }) => theme.iconDisabled};
+align-items: center;
+    @media screen and (min-width: 1440px){
+    width: 1087px;
+    margin-bottom: 18px;
+    }
+  }
+.dayContainer {
+display: flex;
+
+width: 100%;
+ justify-content: center;
+align-items: center;
+@media screen and (min-width: 768px) {
+width: 740px;
+height: 68px;
+
+@media screen and (min-width: 1440px){
+width: 1087px;
+    }
+  }
+    }
+
+ .dateNumber{
+ display: flex;
+    flex-direction: column-reverse;
     align-items: center;
-  }
+ }
 
-  .dateText {
+    .dateText {
+      text-transform: uppercase;
+      margin:0;
+      margin-bottom: 8px
+      font-size: 16px;
+      ;
+    }
+
+    .dayOfWeek:hover {
+   color:rgba(62, 133, 243, 1);
+      cursor: pointer;
+    }
+    .dayOfWeek{
+      color: ${({ theme }) => theme.bgStatistics};
+       font-size: 0;
+        @media screen and (min-width: 768px) {
+          font-size: 14px;
+   @media screen and (min-width: 1440px){
+          font-size: 16px;
+        }
+    }}
+   .dayOfWeek::first-letter{
+
+  font-size: 16px;
+   @media screen and (min-width: 768px) {
+          font-size: 14px;
+           @media screen and (min-width: 1440px){
+          font-size: 16px;
+        }
+        };
+    }
+
+    .myDatepicker:focus {
+      color:gba(62, 133, 243, 1);
+      cursor: pointer;
+    }
+    .selected-date {
+      background-color:rgba(62, 133, 243, 1);
+  color:white;
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+         width: 20px;
+      height: 22px;
+
+    }
+    .active{
+         b${({ theme }) => theme.bgToggleActive};
+    }
+
+    .dayOfMonth:hover{
+  cursor:pointer;
+  color:rgba(62, 133, 243, 1);
+    }
+    .dayContainer:hover{
+      cursor:pointer;
+  color:rgba(62, 133, 243, 1);}
+
+  .dayOfWeek{
     text-transform: uppercase;
-    margin: 0;
-  }
+   @media screen and (min-width: 1440px){
+          font-size: 16px;
+        }
+.dayOfWeek {
+:
+  color:red;}
 
-
-  .container {
-    max-width: 1440px;
-  }
-
-  .boxButtonDay {
-    display: flex;
-  }
 `;
