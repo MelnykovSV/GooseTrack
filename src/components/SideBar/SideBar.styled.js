@@ -70,7 +70,7 @@ export const LogoText = styled.p`
   }
 `;
 
-export const LogoPiece = styled.p`
+export const LogoPiece = styled.span`
   display: inline;
 
   font-family: Inter;
