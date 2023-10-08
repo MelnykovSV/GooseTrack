@@ -23,25 +23,26 @@ export const Header = ({ onToggle }) => {
   const [activePage, setActivePage] = useState('');
   const size = useResize();
 
+  const path = window.location.pathname;
   useEffect(() => {
-    const path = window.location.pathname;
     let pageTitle = '';
 
-    switch (path) {
-      case '/GooseTrack/account':
+    switch (true) {
+      case path.startsWith('/GooseTrack/account'):
         pageTitle = 'User Profile';
         break;
-      case '/GooseTrack/calendar':
+      case path.startsWith('/GooseTrack/calendar'):
         pageTitle = 'Calendar';
         break;
-      case '/GooseTrack/statistics':
+      case path.startsWith('/GooseTrack/statistics'):
         pageTitle = 'Statistics';
         break;
       default:
         pageTitle = '';
     }
+
     setActivePage(pageTitle);
-  }, []);
+  }, [path]);
 
   return (
     <>
