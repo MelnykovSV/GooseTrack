@@ -11,6 +11,10 @@ export const CommonSvgStyled = styled.svg`
   stroke: currentColor;
 `;
 
+export const UserPanelTitle = styled.p`
+  color: ${({ theme }) => theme.textModalTransparent};
+`;
+
 export const StyledNavLink = styled(NavLink)`
   display: flex;
   align-items: center;
@@ -51,11 +55,21 @@ export const Navigation = styled.nav`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  margin-top: 24px;
+  @media (min-width: 768px) {
+    margin-top: 32px;
+  }
 `;
 
 export const Container = styled.div`
-  margin-top: 100px;
+  margin-top: 64px;
   height: 100vh;
+  @media (min-width: 768px) {
+    margin-top: 50px;
+  }
+  @media (min-width: 1440px) {
+    min-width: 32px;
+  }
 `;
 
 export const UserIcon = styled(TbUserCheck)`

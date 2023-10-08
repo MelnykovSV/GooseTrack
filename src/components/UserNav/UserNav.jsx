@@ -4,6 +4,7 @@ import * as S from './UserNav.styled';
 export const UserNav = () => {
   return (
     <S.Container>
+      <S.UserPanelTitle>User Panel</S.UserPanelTitle>
       <S.Navigation>
         <S.StyledNavLink to="/account">
           <S.UserIcon />
