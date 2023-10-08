@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux';
 import { selectUser } from 'redux/selectors';
 import { CircularAvatar } from './Avatar.styled';
 
-export const Avatar = ({ isForm }) => {
+export const Avatar = ({ fontSize }) => {
   // const dispatch = useDispatch();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -55,7 +55,7 @@ export const Avatar = ({ isForm }) => {
           alt="avatarUrl"
         />
       ) : (
-        <CircularAvatar style={isForm && { fontSize: 'calc(24px + 3vw)' }}>
+        <CircularAvatar style={{ fontSize }}>
           {letter || ''}
         </CircularAvatar>
       )}
