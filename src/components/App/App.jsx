@@ -15,6 +15,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { useThemeContext } from 'theme/ThemeContextProvider';
 import { getIsRefreshing } from 'redux/auth/authSlice';
 import { refresh } from 'redux/auth/operations';
+import { Loader } from 'components/Loader/Loader';
 
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
@@ -42,7 +43,7 @@ export const App = () => {
 
   useEffect(() => {
     dispatch(refresh());
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {
@@ -70,7 +71,7 @@ export const App = () => {
     <ThemeProvider theme={theme}>
       <Container>
         <ModernNormalize />
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense fallback={<Loader />}>
           {!isRefreshing ? (
             <Routes>
               <Route element={<PublicRoute />}>
@@ -92,7 +93,7 @@ export const App = () => {
               <Route path="*" element={<div>not found</div>} />
             </Routes>
           ) : (
-            <div>Loader</div>
+            <Loader />
           )}
         </Suspense>
         <ToastContainer />
