@@ -1,11 +1,12 @@
 import { useState } from 'react';
-import { format, parseISO, startOfToday, parse } from 'date-fns';
+import DatePicker from 'react-datepicker';
+import { format, startOfToday, parse } from 'date-fns';
 
 import {
   General,
   Option,
   Buttons,
-  ButtonData,
+  // ButtonData,
   IconNext,
   List,
   Item,
@@ -14,21 +15,27 @@ import {
   Arrows,
   IconPrev,
 } from './Statistics.styled';
-import { CustomCalendar, StatisticsChart } from '../index';
+// import { CustomCalendar, StatisticsChart } from '../index';
+import { StatisticsChart } from '../index';
 
 const Statistics = () => {
-  const today = startOfToday();
+  // const today = startOfToday();
   const [currentDayMonth, setCurrentDayMonth] = useState(
-    parseISO(format(today, 'yyyy-MM-dd'))
+    // parseISO(format(today, 'yyyy-MM-dd'))
+    new Date()
   );
-  
-  const [showCalendar, setShowCalendar] = useState(false);
 
-  const handleDateChange = newDate => {
-    const parsedDate = parse(newDate, 'dd MMMM yyyy', new Date());
-    setCurrentDayMonth(parsedDate);
-    setShowCalendar(false);
-  };
+  // console.log(today);
+  // console.log(format(today, 'yyyy-MM-dd'));
+  // console.log(parseISO(format(today, 'yyyy-MM-dd')));
+
+  // const [showCalendar, setShowCalendar] = useState(false);
+
+  // const handleDateChange = newDate => {
+  //   const parsedDate = parse(newDate, 'dd MMMM yyyy', new Date());
+  //   setCurrentDayMonth(parsedDate);
+  //   setShowCalendar(false);
+  // };
 
   const handleLastDay = () => {
     const newDate = new Date(currentDayMonth);
@@ -42,17 +49,17 @@ const Statistics = () => {
     setCurrentDayMonth(newDate);
   };
 
-  const miniCalendar = () => {
-    setShowCalendar(prevState => !prevState);
-  };
+  // const miniCalendar = () => {
+  //   setShowCalendar(prevState => !prevState);
+  // };
 
   return (
     <General>
       <Option>
         <Buttons>
-          <ButtonData type="button" onClick={miniCalendar}>
+          {/* <ButtonData type="button" onClick={miniCalendar}>
             {format(currentDayMonth, 'dd MMMM yyyy')}
-          </ButtonData>
+          </ButtonData> */}
           <Arrows>
             <Arrow prev type="button" onClick={handleLastDay}>
               <IconPrev />
@@ -79,7 +86,7 @@ const Statistics = () => {
         setCurrentDayMonth={setCurrentDayMonth}
       />
 
-      {showCalendar && <CustomCalendar onDateChange={handleDateChange} />}
+      {/* {showCalendar && <CustomCalendar onDateChange={handleDateChange} />} */}
     </General>
   );
 };
