@@ -235,7 +235,7 @@ export const SubmitButton = styled(Button)`
   gap: 8px;
   max-width: 135px;
 
-  color: ${({ theme }) => theme.bgPrimary};
+  color: ${({ theme }) => theme.white};
 
   background-color: ${({ theme }) => theme.accentPrimary};
 
