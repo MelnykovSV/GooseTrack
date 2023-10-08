@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/GooseTrack/static/css/main.a0f1c906.css",
-    "main.js": "/GooseTrack/static/js/main.5682b293.js",
+    "main.js": "/GooseTrack/static/js/main.b5902b2b.js",
     "static/js/580.8fee038b.chunk.js": "/GooseTrack/static/js/580.8fee038b.chunk.js",
     "static/js/495.2c2fe47b.chunk.js": "/GooseTrack/static/js/495.2c2fe47b.chunk.js",
     "static/js/516.0a980582.chunk.js": "/GooseTrack/static/js/516.0a980582.chunk.js",
@@ -38,6 +38,7 @@
     "static/media/Inter.ttf": "/GooseTrack/static/media/Inter.1dd54012f11ee6520492.ttf",
     "static/media/Inter Bold Italic.eot?iefix": "/GooseTrack/static/media/Inter Bold Italic.4812d54930e1d52e1c27.eot",
     "static/media/Inter Bold Italic.ttf": "/GooseTrack/static/media/Inter Bold Italic.14e7b3ba904b70777443.ttf",
+    "static/media/not-found.png": "/GooseTrack/static/media/not-found.c326e527d46717de9bbb.png",
     "static/media/tablet_sidebar@2x.png": "/GooseTrack/static/media/tablet_sidebar@2x.d47fd2e59326435b065d.png",
     "static/media/mobile_calendar@2x.png": "/GooseTrack/static/media/mobile_calendar@2x.1a15b0ed88a5c0548275.png",
     "static/media/desktop_sadebar@2x.png": "/GooseTrack/static/media/desktop_sadebar@2x.b4b29a3d2c2abff69806.png",
@@ -71,6 +72,7 @@
     "static/media/desktop_sidebar.png": "/GooseTrack/static/media/desktop_sidebar.584e8f9ca92d6c060ec7.png",
     "static/media/Poppins Regular.woff": "/GooseTrack/static/media/Poppins Regular.6c0d0e4604512597402a.woff",
     "static/media/mobile_task_all@2x.png": "/GooseTrack/static/media/mobile_task_all@2x.7bb124e86b2b01ce4b5d.png",
+    "static/media/Goose.png": "/GooseTrack/static/media/Goose.3dadebb8ccbc0819b428.png",
     "static/media/tablet_task_all.png": "/GooseTrack/static/media/tablet_task_all.d3b521a384e14a4b6121.png",
     "static/media/Poppins Medium.woff": "/GooseTrack/static/media/Poppins Medium.8545fe4eeb02b3252a6d.woff",
     "static/media/desktop_tasks_all.png": "/GooseTrack/static/media/desktop_tasks_all.bc980fe843de0e83d227.png",
@@ -89,7 +91,6 @@
     "static/media/Coolvetica W01 Regular Italic.woff": "/GooseTrack/static/media/Coolvetica W01 Regular Italic.bfab6b964308b1c88d1c.woff",
     "static/media/Coolvetica-Regular.woff2": "/GooseTrack/static/media/Coolvetica-Regular.50b02c29ae7974f6bc33.woff2",
     "static/media/Coolvetica W01 Regular Italic.woff2": "/GooseTrack/static/media/Coolvetica W01 Regular Italic.5fa41c3154b1a9b93651.woff2",
-    "static/media/GOOSE_1x4.jpg": "/GooseTrack/static/media/GOOSE_1x4.96b5eef7495f9ed853c9.jpg",
     "static/media/desktop_GooseMainPage.png": "/GooseTrack/static/media/desktop_GooseMainPage.136512524c6ce06f26b4.png",
     "static/media/icons.svg": "/GooseTrack/static/media/icons.ba904b29aa4ccd8757d8531725d47f92.svg",
     "static/media/moon.svg": "/GooseTrack/static/media/moon.189bda27ac8ea8a07b286df71e92f407.svg",
@@ -105,10 +106,9 @@
     "static/media/right-arrow.svg": "/GooseTrack/static/media/right-arrow.42848bfcf8799c7c955f0349506bd388.svg",
     "static/media/plus.svg": "/GooseTrack/static/media/plus.9bf7f540d31da1e794227f56466c88ee.svg",
     "static/media/error.svg": "/GooseTrack/static/media/error.c31edb4d9f86ccb51128608b5a127b1a.svg",
-    "static/media/x-close.svg": "/GooseTrack/static/media/x-close.2fc579d8fb808014964ce85b8689713c.svg",
     "static/media/left-arrow.svg": "/GooseTrack/static/media/left-arrow.81ed5d799d71911e1c3f12cd85dcf140.svg",
     "main.a0f1c906.css.map": "/GooseTrack/static/css/main.a0f1c906.css.map",
-    "main.5682b293.js.map": "/GooseTrack/static/js/main.5682b293.js.map",
+    "main.b5902b2b.js.map": "/GooseTrack/static/js/main.b5902b2b.js.map",
     "580.8fee038b.chunk.js.map": "/GooseTrack/static/js/580.8fee038b.chunk.js.map",
     "495.2c2fe47b.chunk.js.map": "/GooseTrack/static/js/495.2c2fe47b.chunk.js.map",
     "516.0a980582.chunk.js.map": "/GooseTrack/static/js/516.0a980582.chunk.js.map",
@@ -126,6 +126,6 @@
   },
   "entrypoints": [
     "static/css/main.a0f1c906.css",
-    "static/js/main.5682b293.js"
+    "static/js/main.b5902b2b.js"
   ]
 }
