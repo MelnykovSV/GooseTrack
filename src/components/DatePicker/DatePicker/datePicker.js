@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import ReactDatePicker from 'react-datepicker';
-import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
+import { DateInfoComponent } from '../showDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
 import { DatePickerContainer } from './datePicker.styled';
 import { useNavigate } from 'react-router';
@@ -13,30 +13,7 @@ const DatePicker = () => {
   const navigate = useNavigate();
   const { day, month } = useParams();
 
-  useEffect(() => {
-    if (!day && !month) {
-      navigate(`month/${format(new Date(), 'yyyy-MM')}`);
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  console.log(checkParams(day, month));
-
-  const [selectedDate, setSelectedDate] = useState(
-    checkParams(day, month)
-      ? parse(
-          checkParams(day, month).date,
-          checkParams(day, month).pattern,
-          new Date()
-        )
-      : new Date()
-  );
-
-  const [pickerType, setPickerType] = useState(checkPageType() || 'month');
-
   const handleDateChange = date => {
-    console.log('handleDateChange');
-    console.log(pickerType);
     setSelectedDate(date);
     if (pickerType === 'month') {
       navigate(`month/${format(date, 'yyyy-MM')}`);
@@ -46,20 +23,6 @@ const DatePicker = () => {
       navigate(`day/${format(date, 'yyyy-MM-dd')}`);
     }
   };
-
-  useEffect(() => {
-    checkParams(day, month)
-      ? setSelectedDate(
-          parse(
-            checkParams(day, month).date,
-            checkParams(day, month).pattern,
-            new Date()
-          )
-        )
-      : new Date();
-
-    setPickerType(checkPageType(day, month) || 'month');
-  }, [day, month]);
 
   const handlePrevDay = () => {
     const newDate = new Date(selectedDate);
@@ -90,54 +53,85 @@ const DatePicker = () => {
     setPickerType(type);
   };
 
-  return (
-    <DatePickerContainer>
-      <div className="navigation">
-        <div className={'wrapBox'}>
-          <div className={'wrap'}>
-            <ReactDatePicker
-              selected={selectedDate}
-              onSelect={handleDateChange}
-              onChange={handleDateChange}
-              className={'myDatepicker'}
-              calendarClassName={'myCalendar'}
-              dateFormat={pickerType === 'month' ? 'MMMM yyyy' : 'dd MMM yyyy'}
-              showMonthYearPicker={pickerType === 'month' ? true : false}
-            />
-            <div className={'boxButton'}>
-              <button className={'buttonLeft'} onClick={handlePrevDay}>
-                {'<'}
-              </button>
-              <button className={'buttonRight'} onClick={handleNextDay}>
-                {'>'}
-              </button>
-            </div>
-          </div>
-          <nav className={'boxButtonDayMonth'}>
-            <NavLink
-              className={'showMonths'}
-              to={`month/${format(selectedDate, 'yyyy-MM')}`}
-              onClick={() => {
-                handleTypeChange('month');
-              }}
-            >
-              Month
-            </NavLink>
-            <NavLink
-              className={'showDay'}
-              to={`day/${format(selectedDate, 'yyyy-MM-dd')}`}
-              onClick={() => {
-                handleTypeChange('day');
-              }}
-            >
-              Day
-            </NavLink>
-          </nav>
+  useEffect(() => {
+    if (!day && !month) {
+      navigate(`month/${format(new Date(), 'yyyy-MM')}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
-          <DateInfoComponent />
+  useEffect(() => {
+    const params = checkParams(day, month);
+    setSelectedDate(
+      params ? parse(params.date, params.pattern, new Date()) : new Date()
+    );
+
+    setPickerType(checkPageType(day, month) || 'month');
+  }, [day, month]);
+
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [pickerType, setPickerType] = useState(checkPageType() || 'month');
+
+  return (
+    <div className={'containerDatePicker'}>
+      <DatePickerContainer>
+        <div className="navigation">
+          <div className={'wrapBox'}>
+            <div className={'wrap'}>
+              <ReactDatePicker
+                selected={selectedDate}
+                onSelect={handleDateChange}
+                onChange={handleDateChange}
+                className={'myDatepicker'}
+                calendarClassName={'myCalendar'}
+                dateFormat={
+                  pickerType === 'month' ? 'MMMM yyyy' : 'dd MMM yyyy'
+                }
+                showMonthYearPicker={pickerType === 'month'}
+              />
+              <div className={'boxButton'}>
+                <button className={'buttonLeft'} onClick={handlePrevDay}>
+                  {'<'}
+                </button>
+                <button className={'buttonRight'} onClick={handleNextDay}>
+                  {'>'}
+                </button>
+              </div>
+            </div>
+
+            <nav className={'boxButtonDayMonth'}>
+              <NavLink
+                className={
+                  pickerType === 'month' ? 'showMonths active' : 'showMonths'
+                }
+                to={`month/${format(selectedDate, 'yyyy-MM')}`}
+                onClick={() => {
+                  handleTypeChange('month');
+                }}
+              >
+                Month
+              </NavLink>
+              <NavLink
+                className={
+                  pickerType === 'month' ? 'showDay' : 'showDay active'
+                }
+                to={`day/${format(selectedDate, 'yyyy-MM-dd')}`}
+                onClick={() => {
+                  handleTypeChange('day');
+                }}
+              >
+                Day
+              </NavLink>
+            </nav>
+
+            <DateInfoComponent
+              selectedDate={selectedDate}
+              pickerType={pickerType}
+            />
+          </div>
         </div>
-      </div>
-    </DatePickerContainer>
+      </DatePickerContainer>
+    </div>
   );
 };
 
