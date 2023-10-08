@@ -4,46 +4,44 @@ import { TbCalendarCheck, TbUserCheck } from 'react-icons/tb';
 import { HiOutlineChartBar } from 'react-icons/hi2';
 
 export const CommonSvgStyled = styled.svg`
-  stroke: ${props => props.theme.textPrimaryLight};
   margin-right: 10px;
   height: 24px;
   width: 24px;
-  &:focus {
-    stroke: ${props => props.theme.accentPrimary};
-  }
-  &:active {
-    stroke: ${props => props.theme.accentPrimary};
-  }
-  &:hover {
-    stroke: ${props => props.theme.accentPrimary};
-  }
+
+  stroke: currentColor;
 `;
 
 export const StyledNavLink = styled(NavLink)`
-  min-width: 185px;
-  min-height: 56px;
-  text-align: left;
   display: flex;
   align-items: center;
-  border-radius: 8px;
-  color: ${props => props.theme.textPrimaryLight};
-  background-color: ${props => props.theme.white};
-  text-decoration: none;
+
+  min-width: 185px;
+  min-height: 56px;
   padding: 16px 16px 16px 20px;
 
+  border-radius: 8px;
+
+  color: ${({ theme }) => theme.textPrimaryLightTransparent};
+
+  text-align: left;
+  text-decoration: none;
+
   &.active {
-    color: ${props => props.theme.accentPrimary};
-    background-color: ${props => props.theme.bgToggleUnactive};
+    color: ${({ theme }) => theme.textNav};
+    background-color: ${({ theme }) => theme.bgToggleUnactive};
+
     pointer-events: none;
   }
 
   &:hover {
-    color: ${props => props.theme.accentPrimary};
-    background-color: ${props => props.theme.bgToggleUnactive};
+    color: ${({ theme }) => theme.textNav};
+    background-color: ${({ theme }) => theme.bgToggleUnactive};
   }
+
   @media (min-width: 768px) {
     min-width: 225px;
   }
+
   @media (min-width: 1440px) {
     min-width: 240px;
   }

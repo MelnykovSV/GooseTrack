@@ -16,6 +16,7 @@ import { useThemeContext } from 'theme/ThemeContextProvider';
 import { getIsRefreshing } from 'redux/auth/authSlice';
 import { refresh } from 'redux/auth/operations';
 import { Loader } from 'components/Loader/Loader';
+import NotFoundPage from 'pages/NotFoundPage/NotFoundPage';
 
 const RegistrationPage = lazy(() =>
   import('../../pages/RegistrationPage/RegistrationPage')
@@ -90,7 +91,7 @@ export const App = () => {
                 </Route>
               </Route>
 
-              <Route path="*" element={<div>not found</div>} />
+              <Route path="*" element={<NotFoundPage />} />
             </Routes>
           ) : (
             <Loader />
