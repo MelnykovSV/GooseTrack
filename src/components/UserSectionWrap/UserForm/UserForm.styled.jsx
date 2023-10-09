@@ -1,10 +1,8 @@
-import styled from '@emotion/styled';
-import { ErrorMessage, Field } from 'formik';
-import { ReactComponent as ErrorIcon } from '../../../icons/error.svg';
+import styled from "@emotion/styled";
 import { ReactComponent as ValidIcon } from '../../../icons/valid.svg';
 import { IoIosArrowDown } from 'react-icons/io';
 
-export const UserFormWrap = styled.div`
+export const Form = styled.form`
   margin-top: 135px;
   display: flex;
   flex-direction: column;
@@ -23,6 +21,23 @@ export const UserFormWrap = styled.div`
     grid-gap: 24px 50px;
     justify-content: center;
     margin-top: 44px;
+  }
+`;
+
+export const Label = styled.label`
+  position: relative;
+  width: 100%;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 1.25;
+  margin-bottom: 0px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 14px;
+    line-height: 1.2;
+  }
+  @media screen and (min-width: 1440px) {
+    position: relative;
   }
 `;
 
@@ -45,24 +60,7 @@ export const LabelText = styled.p`
   margin-top: 0px;
 `;
 
-export const Label = styled.label`
-  position: relative;
-  width: 100%;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 1.25;
-  margin-bottom: 0px;
-
-  @media screen and (min-width: 768px) {
-    font-size: 14px;
-    line-height: 1.2;
-  }
-  @media screen and (min-width: 1440px) {
-    position: relative;
-  }
-`;
-
-export const FormInput = styled(Field)`
+export const Input = styled.input`
   box-sizing: border-box;
   width: 100%;
   height: 42px;
@@ -95,33 +93,6 @@ export const FormInput = styled(Field)`
   }
 `;
 
-export const DataIconWrap = styled.span`
-  position: absolute;
-  right: 10px;
-  top: 31px;
-  font-size: x-large;
-
-  @media screen and (min-width: 1200px) {
-    right: 10px;
-  }
-`;
-
-export const Feedback = styled.div`
-  height: 25px;
-  margin-top: 8px;
-  margin-left: 10px;
-`;
-
-export const ValidFeedback = styled.div`
-  color: ${({ theme }) => theme.success};
-  font-size: 12px;
-`;
-
-export const InvalidFeedback = styled(ErrorMessage)`
-  color: ${({ theme }) => theme.error};
-  font-size: 12px;
-`;
-
 export const ValidationIcon = styled.span`
   border: none;
   position: absolute;
@@ -134,16 +105,21 @@ export const ValidationIcon = styled.span`
   }
 `;
 
-export const InvalidInputIcon = styled(ErrorIcon)`
-  width: 24px;
-  height: 24px;
-  fill: ${({ theme }) => theme.error};
-`;
-
 export const ValidInputIcon = styled(ValidIcon)`
   width: 24px;
   height: 24px;
   fill: ${({ theme }) => theme.success};
+`;
+
+export const DataIconWrap = styled.span`
+  position: absolute;
+  right: 10px;
+  top: 31px;
+  font-size: x-large;
+
+  @media screen and (min-width: 1200px) {
+    right: 10px;
+  }
 `;
 
 export const ChevronDownIcon = styled(IoIosArrowDown)`
