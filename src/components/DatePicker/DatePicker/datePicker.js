@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, forwardRef } from 'react';
 import ReactDatePicker from 'react-datepicker';
 import { DateInfoComponent } from '../ShowDateInfo/showDateInfo';
 import 'react-datepicker/dist/react-datepicker.css';
@@ -8,6 +8,7 @@ import { parse, format } from 'date-fns';
 import { useParams } from 'react-router';
 import { NavLink } from 'react-router-dom';
 import { checkParams, checkPageType } from './dateParamsHelpers';
+import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 
 const DatePicker = () => {
   const navigate = useNavigate();
@@ -21,6 +22,12 @@ const DatePicker = () => {
   }, []);
 
   console.log(checkParams(day, month));
+
+  const Datepickerinput = forwardRef(({ value, onClick }, ref) => (
+    <button className="myDatepicker" onClick={onClick} ref={ref}>
+      {value}
+    </button>
+  ));
 
   const [selectedDate, setSelectedDate] = useState(
     checkParams(day, month)
@@ -93,23 +100,25 @@ const DatePicker = () => {
   return (
     <DatePickerContainer>
       <div className="navigation">
-        <div className={'wrapBox'}>
+        <div className="date-controllers-wrapper">
           <div className={'wrap'}>
             <ReactDatePicker
+              customInput={<Datepickerinput />}
               selected={selectedDate}
               onSelect={handleDateChange}
               onChange={handleDateChange}
-              className={'myDatepicker'}
               calendarClassName={'myCalendar'}
               dateFormat={pickerType === 'month' ? 'MMMM yyyy' : 'dd MMM yyyy'}
               showMonthYearPicker={pickerType === 'month' ? true : false}
+              calendarStartDay={1}
+              className="calendar-datepicker"
             />
             <div className={'boxButton'}>
-              <button className={'buttonLeft'} onClick={handlePrevDay}>
-                {'<'}
+              <button className={'buttonLeft button'} onClick={handlePrevDay}>
+                {<FaChevronLeft />}
               </button>
-              <button className={'buttonRight'} onClick={handleNextDay}>
-                {'>'}
+              <button className={'buttonRight button'} onClick={handleNextDay}>
+                {<FaChevronRight />}
               </button>
             </div>
           </div>
@@ -133,9 +142,9 @@ const DatePicker = () => {
               Day
             </NavLink>
           </nav>
-
-          <DateInfoComponent />
         </div>
+
+        <DateInfoComponent />
       </div>
     </DatePickerContainer>
   );

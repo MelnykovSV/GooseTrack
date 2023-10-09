@@ -22,7 +22,6 @@ export const StyledNavLink = styled(NavLink)`
   min-width: 185px;
   min-height: 56px;
   padding: 16px 16px 16px 20px;
-
   border-radius: 8px;
 
   color: ${({ theme }) => theme.textPrimaryLightTransparent};
@@ -54,6 +53,7 @@ export const StyledNavLink = styled(NavLink)`
 export const Navigation = styled.nav`
   display: flex;
   flex-direction: column;
+  gap: 16px;
   align-items: flex-start;
   margin-top: 24px;
   @media (min-width: 768px) {

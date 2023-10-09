@@ -4,8 +4,10 @@ import { useNavigate } from 'react-router';
 import { useParams } from 'react-router-dom';
 import { parse, format } from 'date-fns';
 import { checkParams, checkPageType } from '../DatePicker/dateParamsHelpers';
+import useMediaQuery from '@mui/material/useMediaQuery';
 
 const DateInfoComponent = () => {
+  const isMatches = useMediaQuery('(min-width:768px)');
   const { day, month } = useParams();
   const selectedDate = checkParams(day, month)
     ? parse(
@@ -19,7 +21,14 @@ const DateInfoComponent = () => {
   const navigate = useNavigate();
   const options = { weekday: 'long', day: 'numeric' };
   const startOfWeek = new Date(selectedDate);
-  startOfWeek.setDate(selectedDate.getDate() - selectedDate.getDay());
+
+  console.log(startOfWeek);
+  startOfWeek.setDate(
+    selectedDate.getDate() -
+      selectedDate.getDay() +
+      (selectedDate.getDay() === 0 ? -6 : 1)
+  );
+  console.log(startOfWeek);
 
   const daysOfWeek = [];
 
@@ -31,20 +40,30 @@ const DateInfoComponent = () => {
     daysOfWeek.push({ formattedDate, navigationDate });
   }
 
+  console.log(daysOfWeek);
+
   const handleDayClick = day => {
     navigate(`day/${day}`);
   };
 
   return (
     <Container>
-      <div className={'container'}>
+      <div>
         {pickerType === 'month' ? (
           <div className={'dateBox'}>
             {daysOfWeek.map((day, index) => (
               <div className={'dayContainer'} key={index}>
                 <div className={'dateNumber'}>
-                  <p className={'dateText'}>
-                    {day.formattedDate.split(' ')[1].substring(0, 3)}
+                  <p
+                    className={
+                      index === 6 || index === 5
+                        ? 'dateText month weakend'
+                        : 'dateText month'
+                    }
+                  >
+                    {isMatches
+                      ? day.formattedDate.split(' ')[1].substring(0, 3)
+                      : day.formattedDate.split(' ')[1].substring(0, 1)}
                   </p>{' '}
                 </div>
               </div>
@@ -52,19 +71,25 @@ const DateInfoComponent = () => {
           </div>
         ) : (
           <div className={'dateBox'}>
-            {daysOfWeek.map((day, index) => (
+            {daysOfWeek.map((item, index) => (
               <div
-                className={'dayContainer'}
-                onClick={() => handleDayClick(day.navigationDate)}
+                className={
+                  day === item.navigationDate
+                    ? 'dayContainer day current'
+                    : 'dayContainer day'
+                }
+                onClick={() => handleDayClick(item.navigationDate)}
                 key={index}
               >
                 <div className={'dateNumber'}>
                   <p className={'dateText'}>
-                    {day.formattedDate.split(' ')[1].substring(0, 3)}
+                    {isMatches
+                      ? item.formattedDate.split(' ')[1].substring(0, 3)
+                      : item.formattedDate.split(' ')[1].substring(0, 1)}
                   </p>{' '}
                 </div>
                 <div className={'dayOfWeek'}>
-                  {day.formattedDate
+                  {item.formattedDate
                     .split(' ')[0]
                     .substring(0, 3)
                     .toUpperCase()}

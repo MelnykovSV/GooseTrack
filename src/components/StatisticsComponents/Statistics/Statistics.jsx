@@ -20,7 +20,7 @@ import { StatisticsChart } from '../index';
 const Statistics = () => {
   const [currentDayMonth, setCurrentDayMonth] = useState(new Date());
 
-  const ExampleCustomInput = forwardRef(({ value, onClick }, ref) => (
+  const Datepickerinput = forwardRef(({ value, onClick }, ref) => (
     <ButtonData className="example-custom-input" onClick={onClick} ref={ref}>
       {value}
     </ButtonData>
@@ -45,7 +45,7 @@ const Statistics = () => {
           <DatePicker
             selected={currentDayMonth}
             onChange={date => setCurrentDayMonth(date)}
-            customInput={<ExampleCustomInput />}
+            customInput={<Datepickerinput />}
             dateFormat="dd MMMM yyyy"
             className="react-datepicker-wrapper"
             formatWeekDay={nameOfDay => nameOfDay.substring(0, 1)}

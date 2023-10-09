@@ -65,6 +65,11 @@ export const lightTheme = createTheme({
   shadowNotFound: 'rgba(136, 165, 191, 0.48)',
   calendarInactive: 'rgba(255, 255, 255, 0.2)',
   calendarWeekday: 'rgba(255, 255, 255, 0.5)',
+  toggleActive: '#3E85F3 ',
+  toggleUnactive: '#3E85F3',
+  weakend: '#343434',
+  // pickerBgToggleActive: ' ',
+  // pickerBgToggleUnactive: '',
 
   gradients: {
     red: 'linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%)',
@@ -151,6 +156,9 @@ export const darkTheme = createTheme({
   shadowNotFound: 'rgba(136, 165, 191, 0.30)',
   calendarInactive: 'rgba(255, 255, 255, 0.2)',
   calendarWeekday: 'rgba(255, 255, 255, 0.5)',
+  toggleActive: '#FFF ',
+  toggleUnactive: '#3E85F3',
+  weakend: '#3E85F3',
 
   gradients: {
     red: 'linear-gradient(0deg, #FFD2DD 0%, rgba(255, 210, 221, 0.00) 96.87%)',
