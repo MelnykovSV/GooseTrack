@@ -11,12 +11,12 @@ const RegistrationPage = () => {
     dispatch(signUp(data));
   };
   return (
-    <>
+  
       <LoginContainer>
         <RegisterForm registerHandler={registerHandler}></RegisterForm>
         <Hyperlink to="/login">Log in</Hyperlink>
       </LoginContainer>
-    </>
+
   );
 };
 
