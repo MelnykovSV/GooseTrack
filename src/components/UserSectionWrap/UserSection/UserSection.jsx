@@ -1,6 +1,6 @@
 import { UserAvatarWrap } from '../UserAvatarWrap/UserAvatarWrap';
 import { UserSectionWrap } from './UserSection.styled';
-import { TestForm, UserForm } from 'components/UserSectionWrap/UserForm/UserForm';
+import { UserForm } from 'components/UserSectionWrap/UserForm/UserForm';
 
 export const UserSection = () => {
   return (
@@ -8,7 +8,7 @@ export const UserSection = () => {
       <UserAvatarWrap />
       {/* <UserForm /> */}
       {/* <TestForm /> */}
-    <UserForm/>
+      <UserForm />
     </UserSectionWrap>
   );
 };
