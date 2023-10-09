@@ -6,8 +6,6 @@ export const UserSection = () => {
   return (
     <UserSectionWrap>
       <UserAvatarWrap />
-      {/* <UserForm /> */}
-      {/* <TestForm /> */}
       <UserForm />
     </UserSectionWrap>
   );
