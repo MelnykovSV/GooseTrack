@@ -12,6 +12,7 @@ export const ThemeSwitcher = () => {
       <Checkbox
         checked={mode === 'light' ? true : false}
         onChange={toggleColorMode}
+        id="theme-switcher"
         icon={<Sun />}
         checkedIcon={<Moon />}
       />

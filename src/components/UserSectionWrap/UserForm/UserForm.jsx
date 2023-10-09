@@ -45,12 +45,13 @@ export const UserForm = () => {
 
   const onSubmit = data => {
     data.birthday = format(data.birthday, 'yyyy-MM-dd');
+    console.log(data);
     dispatch(editData(data));
   };
 
   return (
     <Form onSubmit={handleSubmit(onSubmit)}>
-      <Label htmlFor="userName">
+      <Label>
         <LabelText
           status={
             errors.userName && getFieldState('userName').isDirty
@@ -85,7 +86,7 @@ export const UserForm = () => {
         />
       </Label>
 
-      <Label htmlFor="phone">
+      <Label>
         <LabelText
           status={
             errors.phone && getFieldState('phone').isDirty
@@ -114,7 +115,7 @@ export const UserForm = () => {
         />
       </Label>
 
-      <Label htmlFor="birthday">
+      <Label>
         <LabelText
           status={
             errors.phone && getFieldState('birthday').isDirty
@@ -154,7 +155,7 @@ export const UserForm = () => {
         />
       </Label>
 
-      <Label htmlFor="skype">
+      <Label>
         <LabelText
           status={
             errors.skype && getFieldState('skype').isDirty
@@ -188,7 +189,7 @@ export const UserForm = () => {
         />
       </Label>
 
-      <Label htmlFor="email">
+      <Label>
         <LabelText
           status={
             errors.email && getFieldState('email').isDirty

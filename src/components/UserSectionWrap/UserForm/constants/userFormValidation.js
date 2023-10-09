@@ -1,6 +1,8 @@
 import { object, string, date } from 'yup';
 import { userNameRegexp } from 'regExp';
 
+const phoneRegExp = /\+38 \(\d{3}\) \d{3}-\d{2}-\d{2}/;
+
 export const userFormValidation = object({
   userName: string()
     .required('Please enter your name')
@@ -19,7 +21,8 @@ export const userFormValidation = object({
       'Email is not valid.'
     ),
   skype: string().max(16),
-  phone: string().max(19, 'Phone must include 10 numbers'),
+  phone: string().matches(phoneRegExp, 'Invalid phone'),
+  // .max(19, 'Phone must include 10 numbers'),
   avatarUrl: string(),
 });
 
