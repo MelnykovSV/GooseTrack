@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { publicApi, privateApi, refreshApi } from 'api';
+import { toast } from 'react-toastify';
 
 export const signUp = createAsyncThunk(
   'auth/signUp',
@@ -82,8 +83,10 @@ export const updateAvatar = createAsyncThunk(
   async (formData, thunkAPI) => {
     try {
       const response = await privateApi.patch('/api/auth/avatar', formData);
+      toast.success('Avatar changed successfully');
       return response.data.data;
     } catch (error) {
+      toast.error('Ops, something is wrong');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
@@ -94,8 +97,10 @@ export const editData = createAsyncThunk(
   async (credentials, thunkAPI) => {
     try {
       const response = await privateApi.patch('/api/auth/user', credentials);
+      toast.success('Changes saved successfully');
       return response.data.data;
     } catch (error) {
+      toast.error('Ops, something is wrong');
       return thunkAPI.rejectWithValue(error.message);
     }
   }
