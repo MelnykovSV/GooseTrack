@@ -1,303 +1,229 @@
-import { Form, Formik } from 'formik';
-import DatePicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { format } from 'date-fns';
+import { selectUser } from 'redux/selectors';
+import { editData } from 'redux/auth/operations';
+import { useEffect } from 'react';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { userFormValidation } from 'components/UserSectionWrap/UserForm/constants/userFormValidation';
 import {
-  Feedback,
-  FormInput,
-  InvalidFeedback,
-  InvalidInputIcon,
+  ChevronDownIcon,
+  DataIconWrap,
+  Form,
+  Input,
   Label,
   LabelText,
-  UserFormWrap,
-  ValidFeedback,
   ValidInputIcon,
   ValidationIcon,
-  DataIconWrap,
-  ChevronDownIcon,
 } from './UserForm.styled';
-import { userFormValidation } from './constants/userFormValidation';
-import { useEffect, useState } from 'react';
+import { FeedbackValidIcon } from '../FeedbackValidIcon/FeedbackValidIcon';
+import { FeedbackMessage } from '../FeedbackMessage/FeedbackMessage';
 import { SaveChangesBtn } from 'components/SaveChangesBtn/SaveChangesBtn';
-import { CustomFormInput } from './constants/CustomFormInput';
+import { CustomFormInput } from '../CustomFormInput/CustomFormInput';
+import { Calendar } from '../Calendar/Calendar';
 import './custom-datepicker.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { selectUser } from 'redux/selectors';
-import { format } from 'date-fns';
-import { editData } from 'redux/auth/operations';
-import { getIsLoading } from 'redux/auth/authSlice';
 
 export const UserForm = () => {
   const dispatch = useDispatch();
   const userInfo = useSelector(selectUser);
-  const loading = useSelector(getIsLoading);
-
-  const [isFormChanged, setIsFormChanged] = useState(false);
-  const [isLoading, setIsLoading] = useState(true);
-
-  const initialValues = {
-    userName: userInfo.userName || '',
-    birthday: userInfo.birthday ? new Date(userInfo.birthday) : new Date(),
-    phone: userInfo.phone || '',
-    skype: userInfo.skype || '',
-    email: userInfo.email || '',
-  };
+  const {
+    getFieldState,
+    register,
+    handleSubmit,
+    setValue,
+    control,
+    formState: { errors },
+  } = useForm({ resolver: yupResolver(userFormValidation) });
 
   useEffect(() => {
-    setIsLoading(false);
-  }, [loading]);
+    setValue('userName', userInfo.userName);
+    setValue('phone', userInfo.phone);
+    setValue('birthday', userInfo.birthday);
+    setValue('skype', userInfo.skype);
+    setValue('email', userInfo.email);
+  }, [setValue, userInfo]);
 
-  const handleSubmit = (values, { resetForm, setFieldValue }) => {
-    values.birthday = format(values.birthday, 'yyyy-MM-dd');
-
-    try {
-      dispatch(editData(values));
-      setIsFormChanged(false);
-      resetForm();
-    } catch (error) {
-      console.error('Registration', error);
-    }
+  const onSubmit = data => {
+    data.birthday = format(data.birthday, 'yyyy-MM-dd');
+    dispatch(editData(data));
   };
 
   return (
-    <div>
-      {isLoading ? null : (
-        <Formik
-          initialValues={initialValues}
-          validationSchema={userFormValidation}
-          onSubmit={handleSubmit}
+    <Form onSubmit={handleSubmit(onSubmit)}>
+      <Label htmlFor="userName">
+        <LabelText
+          status={
+            errors.userName && getFieldState('userName').isDirty
+              ? 'error'
+              : getFieldState('userName').isDirty
+              ? 'valid'
+              : 'default'
+          }
         >
-          {({ setFieldValue, errors, touched, values, dirty, setTouched }) => {
-            return (
-              <Form autoComplete="off">
-                <UserFormWrap>
-                  <Label htmlFor="userName">
-                    <LabelText
-                      status={
-                        errors.userName && touched.userName
-                          ? 'error'
-                          : touched.userName
-                          ? 'valid'
-                          : 'default'
-                      }
-                    >
-                      User Name
-                    </LabelText>
-                    <FormInput
-                      id="userName"
-                      type="text"
-                      name="userName"
-                      placeholder="User name"
-                      status={
-                        errors.userName && touched.userName
-                          ? 'error'
-                          : touched.userName
-                          ? 'valid'
-                          : 'default'
-                      }
-                    />
-                    {touched.userName && (
-                      <ValidationIcon>
-                        {errors.userName ? (
-                          <InvalidInputIcon />
-                        ) : (
-                          <ValidInputIcon />
-                        )}
-                      </ValidationIcon>
-                    )}
-                    <Feedback>
-                      {touched.userName && !errors.userName ? (
-                        <ValidFeedback>User name is correct</ValidFeedback>
-                      ) : (
-                        <InvalidFeedback name="userName" component="div" />
-                      )}
-                    </Feedback>
-                  </Label>
+          User Name
+        </LabelText>
+        <Input
+          placeholder="User name"
+          defaultValue={userInfo.userName}
+          {...register('userName')}
+          status={
+            errors.userName && getFieldState('userName').isDirty
+              ? 'error'
+              : getFieldState('userName').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        />
 
-                  <Label htmlFor="phone">
-                    <LabelText
-                      status={
-                        errors.phone && touched.phone
-                          ? 'error'
-                          : touched.phone
-                          ? 'valid'
-                          : 'default'
-                      }
-                    >
-                      Phone
-                    </LabelText>
-                    <FormInput
-                      id="phone"
-                      type="phone"
-                      name="phone"
-                      placeholder="Enter your phone"
-                      component={CustomFormInput}
-                      status={
-                        errors.phone && touched.phone
-                          ? 'error'
-                          : touched.phone
-                          ? 'valid'
-                          : 'default'
-                      }
-                    />
-                    {touched.phone && (
-                      <ValidationIcon>
-                        {errors.phone ? (
-                          <InvalidInputIcon />
-                        ) : (
-                          <ValidInputIcon />
-                        )}
-                      </ValidationIcon>
-                    )}
-                    <Feedback>
-                      {touched.phone && !errors.phone ? (
-                        <ValidFeedback>User phone is correct</ValidFeedback>
-                      ) : (
-                        <InvalidFeedback name="phone" component="div" />
-                      )}
-                    </Feedback>
-                  </Label>
+        {getFieldState('userName').isDirty && (
+          <FeedbackValidIcon errors={errors.userName} />
+        )}
 
-                  <Label htmlFor="birthday">
-                    <LabelText style={touched.birthday && { color: '#3cbc81' }}>
-                      Birthday
-                    </LabelText>
-                    <FormInput
-                      id="birthday"
-                      type="text"
-                      name="birthday"
-                      style={
-                        touched.birthday && { border: '1px solid #3cbc81' }
-                      }
-                      onChange={e => {
-                        setFieldValue('birthday', e);
-                        setTouched({ ...touched, birthday: true });
-                      }}
-                      component={({ field, form, ...props }) => {
-                        return (
-                          <DatePicker
-                            calendarStartDay={1}
-                            dropdownMode="select"
-                            yearDropdownItemNumber={100}
-                            scrollableYearDropdown
-                            selected={new Date(values.birthday)}
-                            dateFormat="yyyy-MM-dd"
-                            maxDate={new Date()}
-                            {...field}
-                            {...props}
-                          />
-                        );
-                      }}
-                    />
-                    {touched.birthday ? (
-                      <ValidationIcon>
-                        <ValidInputIcon />
-                      </ValidationIcon>
-                    ) : (
-                      <DataIconWrap>
-                        <ChevronDownIcon />
-                      </DataIconWrap>
-                    )}
-                    <Feedback>
-                      {touched.birthday && (
-                        <ValidFeedback>User birthday is selected</ValidFeedback>
-                      )}
-                    </Feedback>
-                  </Label>
+        <FeedbackMessage
+          getFieldState={getFieldState('userName')}
+          errors={errors.userName}
+        />
+      </Label>
 
-                  <Label htmlFor="skype">
-                    <LabelText
-                      status={
-                        errors.skype && touched.skype
-                          ? 'error'
-                          : touched.skype
-                          ? 'valid'
-                          : 'default'
-                      }
-                    >
-                      Skype
-                    </LabelText>
-                    <FormInput
-                      id="skype"
-                      type="text"
-                      name="skype"
-                      placeholder="Add a skype number"
-                      status={
-                        errors.skype && touched.skype
-                          ? 'error'
-                          : touched.skype
-                          ? 'valid'
-                          : 'default'
-                      }
-                    />
-                    {touched.skype && (
-                      <ValidationIcon>
-                        {errors.skype ? (
-                          <InvalidInputIcon />
-                        ) : (
-                          <ValidInputIcon />
-                        )}
-                      </ValidationIcon>
-                    )}
-                    <Feedback>
-                      {touched.skype && !errors.skype ? (
-                        <ValidFeedback>User skype is correct</ValidFeedback>
-                      ) : (
-                        <InvalidFeedback name="skype" component="div" />
-                      )}
-                    </Feedback>
-                  </Label>
+      <Label htmlFor="phone">
+        <LabelText
+          status={
+            errors.phone && getFieldState('phone').isDirty
+              ? 'error'
+              : getFieldState('phone').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        >
+          Phone
+        </LabelText>
+        <Controller
+          control={control}
+          defaultValue={userInfo.phone}
+          name="phone"
+          render={CustomFormInput}
+        />
 
-                  <Label htmlFor="email">
-                    <LabelText
-                      status={
-                        errors.email && touched.email
-                          ? 'error'
-                          : touched.email
-                          ? 'valid'
-                          : 'default'
-                      }
-                    >
-                      Email
-                    </LabelText>
-                    <FormInput
-                      type="email"
-                      name="email"
-                      placeholder="Enter your email"
-                      status={
-                        errors.email && touched.email
-                          ? 'error'
-                          : touched.email
-                          ? 'valid'
-                          : 'default'
-                      }
-                    />
-                    {touched.email && (
-                      <ValidationIcon>
-                        {errors.email ? (
-                          <InvalidInputIcon />
-                        ) : (
-                          <ValidInputIcon />
-                        )}
-                      </ValidationIcon>
-                    )}
-                    <Feedback>
-                      {touched.email && !errors.email ? (
-                        <ValidFeedback>User email is correct</ValidFeedback>
-                      ) : (
-                        <InvalidFeedback name="email" component="div" />
-                      )}
-                    </Feedback>
-                  </Label>
+        {getFieldState('phone').isDirty && (
+          <FeedbackValidIcon errors={errors.phone} />
+        )}
 
-                  <SaveChangesBtn isChanged={!dirty && !isFormChanged}>
-                    Save Changes
-                  </SaveChangesBtn>
-                </UserFormWrap>
-              </Form>
-            );
+        <FeedbackMessage
+          getFieldState={getFieldState('phone')}
+          errors={errors.phone}
+        />
+      </Label>
+
+      <Label htmlFor="birthday">
+        <LabelText
+          status={
+            errors.phone && getFieldState('birthday').isDirty
+              ? 'error'
+              : getFieldState('birthday').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        >
+          Birthday
+        </LabelText>
+        <Controller
+          control={control}
+          name="birthday"
+          defaultValue={
+            userInfo.birthday ? new Date(userInfo.birthday) : new Date()
+          }
+          onChange={e => {
+            setValue('birthday', e);
           }}
-        </Formik>
-      )}
-    </div>
+          render={Calendar}
+        />
+
+        {getFieldState('birthday').isDirty ? (
+          <ValidationIcon>
+            <ValidInputIcon />
+          </ValidationIcon>
+        ) : (
+          <DataIconWrap>
+            <ChevronDownIcon />
+          </DataIconWrap>
+        )}
+
+        <FeedbackMessage
+          getFieldState={getFieldState('birthday')}
+          errors={errors.birthday}
+        />
+      </Label>
+
+      <Label htmlFor="skype">
+        <LabelText
+          status={
+            errors.skype && getFieldState('skype').isDirty
+              ? 'error'
+              : getFieldState('skype').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        >
+          Skype
+        </LabelText>
+        <Input
+          placeholder="Add a skype number"
+          defaultValue={userInfo.skype}
+          {...register('skype')}
+          status={
+            errors.skype && getFieldState('skype').isDirty
+              ? 'error'
+              : getFieldState('skype').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        />
+        {getFieldState('skype').isDirty && (
+          <FeedbackValidIcon errors={errors.skype} />
+        )}
+
+        <FeedbackMessage
+          getFieldState={getFieldState('skype')}
+          errors={errors.skype}
+        />
+      </Label>
+
+      <Label htmlFor="email">
+        <LabelText
+          status={
+            errors.email && getFieldState('email').isDirty
+              ? 'error'
+              : getFieldState('email').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        >
+          Email
+        </LabelText>
+        <Input
+          placeholder="Enter your email"
+          defaultValue={userInfo.email}
+          {...register('email')}
+          status={
+            errors.email && getFieldState('email').isDirty
+              ? 'error'
+              : getFieldState('email').isDirty
+              ? 'valid'
+              : 'default'
+          }
+        />
+
+        {getFieldState('email').isDirty && (
+          <FeedbackValidIcon errors={errors.email} />
+        )}
+
+        <FeedbackMessage
+          getFieldState={getFieldState('email')}
+          errors={errors.email}
+        />
+      </Label>
+
+      <SaveChangesBtn>Submit</SaveChangesBtn>
+    </Form>
   );
 };
