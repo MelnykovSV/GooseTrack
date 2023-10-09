@@ -19,7 +19,6 @@ export const SideBar = ({ onClose }) => {
   const dispatch = useDispatch();
 
   const logoutHandler = () => {
-    console.log('click');
     dispatch(logOut());
   };
   return (

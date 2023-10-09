@@ -6,18 +6,14 @@ import ReviewCard from './../ReviewCard/ReviewCard';
 import { ReactComponent as LeftArrow } from './../../../images/icons/left-arrow.svg';
 import { ReactComponent as RightArrow } from './../../../images/icons/right-arrow.svg';
 
-
 import { publicApi } from 'api';
 
 const ReviewsSlider = () => {
-
-
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [reviews, setReviews] = useState([]);
 
   const fetchReviews = async () => {
     const response = await publicApi.get('/api/reviews');
-    console.log(response.data.data);
     setReviews(response.data.data);
     handleResize();
   };
@@ -44,8 +40,8 @@ const ReviewsSlider = () => {
     slidesToShow: windowWidth >= 1440 ? 2 : 1,
     slidesToScroll: 1,
     autoplay: true,
-    prevArrow: <S.IconArrowLeft>{<LeftArrow/>}</S.IconArrowLeft>,
-    nextArrow: <S.IconArrowRight>{<RightArrow/>}</S.IconArrowRight>,
+    prevArrow: <S.IconArrowLeft>{<LeftArrow />}</S.IconArrowLeft>,
+    nextArrow: <S.IconArrowRight>{<RightArrow />}</S.IconArrowRight>,
   };
 
   return (
@@ -56,7 +52,6 @@ const ReviewsSlider = () => {
           <Slider {...settings}>
             {Array.isArray(reviews) &&
               reviews.map(({ _id, userName, comment, rating, avatarUrl }) => {
-                console.log(comment.length);
                 return (
                   <ReviewCard
                     key={_id}

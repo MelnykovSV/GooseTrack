@@ -21,8 +21,6 @@ const DatePicker = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(checkParams(day, month));
-
   const Datepickerinput = forwardRef(({ value, onClick }, ref) => (
     <button className="myDatepicker" onClick={onClick} ref={ref}>
       {value}
@@ -42,8 +40,6 @@ const DatePicker = () => {
   const [pickerType, setPickerType] = useState(checkPageType() || 'month');
 
   const handleDateChange = date => {
-    console.log('handleDateChange');
-    console.log(pickerType);
     setSelectedDate(date);
     if (pickerType === 'month') {
       navigate(`month/${format(date, 'yyyy-MM')}`);

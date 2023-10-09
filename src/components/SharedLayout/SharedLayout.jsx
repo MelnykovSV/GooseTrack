@@ -8,6 +8,7 @@ import { getUserData } from 'redux/auth/operations';
 import { SideBar } from 'components/SideBar/SideBar';
 import useResize from 'utils/useResize';
 import '../../../src/index.css';
+import { Loader } from 'components/Loader/Loader';
 
 export const SharedLayout = () => {
   const dispatch = useDispatch();
@@ -68,10 +69,10 @@ export const SharedLayout = () => {
         ) : (
           <SideBar onClose={handleCloseClick}>sideMenu</SideBar>
         )}
-        <HeaderWrap >
+        <HeaderWrap>
           <Header onToggle={handleToggleClick} />
           <BodyContent className="page-inner-container">
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Loader />}>
               <Outlet />
             </Suspense>
           </BodyContent>

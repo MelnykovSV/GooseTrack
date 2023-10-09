@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import * as S from './TaskColumnCard.styled';
 import { TaskModal, TaskToolbar } from '..';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { changeTaskStatus, deleteTask } from 'redux/tasks/operations';
-import { selectUser } from 'redux/selectors';
+
+import { Avatar } from 'components/Avatar/Avatar';
 
 const statuses = ['todo', 'inProgress', 'done'];
 
 export const TaskColumnCard = ({ task }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const dispatch = useDispatch();
-  const { avatarUrl } = useSelector(selectUser);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -38,13 +38,7 @@ export const TaskColumnCard = ({ task }) => {
       <S.Wraper>
         <S.PriorityWraper>
           <S.AvatarThumb>
-            {avatarUrl ? (
-              <S.Avatar src={avatarUrl} alt="User avatar" />
-            ) : (
-              <S.NoAvatar>
-                <S.NoAvatarIcon />
-              </S.NoAvatar>
-            )}
+            <Avatar />
           </S.AvatarThumb>
           <S.Priority $priority={task.priority}>
             {task.priority[0].toUpperCase() + task.priority.slice(1)}
@@ -77,13 +71,3 @@ export const TaskColumnCard = ({ task }) => {
     </S.CardWraper>
   );
 };
-
-//  {
-//    avatarUrl ? (
-//      <S.Avatar src={avatarUrl} alt="User avatar" />
-//    ) : (
-//  <S.NoAvatar>
-//    <S.NoAvatarIcon />
-//  </S.NoAvatar>
-//    );
-//  }

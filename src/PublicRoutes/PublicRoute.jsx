@@ -1,11 +1,12 @@
 import { useSelector } from 'react-redux';
 import { Navigate, Outlet, useLocation } from 'react-router-dom';
-import { selectToken } from 'redux/selectors';
+import { getIsLoggedIn} from 'redux/auth/authSlice';
 
 const PublicRoute = () => {
-  const token = useSelector(selectToken);
+
+  const isLoggedIn = useSelector(getIsLoggedIn);
   const location = useLocation();
-  return !token ? (
+  return !isLoggedIn ? (
     <Outlet />
   ) : (
     <Navigate to={location.state ? location.state : '/account'} />

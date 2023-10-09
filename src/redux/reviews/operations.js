@@ -7,7 +7,6 @@ export const getAllReview = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await privateApi.get('/api/reviews');
-      console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {
@@ -24,7 +23,6 @@ export const addReview = createAsyncThunk(
   async (review, thunkAPI) => {
     try {
       const response = await privateApi.post('/api/reviews/own', review);
-      console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {
@@ -40,7 +38,6 @@ export const updateReview = createAsyncThunk(
   async (review, thunkAPI) => {
     try {
       const response = await privateApi.patch('/api/reviews/own', review);
-      console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {
@@ -57,7 +54,6 @@ export const deleteReview = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const response = await privateApi.delete('/api/reviews/own');
-      console.log(response.data.data);
 
       return response.data.data;
     } catch (error) {

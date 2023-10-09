@@ -22,13 +22,11 @@ const DateInfoComponent = () => {
   const options = { weekday: 'long', day: 'numeric' };
   const startOfWeek = new Date(selectedDate);
 
-  console.log(startOfWeek);
   startOfWeek.setDate(
     selectedDate.getDate() -
       selectedDate.getDay() +
       (selectedDate.getDay() === 0 ? -6 : 1)
   );
-  console.log(startOfWeek);
 
   const daysOfWeek = [];
 
@@ -39,8 +37,6 @@ const DateInfoComponent = () => {
     const navigationDate = `${format(date, 'yyyy-MM-dd')}`;
     daysOfWeek.push({ formattedDate, navigationDate });
   }
-
-  console.log(daysOfWeek);
 
   const handleDayClick = day => {
     navigate(`day/${day}`);
