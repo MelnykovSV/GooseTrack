@@ -9,13 +9,25 @@ import { selectIsLoadingTask } from 'redux/selectors';
 import { useParams } from 'react-router-dom';
 import { PatternFormat } from 'react-number-format';
 
+import { parse } from 'date-fns';
+
 const timeRegexp = /^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/;
 
 const validationSchema = yup.object({
   title: yup.string().trim().max(250).required(),
   priority: yup.string().oneOf(['low', 'medium', 'high']),
   start: yup.string().matches(timeRegexp, 'Invalid time, hh:mm').required(),
-  end: yup.string().matches(timeRegexp, 'Invalid time, hh:mm').required(),
+  end: yup
+    .string()
+    .matches(timeRegexp, 'Invalid time, hh:mm')
+    .required()
+    .test('is-grater', "'End' time should be grater", function (value) {
+      const { start } = this.parent;
+      return (
+        parse(value, 'HH:mm', new Date()) - parse(start, 'HH:mm', new Date()) >
+        0
+      );
+    }),
 });
 
 const defaultValues = {
