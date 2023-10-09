@@ -180,6 +180,21 @@ export const Arrows = styled.div`
   display: flex;
   align-items: center;
 `;
+export const IconPrev = styled(FaChevronLeft)`
+  width: 16px;
+  height: 16px;
+
+  fill: ${({ theme }) => theme.textPrimaryLight};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
+
+export const IconNext = styled(FaChevronRight)`
+  width: 16px;
+  height: 16px;
+
+  fill: ${({ theme }) => theme.textPrimaryLight};
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
+`;
 
 export const Arrow = styled.button`
   display: flex;
@@ -200,29 +215,13 @@ export const Arrow = styled.button`
 
   &:hover > svg {
     transform: scale(1.2);
-    color: ${({ theme }) => theme.accentPrimary};
+    fill: ${({ theme }) => theme.accentPrimary};
   }
 
   @media ${device.tablet} {
     padding-top: 8px;
     padding-bottom: 8px;
   }
-`;
-
-export const IconPrev = styled(FaChevronLeft)`
-  width: 16px;
-  height: 16px;
-
-  fill: currentColor;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
-`;
-
-export const IconNext = styled(FaChevronRight)`
-  width: 16px;
-  height: 16px;
-
-  fill: currentColor;
-  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
 `;
 
 export const List = styled.ul`

@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerFormValidation } from './constants/registerFormValidaton';
 import { correctSVG, errorSVG } from 'components/LoginForm/constants/svgValue';
+import { ReactComponent as LogInIcon } from './../../images/icons/logInIcon.svg';
 
 export const RegisterForm = ({ registerHandler }) => {
   const {
@@ -177,7 +178,9 @@ export const RegisterForm = ({ registerHandler }) => {
             : ''}
         </StyledSpan>
       </ParentWrapper>
-      <Button type="submit">Sign Up</Button>
+      <Button type="submit">
+        Sign Up <LogInIcon />
+      </Button>
     </Form>
   );
 };

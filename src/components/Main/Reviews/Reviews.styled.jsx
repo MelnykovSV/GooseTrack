@@ -108,7 +108,7 @@ export const IconArrowLeft = styled.button`
   width: 50px;
   position: absolute;
   top: 275px;
-  left: calc(50% - 38px);
+  left: calc(50% - 44px);
   transform: translateX(-50%);
   margin-left: auto;
   margin-right: auto;
@@ -141,7 +141,7 @@ export const IconArrowRight = styled.button`
   width: 50px;
   position: absolute;
   top: 275px;
-  left: calc(50% + 42px);
+  left: calc(50% + 38px);
   transform: translateX(-50%);
   margin-left: auto;
   margin-right: auto;

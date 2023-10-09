@@ -29,6 +29,7 @@ export const Container = styled.div`
       transform: translate(-50%, -50%);
       color: white;
       z-index: 1;
+      text-transform: uppercase;
     }
   }
 `;

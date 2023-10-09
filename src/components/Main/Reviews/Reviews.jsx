@@ -12,6 +12,11 @@ const ReviewsSlider = () => {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
   const [reviews, setReviews] = useState([]);
 
+  const a =
+    "Your app is absolutely fantastic! It's incredibly user-friendly, packed with a diverse range of features that make it an indispensable tool. The user experience is top-notch. I have a small suggestion: consider more frequent updates for  performance enhancements to maintain this excellent standard.";
+
+  console.log(a.length);
+
   const fetchReviews = async () => {
     const response = await publicApi.get('/api/reviews');
     setReviews(response.data.data);

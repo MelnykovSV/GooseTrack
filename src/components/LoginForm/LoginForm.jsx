@@ -12,6 +12,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { LoginFormValidation } from './constants/loginFormValidation';
 import { correctSVG, errorSVG } from './constants/svgValue';
+import { ReactComponent as LogInIcon } from './../../images/icons/logInIcon.svg';
 
 export const LoginForm = ({ loginHandler }) => {
   const {
@@ -85,7 +86,8 @@ export const LoginForm = ({ loginHandler }) => {
           type="password"
           name="password"
           {...register('password')}
-          placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          //   placeholder="&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;"
+          placeholder="••••••••"
           id="password"
           status={
             errors?.password
@@ -118,7 +120,9 @@ export const LoginForm = ({ loginHandler }) => {
             : ''}
         </StyledSpan>
       </ParentWrapper>
-      <Button type="submit">Log In</Button>
+      <Button type="submit">
+        Log In <LogInIcon />
+      </Button>
     </Form>
   );
 };

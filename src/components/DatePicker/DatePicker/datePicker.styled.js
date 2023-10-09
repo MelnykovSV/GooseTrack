@@ -64,13 +64,13 @@ export const DatePickerContainer = styled.div`
 
     &:hover > svg {
       transform: scale(1.2);
-      color: ${({ theme }) => theme.accentPrimary};
+      fill: ${({ theme }) => theme.accentPrimary};
     }
     svg {
       width: 16px;
       height: 16px;
 
-      /* fill: currentColor; */
+      fill: ${({ theme }) => theme.textPrimaryLight};
       transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
@@ -89,13 +89,13 @@ export const DatePickerContainer = styled.div`
     cursor: pointer;
     &:hover > svg {
       transform: scale(1.2);
-      color: ${({ theme }) => theme.accentPrimary};
+      fill: ${({ theme }) => theme.accentPrimary};
     }
     svg {
       width: 16px;
       height: 16px;
 
-      fill: currentColor;
+      fill: ${({ theme }) => theme.textPrimaryLight};
       transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1);
     }
   }
