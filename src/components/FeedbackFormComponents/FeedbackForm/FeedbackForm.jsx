@@ -103,7 +103,7 @@ export function FeedbackForm({
         />
         <input
           type="number"
-          id="comment"
+          id="rating"
           name="rating"
           className="visually-hidden"
           value={(formik.values.rating = rating)}

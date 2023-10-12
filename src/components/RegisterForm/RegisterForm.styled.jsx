@@ -43,15 +43,15 @@ const Input = styled.input`
   font-weight: 400;
   line-height: 18px; /* 128.571% */
   border: ${({ status }) => {
-		switch (status) {
-			case 'error':
-				return '1px solid #E74A3B';
-			case 'valid':
-				return '1px solid #3CBC81';
-			default:
-				return '1px solid rgba(220, 227, 229, 0.60);';
-		}
-	}};
+    switch (status) {
+      case 'error':
+        return '1px solid #E74A3B';
+      case 'valid':
+        return '1px solid #3CBC81';
+      default:
+        return '1px solid rgba(220, 227, 229, 0.60);';
+    }
+  }};
 `;
 const Heading = styled.h1`
   margin: 0;
@@ -75,16 +75,17 @@ const InputHeader = styled.label`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
-  color:  ${({ status }) => {
-		switch (status) {
-			case 'error':
-				return ' #E74A3B';
-			case 'valid':
-				return ' #3CBC81';
-			default:
-				return ' #111';
-		}
-	}};`
+  color: ${({ status }) => {
+    switch (status) {
+      case 'error':
+        return ' #E74A3B';
+      case 'valid':
+        return ' #3CBC81';
+      default:
+        return ' #111';
+    }
+  }};
+`;
 
 const Button = styled.button`
   display: flex;
@@ -105,6 +106,9 @@ const Button = styled.button`
   letter-spacing: -0.28px;
   cursor: pointer;
   transition: background 200ms linear;
+  svg {
+    stroke: #fff;
+  }
   :hover,
   :focus {
     border-radius: 16px;
@@ -136,22 +140,22 @@ const StyledSpan = styled.span`
   font-style: normal;
   font-weight: 400;
   line-height: 14px; /* 116.667% */
-  color:  ${({ status }) => {
-		switch (status) {
-			case 'error':
-				return ' #E74A3B';
-			case 'valid':
-				return ' #3CBC81';
-			default:
-				return ' #111';
-		}
-	}};
+  color: ${({ status }) => {
+    switch (status) {
+      case 'error':
+        return ' #E74A3B';
+      case 'valid':
+        return ' #3CBC81';
+      default:
+        return ' #111';
+    }
+  }};
   margin-bottom: 12px;
 `;
 
 const ParentWrapper = styled.div`
   position: relative;
-`
+`;
 
 const Hyperlink = styled(Link)`
   color: #3e85f3;
@@ -169,21 +173,21 @@ const Hyperlink = styled(Link)`
   }
 `;
 const ErrorSvg = styled.span`
-	position: absolute;
-	top:52%;
-	transform: translateY(-50%);
-	right: 10px;
-`
+  position: absolute;
+  top: 52%;
+  transform: translateY(-50%);
+  right: 10px;
+`;
 export {
-	Container,
-	Form,
-	Input,
-	Heading,
-	InputHeader,
-	Button,
-	StyledLink,
-	StyledSpan,
-	ParentWrapper,
-	Hyperlink,
-	ErrorSvg
+  Container,
+  Form,
+  Input,
+  Heading,
+  InputHeader,
+  Button,
+  StyledLink,
+  StyledSpan,
+  ParentWrapper,
+  Hyperlink,
+  ErrorSvg,
 };

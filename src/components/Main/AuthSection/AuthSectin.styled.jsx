@@ -86,13 +86,25 @@ export const AuthLinkLogIn = styled(Link)`
   line-height: 18px; /* 128.571% */
   letter-spacing: -0.28px;
   background-color: #fff;
-  padding: 14px 32px;
+  /* padding: 14px 32px; */
+  width: 121px;
+  height: 49px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 16px;
   margin-bottom: 16px;
+  gap: 6px;
   text-decoration: none;
   box-shadow: rgba(136, 165, 191, 0.48) 4px 2px 16px 0px;
+  svg {
+    /* fill: #3e85f3; */
+    stroke: #3e85f3;
+    display: block;
+    width: 18px;
+  }
   @media screen and (min-width: 768px) {
-    padding: 15px 32px;
+    /* padding: 15px 32px; */
   }
 
   @media screen and (min-width: 1440px) {

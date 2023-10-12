@@ -38,7 +38,7 @@ export const TaskText = styled.p`
 
   font-family: Inter;
   font-size: 14px;
-  height: 16px;
+  /* height: 16px; */
   /* max-width: 272px; */
   margin: 0 0 28px 0;
 
