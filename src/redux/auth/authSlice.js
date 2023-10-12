@@ -94,7 +94,6 @@ const authSlice = createSlice({
       state.isRefreshing = false;
     });
     builder.addCase(updateAvatar.fulfilled, (state, action) => {
-      console.log(action.payload);
       state.user = { ...state.user, ...action.payload };
       state.isLoading = false;
       // state.isLoggedIn = true;
@@ -114,7 +113,6 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.status = 'rejected';
       state.error = action.payload || { message: 'Unknown error', code: null };
-      // console.log(action.payload.code);
     });
   },
 });
